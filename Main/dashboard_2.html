@@ -95,12 +95,86 @@
 </div><!-- div from ibox-tools -->
 </div><!-- div from ibox-title -->
 
+
+<!-- TABLE -->
 <div class="ibox-content no-padding">
 <ul class="list-group">
-<li class="list-group-item">
-<p><a class="text-info" href="#">@Alan Marry</a> I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-<small class="block text-muted"><i class="fa fa-clock-o"></i> 1 minuts ago</small>
-</li>
+<table class="table table-bordered table-hover" id="users">
+<thead>
+<tr>
+<th scope="col">Nombre de usuario</th>
+<th scope="col">Correo electrónico</th>
+<th scope="col">Contraseña</th>
+<th scope="col">Nombre</th>
+<th scope="col">Apellido</th>
+<th scope="col">Permisos</th>
+</tr>
+</thead>
+    <tbody>
+    <tr>
+    <th scope="row">FrankHesse</th>
+    <td>hyperschnell11@outlook.sk</td>
+    <td>contraseña</td>
+    <td>Frank</td>
+    <td>Hesse</td>
+    <td>Administrador</td>
+    </tr>
+    <tr>
+    
+    <th scope="row">Lovell</th>
+    <td>str4ngl3r@aol.com</td>
+    <td>contraseña</td>
+    <td>Thomas</td>
+    <td>Hesse</td>
+    <td>Empleado</td>
+    </tr>
+    <tr>
+</table>
+
+
+<!-- BUTTONS-->
+<!-- ADD-->
+
+<div class="d-flex flex-row-reverse bd-highlight">
+        <div class="col-xs-2 p-2 bd-highlight">
+                <a data-toggle="modal" class="btn btn-primary" href="#modify-user">Eliminar</a>
+        </div>
+        <div class="col-xs-2 p-2 bd-highlight">
+                <a data-toggle="modal" class="btn btn-primary" href="#modify-user">Modificar</a>
+        </div>
+        <div class="col-xs-2 p-2 bd-highlight mr-1">
+                <a data-toggle="modal" class="btn btn-primary" href="#add-user">Agregar</a>
+        </div>
+
+      </div>
+
+
+                            <div id="add-user" class="modal fade" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-sm-12"><h3 class="m-t-none m-b">Registrar nuevo usuario</h3>
+                                                    <form role="form">
+                                                        <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control"></div>
+                                                        <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control"></div>
+                                                        <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
+                                                        <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control"></div>
+                                                        <div class="form-group"><label>Nombre</label> <input type="email" placeholder="Nombre" class="form-control"></div>
+                                                        <div class="form-group"><label>Apellido</label> <input type="email" placeholder="Apellido" class="form-control"></div>
+                                                        <div class="form-group"><label>Permisos</label></div>
+                                                                <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Administrador </label></div>
+                                                                <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Empleado </label></div>
+                                                            <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><strong>Registrar</strong></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+<!-- MODIFY -->
 </ul>
 </div><!-- ibox content-->
 </div><!-- div from ibox -->
