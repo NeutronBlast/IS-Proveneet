@@ -51,7 +51,7 @@
     <li class="active">
     
     <!-- User settings menu -->
-    <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
+    <a href="index-2.html"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
     
     <!-- Profile settings -->
@@ -63,7 +63,7 @@
     </li>
     <li>
     
-    <a href="providers.html"><i class="fa fa-diamond"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </ul>
 
     </div> <!-- div from sidebar collapse -->
@@ -90,7 +90,7 @@
 
     <div class="ibox ">
     <div class="ibox-title">
-    <h5>Read below comments</h5>
+    <h5>Información personal</h5>
     <div class="ibox-tools">
     <a class="collapse-link" href="#">
     <i class="fa fa-chevron-up"></i>
@@ -101,12 +101,56 @@
     </div><!-- div from ibox-tools -->
     </div><!-- div from ibox-title -->
 
+    <!-- PROFILE -->
+
     <div class="ibox-content no-padding">
     <ul class="list-group">
-    <li class="list-group-item">
-    <p><a class="text-info" href="#">@Alan Marry</a> I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-    <small class="block text-muted"><i class="fa fa-clock-o"></i> 1 minuts ago</small>
-    </li>
+    <div class="ibox-content no-padding border-left-right text-center">
+
+    <!-- Cosmetic picture -->
+    <img alt="image" class="img-fluid rounded" src="img/profile_med.png">
+    </div>
+    <div class="ibox-content profile-content text-center">
+
+    <!-- Placeholder name and last name -->
+    <h4><strong>Frank Hesse</strong></h4>
+    <!-- Placeholder e-mail adress -->
+    <p class="mb-0"><i class="fa fa-envelope"></i> hyperschnell11@outlook.sk</p>
+    <p><i class="fa fa-user-o"></i> Administrador</p>
+
+    <!-- Modify password button -->
+    <div class="user-button">
+    <div class="d-flex flex-row-reverse bd-highlight justify-content-center">
+    <div class="col-md-6 p-1 bd-highlight justify-content-center">
+    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#change-password"><i class="fa fa-lock"></i>    Cambiar Contraseña</a>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Modify password form -->
+    <div id="change-password" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="row">
+    <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar contraseña</h3>
+    <form role="form">
+    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control"></div>
+    <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
+        
+    <!-- SUBMIT -->
+    <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
     </ul>
     </div><!-- ibox content-->
     </div><!-- div from ibox -->

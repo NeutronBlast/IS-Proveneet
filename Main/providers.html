@@ -49,14 +49,14 @@
     <div class="logo-element">P</div>
     </li>
     <li>
-    <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
+    <a href="index-2.html"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
     <li><a href="index-2.html">Gestión de perfil</a></li>
     <li><a href="dashboard_2.html">Gestión de usuarios</a></li>   
     </ul>                
     </li>
     <li class="active">
-    <a href="providers.html"><i class="fa fa-diamond"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 </div> <!-- div from sidebar collapse -->
 </nav>
@@ -101,13 +101,13 @@
         
         <div class="ibox-content no-padding">
         <ul class="list-group">
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover" id="providers">
         <thead>
         <tr>
         <th scope="col">Nombre</th>
-        <th scope="col">RIF</th>
         <th scope="col">Dirección</th>
         <th scope="col">Teléfono</th>
+        <th scope="col">RIF</th>
         </tr>
         </thead>
             <tbody>
@@ -126,6 +126,65 @@
             </tr>
             <tr>
         </table>
+
+
+    <!-- BUTTONS-->
+
+    <div class="d-flex flex-row-reverse bd-highlight">
+    <div class="col-xs-2 p-1 bd-highlight">
+    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#">Eliminar</a>
+    </div>
+    
+    <div class="col-xs-2 p-1 bd-highlight">
+    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-provider">Modificar</a>
+    </div>
+    
+    <div class="col-xs-2 p-1 bd-highlight">
+    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#add-provider">Agregar</a>
+    </div>
+    </div>
+
+    <!-- FORM ADD -->
+    <div id="add-provider" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="row">
+    <div class="col-sm-12"><h3 class="m-t-none m-b">Agregar nuevo proveedor</h3>
+    <form role="form">
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
+    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    
+    <!-- SUBMIT -->
+    <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <!-- FORM MODIFY -->
+    <div id="modify-provider" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="row">
+    <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar proveedor</h3>
+    <form role="form">
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
+    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    
+    <!-- SUBMIT -->
+    <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+
     </ul>
 </div><!-- ibox content-->
 </div><!-- div from ibox -->
