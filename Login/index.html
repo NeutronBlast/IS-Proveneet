@@ -27,6 +27,19 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+	 https://firebase.google.com/docs/web/setup#config-web-app -->
+	 
+
+<!-- Firebase -->
+<script src="js/database.js"></script>
+<script src="js/firebaseconfig.js"></script>
+
 </head>
 <body>
 	
@@ -44,12 +57,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Nombre de usuario o Correo electrónico">
+						<input class="input100" type="text" id="user" name="username" placeholder="Nombre de usuario o Correo electrónico">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Contraseña">
+						<input class="input100" type="password" id="pass" name="pass" placeholder="Contraseña">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -61,13 +74,20 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id = "logBtn">
 							Iniciar sesión
 						</button>
 					</div>
-
+					<div class = "divider">  </div>
+					<div class="container-login100-form-btn" >
+						<button class="login100-form-btn" id = "signBtn">
+							Registrarse
+						</button>
+						<div id="firebaseui-auth-container"></div>		
+						</button>
+					</div>
 					<div class="text-center p-t-90">
-						<a class="txt1" href="#">
+						<a class="txt1" href="../ForgotPW/form.html">
 							¿Ha olvidado la contraseña?
 						</a>
 					</div>
@@ -94,7 +114,11 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<!--<script src="js/main.js"></script>-->
+	<script src="js/fb.js"></script>
+<!--===============================================================================================-->
+
+  
 
 </body>
 </html>
