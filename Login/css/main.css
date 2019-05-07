@@ -25,7 +25,11 @@
   src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
 }
 
-
+.divider{
+  width:auto;
+  height:auto;
+  display:inline-block;
+}
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -392,6 +396,7 @@ iframe {
 /*------------------------------------------------------------------
 [ Button ]*/
 .container-login100-form-btn {
+  
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;

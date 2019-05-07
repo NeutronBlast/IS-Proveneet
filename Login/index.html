@@ -27,6 +27,54 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#config-web-app -->
+	
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+		apiKey: "AIzaSyBWVRTc7stMysJVw4rjvzzn5-FnvMAE8_8",
+		authDomain: "proveneet.firebaseapp.com",
+		databaseURL: "https://proveneet.firebaseio.com",
+		projectId: "proveneet",
+		storageBucket: "proveneet.appspot.com",
+		messagingSenderId: "37090380224",
+		appId: "1:37090380224:web:a9e4c49d1e4b80bf"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	</script>
+<script type="text/javascript">
+	// FirebaseUI config.
+	var uiConfig = {
+	  signInSuccessUrl: '<url-to-redirect-to-on-success>',
+	  signInOptions: [
+		// Leave the lines as is for the providers you want to offer your users.
+		firebase.auth.GoogleAuthProvider.PROVIDER_ID,		
+		firebase.auth.EmailAuthProvider.PROVIDER_ID,
+
+	  ],
+	  // tosUrl and privacyPolicyUrl accept either url string or a callback
+	  // function.
+	  // Terms of service url/callback.
+	  tosUrl: '<your-tos-url>',
+	  // Privacy policy url/callback.
+	  privacyPolicyUrl: function() {
+		window.location.assign('<your-privacy-policy-url>');
+	  }
+	};
+
+	// Initialize the FirebaseUI Widget using Firebase.
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	// The start method will wait until the DOM is loaded.
+	ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+
 </head>
 <body>
 	
@@ -44,12 +92,12 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Nombre de usuario o Correo electrónico">
+						<input class="input100" type="text" id="user" name="username" placeholder="Nombre de usuario o Correo electrónico">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Contraseña">
+						<input class="input100" type="password" id="pass" name="pass" placeholder="Contraseña">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -61,11 +109,18 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id = "logBtn">
 							Iniciar sesión
 						</button>
 					</div>
-
+					<div class = "divider">  </div>
+					<div class="container-login100-form-btn" >
+						<button class="login100-form-btn" id = "signBtn">
+							Registrarse
+						</button>
+						<div id="firebaseui-auth-container"></div>		
+						</button>
+					</div>
 					<div class="text-center p-t-90">
 						<a class="txt1" href="#">
 							¿Ha olvidado la contraseña?
@@ -94,7 +149,11 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<!--<script src="js/main.js"></script>-->
+	<script src="js/fb.js"></script>
+<!--===============================================================================================-->
+
+  
 
 </body>
 </html>
