@@ -16,6 +16,8 @@
     <!-- Gritter -->
     <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
+    <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -40,7 +42,7 @@
     <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="profile.html">Información personal</a></li>
+    <li><a class="dropdown-item" href="index-2.html">Información personal</a></li>
     <li class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
     </ul>
@@ -66,16 +68,15 @@
 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 <div class="navbar-header">
 <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-<!-- Search provider -->
-<form role="search" class="navbar-form-custom" action="#">
-    <div class="form-group">
-        <input type="text" placeholder="Buscar proveedor" class="form-control" name="top-search" id="top-search">
-    </div>
-</form>
+
 </div> <!-- div from navbar header -->
 <ul class="nav navbar-top-links navbar-right">
 <li style="padding: 20px">
 <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
+</li>
+<li>
+<a href="index.html">
+<i class="fa fa-question-circle-o"></i> Ayuda</a>
 </li>
 <li>
 <a href="../Login/index.html">
@@ -101,31 +102,34 @@
         
         <div class="ibox-content no-padding">
         <ul class="list-group">
-        <table class="table table-bordered table-hover" id="providers">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover dataTables-example" >
         <thead>
         <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Dirección</th>
-        <th scope="col">Teléfono</th>
-        <th scope="col">RIF</th>
-        </tr>
-        </thead>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>RIF</th>
+            </tr>
+            </thead>
+                        
             <tbody>
-            <tr>
-            <th scope="row">Uno</th>
+            <tr class="gradeX">
+            <td>Uno</td>
             <td>1</td>
             <td>1</td>
-            <td>1</td>
+            <td class="center">1</td>
             </tr>
-            <tr>
-            
-            <th scope="row">Dos</th>
+                        
+            <tr class="gradeC">
+            <td>Dos</td>
             <td>2</td>
             <td>2</td>
-            <td>2</td>
-            </tr>
-            <tr>
-        </table>
+            <td class="center">2</td>
+            </tr>     
+            </tfoot>
+            </table>
+            </div>
 
 
     <!-- BUTTONS-->
@@ -201,6 +205,9 @@
 <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+<script src="js/plugins/dataTables/datatables.min.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+
 <!-- Flot -->
 <script src="js/plugins/flot/jquery.flot.js"></script>
 <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
@@ -234,6 +241,30 @@
 <!-- Toastr -->
 <script src="js/plugins/toastr/toastr.min.js"></script>
 </body>
+
+<!-- Page-Level Scripts -->
+<script>
+    $(document).ready(function(){
+    $('.dataTables-example').DataTable({
+    pageLength: 10,
+    responsive: true,
+    dom: '<"html5buttons"B>lTfgitp',
+    buttons: [        
+    {
+    customize: function (win){
+    $(win.document.body).addClass('white-bg');
+    $(win.document.body).css('font-size', '10px');
+                
+    $(win.document.body).find('table')
+    .addClass('compact')
+    .css('font-size', 'inherit');
+    }
+    }
+        ]
+        });    
+        });
+               
+</script>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->
 </html>
