@@ -26,19 +26,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-<script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
-<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-	 https://firebase.google.com/docs/web/setup#config-web-app -->
-	 
-
-<!-- Firebase -->
-<script src="js/database.js"></script>
-<script src="js/firebaseconfig.js"></script>
 
 </head>
 <body>
@@ -74,12 +61,11 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id = "logBtn">
+						<a class="login100-form-btn" id = "logBtn">
 							Iniciar sesión
-						</button>
+						</a>
 					</div>
 					
-						<div id="firebaseui-auth-container"></div>		
 
 					<div class="text-center p-t-90">
 						<a class="txt1" href="../ForgotPW/form.html">
@@ -112,7 +98,29 @@
 	<!--<script src="js/main.js"></script>-->
 	<script src="js/fb.js"></script>
 <!--===============================================================================================-->
-
+	<script>
+	$('#logBtn').click(function(event){ 
+	user = document.getElementById("user").value;
+	password = document.getElementById("pass").value;
+	
+	$.ajax({
+		type:"POST",
+		url:"login.php",
+		async: false,
+		data: {user:user,password:password},
+		success: function(data){
+			if(data == 'Administrador'){
+                window.location.href='../Main/index.html';
+             }
+             else if(data == 'Empleado'){
+                window.location.href='../Main/startemp.html';
+             }else{
+               //alert(data);
+             }
+		}
+		});
+	});
+	</script>
   
 
 </body>

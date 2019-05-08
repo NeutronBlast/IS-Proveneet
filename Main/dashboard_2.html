@@ -26,15 +26,14 @@
         <script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
         <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-            https://firebase.google.com/docs/web/setup#config-web-app -->
+        <!-- Add additional services that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
             
-
-        <!-- Firebase -->
-        <script src="js/database.js"></script>
-        <script src="js/firebaseconfig.js"></script>
 
     </head>
 
@@ -181,19 +180,19 @@
         <div class="row">
         <div class="col-sm-12"><h3 class="m-t-none m-b">Registrar nuevo usuario</h3>
         <form role="form">
-        <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control"></div>
-        <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control"></div>
+        <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" id="user"></div>
+        <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" id="pass"></div>
         <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
-        <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control"></div>
-        <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-        <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+        <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control" id="email"></div>
+        <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
+        <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" id="ln"></div>
         <div class="form-group"><label>Permisos</label></div>
         <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Administrador </label></div>
         <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Empleado </label></div>
 
         <!-- SUBMIT -->
         <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-        <button class="btn btn-primary btn-lg float-right" type="submit">Registrar</button>
+        <button class="btn btn-primary btn-lg float-right" type="submit" id="addusr">Registrar</button>
         </div>
         </form>
         </div>
@@ -217,12 +216,12 @@
     <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
     <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control"></div>
     <div class="form-group"><label>Permisos</label></div>
-    <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Administrador </label></div>
-    <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Empleado </label></div>
+    <div class="i-checks"><label> <input type="radio" id="r1" value="Administrador" name="radio1"> <i></i> Administrador </label></div>
+    <div class="i-checks"><label> <input type="radio" id="r2" value="Empleado" name="radio1"> <i></i> Empleado </label></div>
 
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="add">Aceptar</button>
 
     </div>
     </form>
@@ -307,6 +306,37 @@
      });
         
     </script>
+
+
+<script>
+    $('#addusr').click(function(event){ 
+    var user = document.getElementById("user").value;
+    var password = document.getElementById("pass").value;
+    var name = document.getElementById("name").value;
+    var ln = document.getElementById("ln").value;
+    var email = document.getElementById("email").value;
+    var permissions = null;
+
+    if (document.getElementById("r1").checked){
+        permissions = document.getElementById("r1").value;
+    }
+    else if (document.getElementById("r2").checked){
+        permissions = document.getElementById("r2").value;
+    }
+
+        
+    $.ajax({
+        type:"POST",
+        url:"adduser.php",
+        async: false,
+        data: {user:user,password:password,name:name,ln:ln,email:email,permissions:permissions},
+        success: function(data){
+        alert(data);
+            //window.location = '../Main/index.html';
+        }
+        });
+        });
+        </script>
     </body>
 
     <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->
