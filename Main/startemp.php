@@ -85,7 +85,7 @@ mysqli_close($conn);
     <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="index-2.html">Información personal</a></li>
+    <li><a class="dropdown-item" href="profemp.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
     </ul>
@@ -94,7 +94,7 @@ mysqli_close($conn);
     <div class="logo-element">P</div>
     </li>
     <li class="active">
-    <a href="profemp.html"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
+    <a href="profemp.php"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
     </li>
         
     <li>

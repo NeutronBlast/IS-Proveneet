@@ -8,8 +8,14 @@ session_start();
 
 $user = $_SESSION["user"];
 $pass = $_SESSION["password"];
+$error = false;
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+$sql = "SELECT * FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
 
 $sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'"; 
 $result = mysqli_query($conn, $sql);
@@ -71,7 +77,7 @@ mysqli_close($conn);
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
     <li><a class="dropdown-item" href="index-2.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
+    <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
@@ -84,7 +90,7 @@ mysqli_close($conn);
     <ul class="nav nav-second-level">
     
     <!-- Profile settings -->
-    <li class="active"><a href="index-2.html">Gestión de perfil</a></li>
+    <li class="active"><a href="index-2.php">Gestión de perfil</a></li>
     
     <!-- User admining -->
     <li><a href="dashboard_2.html">Gestión de usuarios</a></li>
@@ -109,11 +115,11 @@ mysqli_close($conn);
     <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
     </li>
     <li>
-    <a href="index.html">
+    <a href="index.php">
     <i class="fa fa-question-circle-o"></i> Ayuda</a>
     </li>
     <li>
-    <a href="../Login/index.html">
+    <a href="../Login/index.php">
     <i class="fa fa-sign-out"></i> Salir</a>
     </li>
     </ul>
@@ -256,7 +262,6 @@ mysqli_close($conn);
         async: false,
         data: {e:e,newp:newp},
         success: function(data){
-            alert(data);
             window.location.href='index-2.php';
         }
         });

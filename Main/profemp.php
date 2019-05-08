@@ -1,3 +1,34 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "metalsonic21";
+$dbname = "proveneet";
+
+session_start();
+
+$user = $_SESSION["user"];
+$pass = $_SESSION["password"];
+$error = false;
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+
+$sql = "SELECT * FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
+
+$sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
+$value = mysqli_fetch_array($result);
+
+$sql2 = "SELECT apellido FROM users WHERE email='$user' AND clave='$pass'"; 
+$result2 = mysqli_query($conn, $sql2);
+
+$value2 = mysqli_fetch_array($result2);
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,22 +84,22 @@
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <!-- Placeholder name and last name -->
     
-    <span class="block m-t-xs font-bold">Thomas Hesse</span>
+    <span class="block m-t-xs font-bold" id="fullname"></span>
     
     <!-- Placeholder role (admin or employee) -->
     <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="profemp.html">Información personal</a></li>
+    <li><a class="dropdown-item" href="profemp.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
+    <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
     <div class="logo-element">P</div>
     </li>
     <li class="active">
-    <a href="profemp.html"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
+    <a href="profemp.php"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
     </li>
 
     <li>
@@ -89,11 +120,11 @@
     <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
     </li>
     <li>
-    <a href="index.html">
+    <a href="startemp.php">
     <i class="fa fa-question-circle-o"></i> Ayuda</a>
     </li>
     <li>
-    <a href="../Login/index.html">
+    <a href="../Login/index.php">
     <i class="fa fa-sign-out"></i> Salir</a>
     </li>
     </ul>
@@ -126,9 +157,9 @@
     <div class="ibox-content profile-content text-center">
 
     <!-- Placeholder name and last name -->
-    <h4><strong>Thomas Hesse</strong></h4>
+    <h4 id="fullname2"><strong></strong></h4>
     <!-- Placeholder e-mail adress -->
-    <p class="mb-0"><i class="fa fa-envelope"></i> str4ngl3r@aol.com</p>
+    <i class="fa fa-envelope"></i> <p id="email"></p>
     <p><i class="fa fa-user-o"></i> Empleado</p>
 
     <!-- Modify password button -->
@@ -149,12 +180,12 @@
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar contraseña</h3>
     <form role="form">
-    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control"></div>
+    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" id="pw"></div>
     <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
         
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="submitbttn">Aceptar</button>
     </div>
     </form>
     </div>
@@ -212,6 +243,37 @@
 
     <!-- Toastr -->
     <script src="js/plugins/toastr/toastr.min.js"></script>
+
+
+    <script type="text/javascript">
+    /*Fetch values from login*/
+    var ln = <?php echo json_encode($value2); ?>;
+    var n = <?php echo json_encode($value); ?>;
+    var e = <?php echo json_encode($user); ?>;
+    var p = <?php echo json_encode($pass); ?>;
+
+    /*Assign login data*/
+    document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
+    document.getElementById("fullname2").innerHTML = n[0]+" "+ln[0];
+    document.getElementById("email").innerHTML = e;
+
+    /*Modify password*/
+    $('#submitbttn').click(function(event){ 
+        var newp = document.getElementById("pw").value;
+        $.ajax({
+        type:"POST",
+        url:"changepw.php",
+        async: false,
+        data: {e:e,newp:newp},
+        success: function(data){
+            window.location.href='profemp.php';
+        }
+        });
+
+    });
+
+    
+    </script>
 </body>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->

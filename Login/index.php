@@ -115,7 +115,7 @@
                 window.location.href='../Main/index.php';
              }
              else if(data == 'Empleado'){
-                window.location.href='../Main/startemp.html';
+                window.location.href='../Main/startemp.php';
              }else{
                alert("Usuario o contraseña inválidos");
 			 }
