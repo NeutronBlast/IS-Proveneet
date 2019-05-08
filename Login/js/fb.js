@@ -11,7 +11,7 @@ appId: "1:37090380224:web:a9e4c49d1e4b80bf"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-//firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 const txUser = document.getElementById('user');
 const txPass = document.getElementById('pass');
 const logIn = document.getElementById('logBtn');
