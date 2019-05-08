@@ -96,7 +96,7 @@ $dataRow ="";
     </li>
     <li>
 
-    <a href="providers.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </ul>
 
     </div> <!-- div from sidebar collapse -->
@@ -144,7 +144,7 @@ $dataRow ="";
     <ul class="list-group">
     
     <div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover dataTables-example" >
+    <table class="table table-bordered table-hover dataTables-example" id="users">
     <thead>
     <tr>
     <th>Nombre</th>
@@ -180,7 +180,7 @@ $dataRow ="";
         </div>
 
         <div class="col-xs-2 p-1 bd-highlight">
-        <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-user">Modificar</a>
+        <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-user" id="modify">Modificar</a>
         </div>
 
         <div class="col-xs-2 p-1 bd-highlight">
@@ -363,6 +363,28 @@ $dataRow ="";
     /*Assign login data*/
     document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
 
+    </script>
+
+
+    <script type="text/javascript">
+    /*Get selected row*/
+    $(function() {
+      $('#users').on('click', 'tbody tr', function(event) {
+          alert("clic");
+        $(this).addClass('highlight');
+      });
+
+      $('#modify').click(function(e) {
+        var rows = getHighlightRow();
+        if (rows != undefined) {
+          alert(rows.attr('nombre'));
+        }
+      });
+
+      var getHighlightRow = function() {
+        return $('table > tbody > tr.highlight');
+      }
+    });
     </script>
     </body>
 

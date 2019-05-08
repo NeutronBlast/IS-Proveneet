@@ -93,7 +93,7 @@ mysqli_close($conn);
                     </li>
                     <li>
 
-                        <a href="providers.html"><i class="fa fa-users"></i> <span
+                        <a href="providers.php"><i class="fa fa-users"></i> <span
                                 class="nav-label">Proveedores</span></a>
                 </ul>
 

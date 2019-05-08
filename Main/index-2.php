@@ -93,12 +93,12 @@ mysqli_close($conn);
     <li class="active"><a href="index-2.php">Gestión de perfil</a></li>
     
     <!-- User admining -->
-    <li><a href="dashboard_2.html">Gestión de usuarios</a></li>
+    <li><a href="dashboard_2.php">Gestión de usuarios</a></li>
     </ul>
     </li>
     <li>
     
-    <a href="providers.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </ul>
 
     </div> <!-- div from sidebar collapse -->

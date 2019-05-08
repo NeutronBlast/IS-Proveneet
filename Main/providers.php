@@ -1,3 +1,38 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "metalsonic21";
+$dbname = "proveneet";
+
+session_start();
+
+$user = $_SESSION["user"];
+$pass = $_SESSION["password"];
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
+$value = mysqli_fetch_array($result);
+$sql2 = "SELECT apellido FROM users WHERE email='$user' AND clave='$pass'"; 
+$result2 = mysqli_query($conn, $sql2);
+
+$value2 = mysqli_fetch_array($result2);
+
+/*Fill table*/
+$query = "SELECT * FROM providers"; 
+$result3 = mysqli_query($conn, $query);
+$result4 = mysqli_query($conn, $query);
+$dataRow ="";
+    while ($row = mysqli_fetch_array($result4)) {
+        $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
+        </tr>";
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,24 +57,6 @@
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-    <!--===============================================================================================-->
-    <script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- Add additional services that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
-        
-
-    <!-- Firebase -->
-    <script src="js/database.js"></script>
-    <script src="js/firebaseconfig.js"></script>
-
 </head>
 
     <body>
@@ -55,29 +72,29 @@
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <!-- Placeholder name and last name -->
     
-    <span class="block m-t-xs font-bold">Frank Hesse</span>
+    <span class="block m-t-xs font-bold" id="fullname">Frank Hesse</span>
     
     <!-- Placeholder role (admin or employee) -->
     <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="index-2.html">Información personal</a></li>
+    <li><a class="dropdown-item" href="index-2.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
+    <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
     <div class="logo-element">P</div>
     </li>
     <li>
-    <a href="index-2.html"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
+    <a href="index-2.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-    <li><a href="index-2.html">Gestión de perfil</a></li>
-    <li><a href="dashboard_2.html">Gestión de usuarios</a></li>   
+    <li><a href="index-2.php">Gestión de perfil</a></li>
+    <li><a href="dashboard_2.php">Gestión de usuarios</a></li>   
     </ul>                
     </li>
     <li class="active">
-    <a href="providers.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 </div> <!-- div from sidebar collapse -->
 </nav>
@@ -98,7 +115,7 @@
 <i class="fa fa-question-circle-o"></i> Ayuda</a>
 </li>
 <li>
-<a href="../Login/index.html">
+<a href="../Login/index.php">
 <i class="fa fa-sign-out"></i> Salir</a>
 </li>
 </ul>
@@ -122,7 +139,7 @@
         <div class="ibox-content no-padding">
         <ul class="list-group">
         <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover dataTables-example" >
+        <table class="table table-bordered table-hover dataTables-example" id="providers" >
         <thead>
         <tr>
             <th>Nombre</th>
@@ -133,19 +150,14 @@
             </thead>
                         
             <tbody>
-            <tr class="gradeX">
-            <td>Uno</td>
-            <td>1</td>
-            <td>1</td>
-            <td class="center">1</td>
+            <?php while($row1 = mysqli_fetch_array($result3)):;?>
+            <tr>
+                <td><?php echo $row1[0];?></td>
+                <td><?php echo $row1[1];?></td>
+                <td><?php echo $row1[2];?></td>
+                <td><?php echo $row1[3];?></td>
             </tr>
-                        
-            <tr class="gradeC">
-            <td>Dos</td>
-            <td>2</td>
-            <td>2</td>
-            <td class="center">2</td>
-            </tr>     
+            <?php endwhile; mysqli_close($conn);?>  
             </tfoot>
             </table>
             </div>
@@ -175,14 +187,14 @@
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Agregar nuevo proveedor</h3>
     <form role="form">
-    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control"></div>
-    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
+    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control" id="dir"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control" id="phone"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control" id="rif"></div>
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="addpro">Aceptar</button>
     </div>
     </form>
     </div>
@@ -284,6 +296,60 @@
         });
                
 </script>
+
+<script>
+    /*Add provider*/
+    $('#addpro').click(function(event){ 
+    var name = document.getElementById("name").value;
+    var dir = document.getElementById("dir").value;
+    var phone = document.getElementById("phone").value;
+    var rif = document.getElementById("rif").value;
+        
+    $.ajax({
+        type:"POST",
+        url:"addprovider.php",
+        async: false,
+        data: {name:name,dir:dir,phone:phone,rif:rif},
+        success: function(data){
+        alert(data);
+            //window.location = '../Main/index.html';
+        }
+        });
+        });
+        </script>
+
+
+    <script type="text/javascript">
+    /*Fetch values from login*/
+    var ln = <?php echo json_encode($value2); ?>;
+    var n = <?php echo json_encode($value); ?>;
+
+    /*Assign login data*/
+    document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
+
+    </script>
+
+
+    <script type="text/javascript">
+    /*Get selected row*/
+    $(function() {
+      $('#providers').on('click', 'tbody tr', function(event) {
+          alert("clic");
+        $(this).addClass('highlight');
+      });
+
+      $('#modify').click(function(e) {
+        var rows = getHighlightRow();
+        if (rows != undefined) {
+          alert(rows.attr('nombre'));
+        }
+      });
+
+      var getHighlightRow = function() {
+        return $('table > tbody > tr.highlight');
+      }
+    });
+    </script>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->
 </html>
