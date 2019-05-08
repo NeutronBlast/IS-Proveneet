@@ -1,4 +1,4 @@
-// jshint esversion: 6
+// jshint esversion: 8
 (function () {
 var firebaseConfig = {
 apiKey: "AIzaSyBWVRTc7stMysJVw4rjvzzn5-FnvMAE8_8",
@@ -11,7 +11,7 @@ appId: "1:37090380224:web:a9e4c49d1e4b80bf"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+//firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 const txUser = document.getElementById('user');
 const txPass = document.getElementById('pass');
 const logIn = document.getElementById('logBtn');
@@ -25,11 +25,13 @@ logIn.addEventListener('click', e => {
         const auth = firebase.auth();   
         //sign in 
         const promise = auth.signInWithEmailAndPassword(email,pass);
+        
         promise
-                .then(window.location.href = "../Main/index.html")
-                .catch (e =>{console.log(e.message);alert(e.message);} );
-
+                .then(user => {window.location.href="../Main/index.html";console.log('null');})
+                .catch (e =>{console.log(e.message);alert(e.message);} );        
 });
+
+
 
 salir.addEventListener('click', e=> {firebase.auth().signOut();});
 

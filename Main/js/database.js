@@ -12,8 +12,8 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   
-  const user = firebase.auth().currentUser;
-  
+    const user =  localStorage.getItem('credentials');
+    console.log(user);
   
 
   
@@ -22,8 +22,7 @@
                   console.log (firebaseUser);
           }else {
                   console.log("not logged");
-          }
-  
+          }  
   });
   
   
