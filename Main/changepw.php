@@ -4,16 +4,15 @@ $username = "root";
 $password = "metalsonic21";
 $dbname = "proveneet";
 
-session_destroy();
 session_start();
+
+$user = $_POST['e'];
+$pass = $_POST['newp'];
 
 $_SESSION["user"] = $user;
 $_SESSION["password"] = $pass;
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-$user = $_POST['e'];
-$pass = $_POST['newp'];
 
 $sql = "UPDATE users SET clave='$pass' WHERE email='$user'";
 $result = mysqli_query($conn, $sql);
