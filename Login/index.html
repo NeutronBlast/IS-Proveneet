@@ -4,6 +4,8 @@
 	<title>Proveneet</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
 <!--===============================================================================================-->	
 <!-- Icon -->
 	<link rel="icon" type="image/png" href="images/icons/logo.png"/>
@@ -28,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 
 </head>
+
 <body>
 	
 	<div class="limiter">
@@ -35,7 +38,7 @@
 		<div class="container-login100" style="background-image: url('images/bg-02.jpg');">
 			<!-- Login container -->
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<div class="login100-form validate-form">
 					<span class="login100-form-logo">
 					</span>
 
@@ -65,6 +68,11 @@
 							Iniciar sesión
 						</a>
 					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id = "salir">
+							chao prro
+						</button>
+					</div>
 					
 
 					<div class="text-center p-t-90">
@@ -72,7 +80,7 @@
 							¿Ha olvidado la contraseña?
 						</a>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -95,7 +103,7 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<!--<script src="js/main.js"></script>-->
+	<script src="js/main.js"></script>
 	<script src="js/fb.js"></script>
 <!--===============================================================================================-->
 	<script>
