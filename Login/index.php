@@ -67,13 +67,7 @@
 						<a class="login100-form-btn" id = "logBtn">
 							Iniciar sesión
 						</a>
-					</div>
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" id = "salir">
-							chao prro
-						</button>
-					</div>
-					
+					</div>					
 
 					<div class="text-center p-t-90">
 						<a class="txt1" href="../ForgotPW/form.html">
@@ -118,18 +112,19 @@
 		data: {user:user,password:password},
 		success: function(data){
 			if(data == 'Administrador'){
-                window.location.href='../Main/index.html';
+                window.location.href='../Main/index.php';
              }
              else if(data == 'Empleado'){
                 window.location.href='../Main/startemp.html';
              }else{
-               //alert(data);
-             }
+               alert("Usuario o contraseña inválidos");
+			 }
 		}
 		});
 	});
 	</script>
-  
+	
+  <input type="hidden" name="count" id="user" value="<?= $user  ?>" />
 
 </body>
 </html>

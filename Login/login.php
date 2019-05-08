@@ -4,10 +4,17 @@ $username = "root";
 $password = "metalsonic21";
 $dbname = "proveneet";
 
+session_start();
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $user = $_POST['user'];
 $pass = $_POST['password'];
+
+$_SESSION["user"] = $user;
+$_SESSION["password"] = $pass;
+
+
 
 $sql = "SELECT * FROM users WHERE email='$user' AND clave='$pass'"; 
 $result = mysqli_query($conn, $sql);

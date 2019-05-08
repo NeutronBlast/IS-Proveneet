@@ -1,3 +1,29 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "metalsonic21";
+$dbname = "proveneet";
+
+session_start();
+
+$user = $_SESSION["user"];
+$pass = $_SESSION["password"];
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
+$value = mysqli_fetch_array($result);
+
+$sql2 = "SELECT apellido FROM users WHERE email='$user' AND clave='$pass'"; 
+$result2 = mysqli_query($conn, $sql2);
+
+$value2 = mysqli_fetch_array($result2);
+mysqli_close($conn);
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +33,7 @@
 
     <title>Proveneet</title>
     <!-- Icon -->
-	<link rel="icon" type="image/png" href="img/logo.png"/>
+    <link rel="icon" type="image/png" href="img/logo.png"/>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -21,22 +47,6 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <!--===============================================================================================-->
-    <script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- Add additional services that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
-        
-
-    <!-- Firebase -->
-    <script src="js/database.js"></script>
-    <script src="js/firebaseconfig.js"></script>
 
 </head>
 
@@ -53,13 +63,13 @@
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <!-- Placeholder name and last name -->
     
-    <span class="block m-t-xs font-bold">Frank Hesse</span>
+    <span class="block m-t-xs font-bold" id="fullname"> </span>
     
     <!-- Placeholder role (admin or employee) -->
     <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="index-2.html">Información personal</a></li>
+    <li><a class="dropdown-item" href="index-2.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
     </ul>
@@ -70,7 +80,7 @@
     <li class="active">
     
     <!-- User settings menu -->
-    <a href="index-2.html"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
+    <a href="index-2.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
     
     <!-- Profile settings -->
@@ -136,9 +146,11 @@
     <div class="ibox-content profile-content text-center">
 
     <!-- Placeholder name and last name -->
-    <h4><strong>Frank Hesse</strong></h4>
+    <h4 id="fullname2"><strong></strong></h4>
     <!-- Placeholder e-mail adress -->
-    <p class="mb-0"><i class="fa fa-envelope"></i> hyperschnell11@outlook.sk</p>
+    <div class ="col-md-12">
+    <i class="fa fa-envelope"></i> <p id="email">hyperschnell11@outlook.sk</p>
+    </div>
     <p><i class="fa fa-user-o"></i> Administrador</p>
 
     <!-- Modify password button -->
@@ -159,12 +171,12 @@
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar contraseña</h3>
     <form role="form">
-    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control"></div>
+    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" id="pw"></div>
     <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
         
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="submitbttn">Aceptar</button>
     </div>
     </form>
     </div>
@@ -222,6 +234,38 @@
 
     <!-- Toastr -->
     <script src="js/plugins/toastr/toastr.min.js"></script>
+
+    <script type="text/javascript">
+    /*Fetch values from login*/
+    var ln = <?php echo json_encode($value2); ?>;
+    var n = <?php echo json_encode($value); ?>;
+    var e = <?php echo json_encode($user); ?>;
+    var p = <?php echo json_encode($pass); ?>;
+
+    /*Assign login data*/
+    document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
+    document.getElementById("fullname2").innerHTML = n[0]+" "+ln[0];
+    document.getElementById("email").innerHTML = e;
+
+    /*Modify password*/
+    $('#submitbttn').click(function(event){ 
+        var newp = document.getElementById("pw").value;
+        $.ajax({
+        type:"POST",
+        url:"changepw.php",
+        async: false,
+        data: {e:e,newp:newp},
+        success: function(data){
+            alert(data);
+            window.location.href='index-2.php';
+        }
+        });
+
+    });
+
+    
+    </script>
+
 </body>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->

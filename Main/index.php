@@ -1,3 +1,28 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "metalsonic21";
+$dbname = "proveneet";
+
+session_start();
+
+$user = $_SESSION["user"];
+$pass = $_SESSION["password"];
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
+$value = mysqli_fetch_array($result);
+
+$sql2 = "SELECT apellido FROM users WHERE email='$user' AND clave='$pass'"; 
+$result2 = mysqli_query($conn, $sql2);
+
+$value2 = mysqli_fetch_array($result2);
+mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -38,15 +63,15 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <!-- Placeholder name and last name -->
 
-                                <span class="block m-t-xs font-bold">Frank Hesse</span>
+                                <span class="block m-t-xs font-bold" id="fullname">Frank Hesse</span>
 
                                 <!-- Placeholder role (admin or employee) -->
                                 <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="index-2.html">Información personal</a></li>
+                                <li><a class="dropdown-item" href="index-2.php">Información personal</a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
+                                <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
                             </ul>
                         </div> <!-- div from dropdown -->
 
@@ -55,12 +80,12 @@
                     <li class="active">
 
                         <!-- User settings menu -->
-                        <a href="index-2.html"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de
+                        <a href="index-2.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de
                                 usuario</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 
                             <!-- Profile settings -->
-                            <li class="active"><a href="index-2.html">Gestión de perfil</a></li>
+                            <li class="active"><a href="index-2.php">Gestión de perfil</a></li>
 
                             <!-- User admining -->
                             <li><a href="dashboard_2.html">Gestión de usuarios</a></li>
@@ -87,11 +112,11 @@
                             <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
                         </li>
                         <li>
-                            <a href="index.html">
+                            <a href="index.php">
                                 <i class="fa fa-question-circle-o"></i> Ayuda</a>
                         </li>
                         <li>
-                            <a href="../Login/index.html">
+                            <a href="../Login/index.php">
                                 <i class="fa fa-sign-out"></i> Salir</a>
                         </li>
                     </ul>
@@ -286,6 +311,18 @@
 
     <!-- Toastr -->
     <script src="js/plugins/toastr/toastr.min.js"></script>
+
+
+    <script type="text/javascript">
+    /*Fetch values from login*/
+    var ln = <?php echo json_encode($value2); ?>;
+    var n = <?php echo json_encode($value); ?>;
+
+    /*Assign login data*/
+    document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
+
+    </script>
+	
 </body>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->

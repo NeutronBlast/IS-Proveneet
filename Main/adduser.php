@@ -13,7 +13,7 @@ $name = $_POST['name'];
 $ln = $_POST['ln'];
 $permissions = $_POST['permissions'];
 
-$sql = "INSERT INTO users (nombre, apellido, username, clave, email, permisos) VALUES ('$name', '$ln', '$username', '$pass', '$email', '$permissions')"; 
+$sql = "INSERT INTO users (nombre, apellido, username, clave, email, permisos) VALUES ('$name', '$ln', '$user', '$pass', '$email', '$permissions')"; 
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
