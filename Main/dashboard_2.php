@@ -150,8 +150,8 @@ $dataRow ="";
     <th>Nombre</th>
     <th>Apellido</th>
     <th>Nombre de usuario</th>
-    <th>Correo electrónico</th>
     <th>Contraseña</th>
+    <th>Correo electrónico</th>
     <th>Permisos</th>
     </tr>
     </thead>
@@ -203,8 +203,8 @@ $dataRow ="";
         <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
         <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" id="ln"></div>
         <div class="form-group"><label>Permisos</label></div>
-        <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Administrador </label></div>
-        <div class="i-checks"><label> <input type="radio" value="" name="radio1"> <i></i> Empleado </label></div>
+        <div><label> <input type="radio" value="Administrador" id="r3" name="radio2"> <i></i> Administrador </label></div>
+        <div><label> <input type="radio" value="Empleado" id="r4" name="radio2"> <i></i> Empleado </label></div>
 
         <!-- SUBMIT -->
         <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
@@ -333,11 +333,11 @@ $dataRow ="";
     var email = document.getElementById("email").value;
     var permissions = null;
 
-    if (document.getElementById("r1").checked){
-        permissions = document.getElementById("r1").value;
+    if (document.getElementById("r3").checked){
+        permissions = document.getElementById("r3").value;
     }
-    else if (document.getElementById("r2").checked){
-        permissions = document.getElementById("r2").value;
+    else if (document.getElementById("r4").checked){
+        permissions = document.getElementById("r4").value;
     }
 
         
