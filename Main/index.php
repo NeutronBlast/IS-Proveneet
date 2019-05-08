@@ -88,7 +88,7 @@ mysqli_close($conn);
                             <li class="active"><a href="index-2.php">Gestión de perfil</a></li>
 
                             <!-- User admining -->
-                            <li><a href="dashboard_2.html">Gestión de usuarios</a></li>
+                            <li><a href="dashboard_2.php">Gestión de usuarios</a></li>
                         </ul>
                     </li>
                     <li>

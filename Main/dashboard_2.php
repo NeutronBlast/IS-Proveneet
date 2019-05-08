@@ -15,14 +15,21 @@ $sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'";
 $result = mysqli_query($conn, $sql);
 
 $value = mysqli_fetch_array($result);
-
 $sql2 = "SELECT apellido FROM users WHERE email='$user' AND clave='$pass'"; 
 $result2 = mysqli_query($conn, $sql2);
 
 $value2 = mysqli_fetch_array($result2);
-mysqli_close($conn);
+
+/*Fill table*/
+$query = "SELECT * FROM users"; 
+$result3 = mysqli_query($conn, $query);
+$result4 = mysqli_query($conn, $query);
+$dataRow ="";
+    while ($row = mysqli_fetch_array($result4)) {
+        $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
+        <td>$row[4]</td><td>$row[5]</td></tr>";
+    }
 ?>
-   
    
    
    <!DOCTYPE html>
@@ -150,23 +157,16 @@ mysqli_close($conn);
     </thead>
     
     <tbody>
-    <tr class="gradeX">
-    <td>Frank</td>
-    <td>Hesse</td>
-    <td>FrankHesse</td>
-    <td class="center">hyperschnell11@outlook.sk</td>
-    <td class="center">contraseña</td>
-    <td class="center">Administrador</td>
-    </tr>
-    
-    <tr class="gradeC">
-    <td>Thomas</td>
-    <td>Hesse</td>
-    <td>Lovell</td>
-    <td class="center">str4ngl3r@aol.com</td>
-    <td class="center">contraseña</td>
-    <td class="center">Empleado</td>
-    </tr>     
+    <?php while($row1 = mysqli_fetch_array($result3)):;?>
+            <tr>
+                <td><?php echo $row1[0];?></td>
+                <td><?php echo $row1[1];?></td>
+                <td><?php echo $row1[2];?></td>
+                <td><?php echo $row1[3];?></td>
+                <td><?php echo $row1[4];?></td>
+                <td><?php echo $row1[5];?></td>
+            </tr>
+            <?php endwhile; mysqli_close($conn);?>  
     </tfoot>
     </table>
     </div>
