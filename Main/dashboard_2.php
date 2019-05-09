@@ -225,19 +225,19 @@ $dataRow ="";
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar usuario</h3>
     <form role="form">
-    <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control"></div>
-    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control"></div>
-    <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
-    <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control"></div>
-    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" value="" id="musername"></div>
+    <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" value="" id="mpw"></div>
+    <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control" value="" id="cmpw"></div>
+    <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control" value="" id="memail"></div>
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" value="" id="mname"></div>
+    <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" value="" id="nln"> </div>
     <div class="form-group"><label>Permisos</label></div>
     <div class="i-checks"><label> <input type="radio" id="r1" value="Administrador" name="radio1"> <i></i> Administrador </label></div>
     <div class="i-checks"><label> <input type="radio" id="r2" value="Empleado" name="radio1"> <i></i> Empleado </label></div>
 
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="add">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="submitmod">Aceptar</button>
 
     </div>
     </form>
@@ -369,22 +369,121 @@ $dataRow ="";
     <script type="text/javascript">
     /*Get selected row*/
     $(function() {
-      $('#users').on('click', 'tbody tr', function(event) {
-          alert("clic");
-        $(this).addClass('highlight');
-      });
+            var tr = $('#users').find('tr');
+            tr.bind('click', function(event) {
+                var values = '';
+                var tds = $(this).addClass('row-highlight').find('td');
+                
+                var name;
+                var ln;
+                var username;
+                var password;
+                var email;
+                var perms;
+                $.each(tds, function(index, item) {
+                    values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+                    /* Gather values from the row*/
+                        if (index == 0){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
 
-      $('#modify').click(function(e) {
-        var rows = getHighlightRow();
-        if (rows != undefined) {
-          alert(rows.attr('nombre'));
+                            name = values.slice(start+1,end);
+                            values = "";
+                        }
+                        else if (index == 1){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            ln = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        
+                        else if (index == 2){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            username = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        else if (index == 3){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            password = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        else if (index == 4){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            email = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        else if (index == 5){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            perms = values.slice(start+1,end);
+                            values = "";
+                        }
+                });
+            
+                $('#modify').click(function(event){
+                    /*Replace placeholders with gathered values, ready to modify*/
+                    document.getElementById("musername").value = username;
+                    document.getElementById("mpw").value = password;
+                    document.getElementById("cmpw").value = password;
+                    document.getElementById("memail").value = email;
+                    document.getElementById("mname").value = name;
+                    document.getElementById("nln").value = ln;
+                    if (perms == "Administrador"){
+                        $("#r1").prop('checked',true);
+                    }
+                    else if (perms == "Empleado"){
+                        document.getElementById("r2").checked = true;
+                    }
+
+                /*Gather modified values*/
+                });
+
+                $('#submitmod').click(function(event){ 
+                var user = document.getElementById("musername").value;
+                var password = document.getElementById("mpw").value;
+                var confirm = document.getElementById("cmpw").value;
+                var name = document.getElementById("mname").value;
+                var ln = document.getElementById("nln").value;
+                var next = document.getElementById("memail").value;
+                var permissions = null;
+
+                if (document.getElementById("r1").checked){
+                    permissions = document.getElementById("r1").value;
+                }
+                else if (document.getElementById("r2").checked){
+                    permissions = document.getElementById("r2").value;
+                }
+
+/*After all info is correct we send to ajax to insert to database*/
+        
+    $.ajax({
+        type:"POST",
+        url:"moduser.php",
+        async: false,
+        data: {user:user,password:password,name:name,ln:ln,next:next,permissions:permissions,email:email},
+        success: function(data){
+        alert(data);
+            //window.location = '../Main/index.html';
         }
-      });
+        });
+        }); //End of submit modify user
 
-      var getHighlightRow = function() {
-        return $('table > tbody > tr.highlight');
-      }
-    });
+
+
+            });
+        });
     </script>
     </body>
 
