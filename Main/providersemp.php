@@ -108,7 +108,7 @@ $dataRow ="";
     </li>
     
     <li class="active">
-    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providersemp.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 </div> <!-- div from sidebar collapse -->
 </nav>
@@ -125,7 +125,7 @@ $dataRow ="";
 <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
 </li>
 <li>
-<a href="index.php">
+<a href="startemp.php">
 <i class="fa fa-question-circle-o"></i> Ayuda</a>
 </li>
 <li>
@@ -179,13 +179,14 @@ $dataRow ="";
 
     <!-- BUTTONS-->
 
+
     <div class="d-flex flex-row-reverse bd-highlight">
     <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" id="delete">Eliminar</a>
+    <button class="btn btn-primary btn-lg" id="delete" disabled="disable">Eliminar</button>
     </div>
     
     <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-provider" id="modify">Modificar</a>
+    <button class="btn btn-primary btn-lg" id="modify" disabled="disable">Modificar</button>
     </div>
     
     <div class="col-xs-2 p-1 bd-highlight">
@@ -289,7 +290,7 @@ $dataRow ="";
 
 <!-- Page-Level Scripts -->
 <script>
-    $(document).ready(function(){
+ $(document).ready(function(){
     $('.dataTables-example').DataTable({
     pageLength: 10,
     responsive: true,
@@ -301,8 +302,6 @@ $dataRow ="";
     $(win.document.body).css('font-size', '10px');
                 
     $(win.document.body).find('table')
-    .addClass('compact')
-    .css('font-size', 'inherit');
     }
     }
         ]
@@ -314,11 +313,56 @@ $dataRow ="";
 <script>
     /*Add provider*/
     $('#addpro').click(function(event){ 
+    var next = true;
     var name = document.getElementById("name").value;
     var dir = document.getElementById("dir").value;
     var phone = document.getElementById("phone").value;
     var rif = document.getElementById("rif").value;
-        
+
+
+    /*Verify before sending to AJAX*/
+    
+    next = true;
+    /*Cannot be blank*/
+    if (document.getElementById("name").value == "" || document.getElementById("dir").value=="" ||
+    document.getElementById("phone").value == "" || document.getElementById("rif").value ==""){
+        next = false;
+        alert("Por favor rellene todos los datos antes de continuar");
+    }
+
+        /*Provider must be unique in the system*/
+    var rifs = [];
+    var table = document.getElementById("providers");
+    for (var i = 0, row; row = table.rows[i]; i++) {
+   //iterate through rows
+   //rows would be accessed using the "row" variable assigned in the for loop
+   for (var j = 0, col; col = row.cells[j]; j++) {
+       if (j == 3){
+           rifs.push(col.innerHTML);
+    /*Get all rifs*/
+       }
+     //iterate through columns
+     //columns would be accessed using the "col" variable assigned in the for loop
+   }  
+}
+
+    for(var i = 0; i < rifs.length; i++){
+        if (rif == rifs[i]){
+            alert("Proveedor con RIF ingresado ya existe en el sistema");
+            next = false;
+            break;
+        }
+    }
+
+    /*RIF*/
+    var patt = new RegExp(/^([J-]+[0-9])/i);
+    next = patt.test((String)(rif));
+
+    if (!next){
+        alert("Formato de RIF inválido: Debe ser J-numeros");
+    }
+
+    if (next){
     $.ajax({
         type:"POST",
         url:"addprovider.php",
@@ -329,6 +373,7 @@ $dataRow ="";
             //window.location = '../Main/index.html';
         }
         });
+    } // if next
         });
         </script>
 
@@ -347,15 +392,15 @@ $dataRow ="";
     /*Get selected row*/
     $(function() {
             var tr = $('#providers').find('tr');
+            var name = null;
+                var dir = null;
+                var phone = null;
+                var rif = null;
             tr.bind('click', function(event) {
+                $('#modify').attr("disabled", false);
+                $('#delete').attr("disabled", false);
                 var values = '';
                 var tds = $(this).addClass('row-highlight').find('td');
-                
-                var name;
-                var dir;
-                var phone;
-                var rif;
-
                 $.each(tds, function(index, item) {
                     values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
                     /* Gather values from the row*/
@@ -393,20 +438,68 @@ $dataRow ="";
                 });
             
                 $('#modify').click(function(event){
+                    $('#modify-provider').modal()
+                    $('#modify-provider').on('shown.bs.modal', function () {
+                      $('#modify-provider').trigger('focus')
+                    })
                     /*Replace placeholders with gathered values, ready to modify*/
                     document.getElementById("mname").value = name;
                     document.getElementById("mdir").value = dir;
                     document.getElementById("mphone").value = phone;
                     document.getElementById("mrif").value = rif;
-                });
+
                 /*Gather modified values*/
+                });
+
                 $('#modifyprov').click(function(event){ 
                 var name = document.getElementById("mname").value;
                 var dir = document.getElementById("mdir").value;
                 var phone = document.getElementById("mphone").value;
                 var nextrif = document.getElementById("mrif").value;
 /*After all info is correct we send to ajax to insert to database*/
-        
+if (document.getElementById("mname").value == "" || document.getElementById("mdir").value=="" ||
+    document.getElementById("mphone").value == "" || document.getElementById("mrif").value ==""){
+        next = false;
+        alert("Por favor rellene todos los datos antes de continuar");
+    }
+
+        /*Provider must be unique in the system*/
+    var rifs = [];
+    var table = document.getElementById("providers");
+    for (var i = 0, row; row = table.rows[i]; i++) {
+   //iterate through rows
+   //rows would be accessed using the "row" variable assigned in the for loop
+   for (var j = 0, col; col = row.cells[j]; j++) {
+       if (j == 3){
+           rifs.push(col.innerHTML);
+    /*Get all rifs*/
+       }
+     //iterate through columns
+     //columns would be accessed using the "col" variable assigned in the for loop
+   }  
+}
+var cont = 0;
+    for(var i = 0; i < rifs.length; i++){
+        if (nextrif == rifs[i]){
+            cont++;
+            if (cont == 2){
+            alert("Proveedor con RIF ingresado ya existe en el sistema");
+            next = false;
+            break;
+            }
+        }
+    }
+
+    /*RIF*/
+    var patt = new RegExp(/^([J-]+[0-9])/i);
+    next = patt.test((String)(nextrif));
+
+    if (!next){
+        alert("Formato de RIF inválido: Debe ser J-numeros");
+    }
+
+
+   if (next){     
     $.ajax({
         type:"POST",
         url:"modprov.php",
@@ -417,6 +510,7 @@ $dataRow ="";
             //window.location = '../Main/index.html';
         }
         });
+   }
         }); //End of submit modify user
 
         $('#delete').click(function(event){
@@ -427,7 +521,7 @@ $dataRow ="";
         data: {rif:rif},
         success: function(data){
         alert(data);
-            window.location = 'providers.php';
+            window.location = 'providersemp.php';
         }
         });
         }); //End of submit modify user

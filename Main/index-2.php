@@ -178,7 +178,7 @@ mysqli_close($conn);
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar contraseña</h3>
     <form role="form">
     <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" id="pw"></div>
-    <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
+    <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control" id="conpw"></div>
         
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
@@ -256,6 +256,15 @@ mysqli_close($conn);
     /*Modify password*/
     $('#submitbttn').click(function(event){ 
         var newp = document.getElementById("pw").value;
+        var cnewp = document.getElementById("conpw").value;
+        var next = true;
+
+        if (newp != cnewp){
+            alert("Contraseña y confirmar contraseña no coinciden");
+            next = false;
+        }
+
+        if (next){
         $.ajax({
         type:"POST",
         url:"changepw.php",
@@ -265,6 +274,7 @@ mysqli_close($conn);
             window.location.href='index-2.php';
         }
         });
+        }
 
     });
 

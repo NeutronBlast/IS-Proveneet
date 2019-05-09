@@ -72,7 +72,7 @@ $dataRow ="";
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <!-- Placeholder name and last name -->
     
-    <span class="block m-t-xs font-bold" id="fullname">Frank Hesse</span>
+    <span class="block m-t-xs font-bold" id="fullname"></span>
     
     <!-- Placeholder role (admin or employee) -->
     <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
@@ -189,8 +189,8 @@ $dataRow ="";
     <form role="form">
     <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
     <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control" id="dir"></div>
-    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control" id="phone"></div>
-    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control" id="rif"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Teléfono" class="form-control" id="phone"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="RIF" class="form-control" id="rif"></div>
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>

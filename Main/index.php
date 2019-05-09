@@ -5,7 +5,6 @@ $password = "metalsonic21";
 $dbname = "proveneet";
 
 session_start();
-echo $_SESSION["user"];
 $user = $_SESSION["user"];
 $pass = $_SESSION["password"];
 
@@ -23,8 +22,6 @@ $value2 = mysqli_fetch_array($result2);
 mysqli_close($conn);
 ?>
 
-    
-
 <!DOCTYPE html>
 <html>
 
@@ -35,9 +32,7 @@ mysqli_close($conn);
 
     <title>Proveneet</title>
     <!-- Icon -->
-    <script>
-        
-    <script/>
+
     <link rel="icon" type="image/png" href="img/logo.png" />
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
