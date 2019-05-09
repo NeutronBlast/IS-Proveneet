@@ -1,3 +1,37 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "metalsonic21";
+$dbname = "proveneet";
+
+session_start();
+
+$user = $_SESSION["user"];
+$pass = $_SESSION["password"];
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+$sql = "SELECT nombre FROM users WHERE email='$user' AND clave='$pass'"; 
+$result = mysqli_query($conn, $sql);
+
+$value = mysqli_fetch_array($result);
+$sql2 = "SELECT apellido FROM users WHERE email='$user' AND clave='$pass'"; 
+$result2 = mysqli_query($conn, $sql2);
+
+$value2 = mysqli_fetch_array($result2);
+
+/*Fill table*/
+$query = "SELECT * FROM providers"; 
+$result3 = mysqli_query($conn, $query);
+$result4 = mysqli_query($conn, $query);
+$dataRow ="";
+    while ($row = mysqli_fetch_array($result4)) {
+        $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
+        </tr>";
+    }
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,20 +95,20 @@
     <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="profemp.html">Información personal</a></li>
+    <li><a class="dropdown-item" href="profemp.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../Login/index.html">Salir</a></li>
+    <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
     <div class="logo-element">P</div>
     </li>
     <li>
-    <a href="profemp.html"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
+    <a href="profemp.php"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
     </li>
     
     <li class="active">
-    <a href="providers.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 </div> <!-- div from sidebar collapse -->
 </nav>
@@ -91,11 +125,11 @@
 <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
 </li>
 <li>
-<a href="index.html">
+<a href="index.php">
 <i class="fa fa-question-circle-o"></i> Ayuda</a>
 </li>
 <li>
-<a href="../Login/index.html">
+<a href="../Login/index.php">
 <i class="fa fa-sign-out"></i> Salir</a>
 </li>
 </ul>
@@ -119,7 +153,7 @@
         <div class="ibox-content no-padding">
         <ul class="list-group">
         <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover dataTables-example" >
+        <table class="table table-striped table-bordered table-hover dataTables-example" id="providers">
         <thead>
         <tr>
             <th>Nombre</th>
@@ -130,19 +164,14 @@
             </thead>
                         
             <tbody>
-            <tr class="gradeX">
-            <td>Uno</td>
-            <td>1</td>
-            <td>1</td>
-            <td class="center">1</td>
+            <?php while($row1 = mysqli_fetch_array($result3)):;?>
+            <tr>
+                <td><?php echo $row1[0];?></td>
+                <td><?php echo $row1[1];?></td>
+                <td><?php echo $row1[2];?></td>
+                <td><?php echo $row1[3];?></td>
             </tr>
-                        
-            <tr class="gradeC">
-            <td>Dos</td>
-            <td>2</td>
-            <td>2</td>
-            <td class="center">2</td>
-            </tr>     
+            <?php endwhile; mysqli_close($conn);?>   
             </tfoot>
             </table>
             </div>
@@ -152,11 +181,11 @@
 
     <div class="d-flex flex-row-reverse bd-highlight">
     <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#">Eliminar</a>
+    <a data-toggle="modal" class="btn btn-primary btn-lg" id="delete">Eliminar</a>
     </div>
     
     <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-provider">Modificar</a>
+    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-provider" id="modify">Modificar</a>
     </div>
     
     <div class="col-xs-2 p-1 bd-highlight">
@@ -172,14 +201,14 @@
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Agregar nuevo proveedor</h3>
     <form role="form">
-    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control"></div>
-    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
+    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control" id="dir"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control" id="phone"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control" id="rif"></div>
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="addpro">Aceptar</button>
     </div>
     </form>
     </div>
@@ -196,14 +225,14 @@
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar proveedor</h3>
     <form role="form">
-    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control"></div>
-    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="mname"></div>
+    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control" id="mdir"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Teléfono" class="form-control" id="mphone"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="RIF" class="form-control" id="mrif"></div>
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="modifyprov">Aceptar</button>
 
     </ul>
 </div><!-- ibox content-->
@@ -281,6 +310,131 @@
         });
                
 </script>
+
+<script>
+    /*Add provider*/
+    $('#addpro').click(function(event){ 
+    var name = document.getElementById("name").value;
+    var dir = document.getElementById("dir").value;
+    var phone = document.getElementById("phone").value;
+    var rif = document.getElementById("rif").value;
+        
+    $.ajax({
+        type:"POST",
+        url:"addprovider.php",
+        async: false,
+        data: {name:name,dir:dir,phone:phone,rif:rif},
+        success: function(data){
+        alert(data);
+            //window.location = '../Main/index.html';
+        }
+        });
+        });
+        </script>
+
+
+    <script type="text/javascript">
+    /*Fetch values from login*/
+    var ln = <?php echo json_encode($value2); ?>;
+    var n = <?php echo json_encode($value); ?>;
+
+    /*Assign login data*/
+    document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
+
+    </script>
+
+<script type="text/javascript">
+    /*Get selected row*/
+    $(function() {
+            var tr = $('#providers').find('tr');
+            tr.bind('click', function(event) {
+                var values = '';
+                var tds = $(this).addClass('row-highlight').find('td');
+                
+                var name;
+                var dir;
+                var phone;
+                var rif;
+
+                $.each(tds, function(index, item) {
+                    values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+                    /* Gather values from the row*/
+                        if (index == 0){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            name = values.slice(start+1,end);
+                            values = "";
+                        }
+                        else if (index == 1){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            dir = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        
+                        else if (index == 2){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            phone = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        else if (index == 3){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            rif = values.slice(start+1,end);
+                            values = "";
+                        }
+                });
+            
+                $('#modify').click(function(event){
+                    /*Replace placeholders with gathered values, ready to modify*/
+                    document.getElementById("mname").value = name;
+                    document.getElementById("mdir").value = dir;
+                    document.getElementById("mphone").value = phone;
+                    document.getElementById("mrif").value = rif;
+                });
+                /*Gather modified values*/
+                $('#modifyprov').click(function(event){ 
+                var name = document.getElementById("mname").value;
+                var dir = document.getElementById("mdir").value;
+                var phone = document.getElementById("mphone").value;
+                var nextrif = document.getElementById("mrif").value;
+/*After all info is correct we send to ajax to insert to database*/
+        
+    $.ajax({
+        type:"POST",
+        url:"modprov.php",
+        async: false,
+        data: {name:name,dir:dir,phone:phone,rif:rif,nextrif:nextrif},
+        success: function(data){
+        alert(data);
+            //window.location = '../Main/index.html';
+        }
+        });
+        }); //End of submit modify user
+
+        $('#delete').click(function(event){
+        $.ajax({
+        type:"POST",
+        url:"delprov.php",
+        async: false,
+        data: {rif:rif},
+        success: function(data){
+        alert(data);
+            window.location = 'providers.php';
+        }
+        });
+        }); //End of submit modify user
+
+            });
+        });
+    </script>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->
 </html>

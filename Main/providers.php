@@ -157,7 +157,7 @@ $dataRow ="";
                 <td><?php echo $row1[2];?></td>
                 <td><?php echo $row1[3];?></td>
             </tr>
-            <?php endwhile; mysqli_close($conn);?>  
+            <?php endwhile; mysqli_close($conn);?>
             </tfoot>
             </table>
             </div>
@@ -167,11 +167,11 @@ $dataRow ="";
 
     <div class="d-flex flex-row-reverse bd-highlight">
     <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#">Eliminar</a>
+    <a data-toggle="modal" class="btn btn-primary btn-lg" id="delete">Eliminar</a>
     </div>
     
     <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-provider">Modificar</a>
+    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-provider" id="modify">Modificar</a>
     </div>
     
     <div class="col-xs-2 p-1 bd-highlight">
@@ -211,14 +211,14 @@ $dataRow ="";
     <div class="row">
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar proveedor</h3>
     <form role="form">
-    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control"></div>
-    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Nombre" class="form-control"></div>
-    <div class="form-group"><label>RIF</label> <input type="text" placeholder="Apellido" class="form-control"></div>
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="mname"></div>
+    <div class="form-group"><label>Dirección</label> <input type="text" placeholder="Dirección" class="form-control" id="mdir"></div>
+    <div class="form-group"><label>Teléfono</label> <input type="text" placeholder="Teléfono" class="form-control" id="mphone"></div>
+    <div class="form-group"><label>RIF</label> <input type="text" placeholder="RIF" class="form-control" id="mrif"></div>
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="submit" id="modifyprov">Aceptar</button>
 
     </ul>
 </div><!-- ibox content-->
@@ -329,26 +329,99 @@ $dataRow ="";
 
     </script>
 
-
-    <script type="text/javascript">
+<script type="text/javascript">
     /*Get selected row*/
     $(function() {
-      $('#providers').on('click', 'tbody tr', function(event) {
-          alert("clic");
-        $(this).addClass('highlight');
-      });
+            var tr = $('#providers').find('tr');
+            tr.bind('click', function(event) {
+                var values = '';
+                var tds = $(this).addClass('row-highlight').find('td');
+                
+                var name;
+                var dir;
+                var phone;
+                var rif;
 
-      $('#modify').click(function(e) {
-        var rows = getHighlightRow();
-        if (rows != undefined) {
-          alert(rows.attr('nombre'));
+                $.each(tds, function(index, item) {
+                    values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+                    /* Gather values from the row*/
+                        if (index == 0){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            name = values.slice(start+1,end);
+                            values = "";
+                        }
+                        else if (index == 1){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            dir = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        
+                        else if (index == 2){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            phone = values.slice(start+1,end);
+                            values = "";
+                        }
+
+                        else if (index == 3){
+                            start = values.indexOf(":");
+                            end = values.indexOf("<");
+
+                            rif = values.slice(start+1,end);
+                            values = "";
+                        }
+                });
+            
+                $('#modify').click(function(event){
+                    /*Replace placeholders with gathered values, ready to modify*/
+                    document.getElementById("mname").value = name;
+                    document.getElementById("mdir").value = dir;
+                    document.getElementById("mphone").value = phone;
+                    document.getElementById("mrif").value = rif;
+
+                /*Gather modified values*/
+                });
+
+                $('#modifyprov').click(function(event){ 
+                var name = document.getElementById("mname").value;
+                var dir = document.getElementById("mdir").value;
+                var phone = document.getElementById("mphone").value;
+                var nextrif = document.getElementById("mrif").value;
+/*After all info is correct we send to ajax to insert to database*/
+        
+    $.ajax({
+        type:"POST",
+        url:"modprov.php",
+        async: false,
+        data: {name:name,dir:dir,phone:phone,rif:rif,nextrif:nextrif},
+        success: function(data){
+        alert(data);
+            //window.location = '../Main/index.html';
         }
-      });
+        });
+        }); //End of submit modify user
 
-      var getHighlightRow = function() {
-        return $('table > tbody > tr.highlight');
-      }
-    });
+        $('#delete').click(function(event){
+        $.ajax({
+        type:"POST",
+        url:"delprov.php",
+        async: false,
+        data: {rif:rif},
+        success: function(data){
+        alert(data);
+            window.location = 'providers.php';
+        }
+        });
+        }); //End of submit modify user
+
+            });
+        });
     </script>
 
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->

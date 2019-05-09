@@ -103,7 +103,7 @@ mysqli_close($conn);
     </li>
 
     <li>
-    <a href="providersemp.html"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providersemp.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 
     </div> <!-- div from sidebar collapse -->
