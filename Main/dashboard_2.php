@@ -176,7 +176,7 @@ $dataRow ="";
 
         <div class="d-flex flex-row-reverse bd-highlight">
         <div class="col-xs-2 p-1 bd-highlight">
-        <a data-toggle="modal" class="btn btn-primary btn-lg" href="#">Eliminar</a>
+        <a data-toggle="modal" class="btn btn-primary btn-lg" id="delete">Eliminar</a>
         </div>
 
         <div class="col-xs-2 p-1 bd-highlight">
@@ -480,7 +480,18 @@ $dataRow ="";
         });
         }); //End of submit modify user
 
-
+        $('#delete').click(function(event){
+        $.ajax({
+        type:"POST",
+        url:"deluser.php",
+        async: false,
+        data: {email:email},
+        success: function(data){
+        alert(data);
+            window.location = 'dashboard_2.php';
+        }
+        });
+        }); //End of submit modify user
 
             });
         });
