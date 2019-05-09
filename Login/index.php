@@ -4,8 +4,6 @@
 	<title>Proveneet</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
 <!--===============================================================================================-->	
 <!-- Icon -->
 	<link rel="icon" type="image/png" href="images/icons/logo.png"/>
@@ -104,7 +102,26 @@
 	$('#logBtn').click(function(event){ 
 	user = document.getElementById("user").value;
 	password = document.getElementById("pass").value;
+	var flag = 1;
+	if(!user){
+		msg = "Ingrese un nombre de usuario";
+		alert(msg);
+		flag = 0;
+	}
+
+	if(!user[1] && flag){
+		msg = "Nombre de usuario debe ser mayor a 2";
+		alert(msg);
+		flag = 0;
+	}
+
+	if(user[100] && flag){
+		msg = "Nombre de usuario demasiado largo";
+		alert(msg);
+		flag = 0;
+	}
 	
+	if(flag){
 	$.ajax({
 		type:"POST",
 		url:"login.php",
@@ -121,6 +138,7 @@
 			 }
 		}
 		});
+	}
 	});
 	</script>
 	

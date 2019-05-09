@@ -8,7 +8,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 $user = $_POST['user'];
 $pass = $_POST['password'];
-$email = $_POST['next'];
+$email = $_POST['newe'];
 $name = $_POST['name'];
 $ln = $_POST['ln'];
 $prev = $_POST['email'];

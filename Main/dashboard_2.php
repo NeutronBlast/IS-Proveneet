@@ -20,6 +20,10 @@ $result2 = mysqli_query($conn, $sql2);
 
 $value2 = mysqli_fetch_array($result2);
 
+$sql3 = "SELECT email FROM users WHERE email='$user' AND clave='$pass'"; 
+$result3 = mysqli_query($conn, $sql3);
+$value3 = mysqli_fetch_array($result3);
+
 /*Fill table*/
 $query = "SELECT * FROM users"; 
 $result3 = mysqli_query($conn, $query);
@@ -73,7 +77,7 @@ $dataRow ="";
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <!-- Placeholder name and last name -->
             
-            <span class="block m-t-xs font-bold" id="fullname">Frank Hesse</span>
+            <span class="block m-t-xs font-bold" id="fullname"></span>
             
             <!-- Placeholder role (admin or employee) -->
             <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
@@ -176,11 +180,11 @@ $dataRow ="";
 
         <div class="d-flex flex-row-reverse bd-highlight">
         <div class="col-xs-2 p-1 bd-highlight">
-        <a data-toggle="modal" class="btn btn-primary btn-lg" id="delete">Eliminar</a>
+        <button class="btn btn-primary btn-lg" id="delete" disabled="disable">Eliminar</button>
         </div>
 
         <div class="col-xs-2 p-1 bd-highlight">
-        <a data-toggle="modal" class="btn btn-primary btn-lg" href="#modify-user" id="modify">Modificar</a>
+        <button class="btn btn-primary btn-lg" id="modify" disabled="disable">Modificar</button>
         </div>
 
         <div class="col-xs-2 p-1 bd-highlight">
@@ -198,7 +202,7 @@ $dataRow ="";
         <form role="form">
         <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" id="user"></div>
         <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" id="pass"></div>
-        <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control"></div>
+        <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control" id="conpw"></div>
         <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control" id="email"></div>
         <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
         <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" id="ln"></div>
@@ -328,10 +332,127 @@ $dataRow ="";
     $('#addusr').click(function(event){ 
     var user = document.getElementById("user").value;
     var password = document.getElementById("pass").value;
+    var password2 = document.getElementById("conpw").value;
     var name = document.getElementById("name").value;
     var ln = document.getElementById("ln").value;
     var email = document.getElementById("email").value;
     var permissions = null;
+    var flag = true;
+
+        //Validations of user var.
+    if(!user && flag){
+        msg = "Ingrese un Nick";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!user[1] && flag){
+        msg = "Nick usuario debe ser de longitud mayor a 2 letras";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(user[100] && flag){
+        msg = "Nick usuario demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+
+    //Validations of password var.
+    if(!password && flag){
+        msg = "Ingrese una contraseña de usuario";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!password[7] && flag){
+        msg = "Contraseña de usuario debe ser de longitud mayor a 8 caracteres";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(password != password2 && flag){
+        msg = "Contraseña y confirmar contraseña no coinciden";
+        alert(msg);
+        flag = 0;
+    }
+
+    //Validations of name var.
+    if(!name && flag){
+        msg = "Ingrese un nombre de usuario";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!name[1] && flag){
+        msg = "Nombre de usuario debe ser mayor a 2";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(name[100] && flag){
+        msg = "Nombre de usuario demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+
+
+    if (!/^([A-z])*$/.test(name) && flag){
+        alert("Su nombre contiene números");
+        flag = 0;
+    }
+
+    //Validations of ln var.
+    if(!ln && flag){
+        msg = "Ingrese un apellido de usuario";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!ln[1] && flag){
+        msg = "Apellido de usuario debe ser mayor a 2";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(ln[100] && flag){
+        msg = "Apellido de usuario demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+    
+    if (!/^([A-z])*$/.test(ln) && flag){
+        alert("Su apellido contiene números");
+        flag = 0;
+    }
+      
+
+    //Validations of email var.
+    if(!email && flag){
+        var msg = "Ingrese un Correo electrónico";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!email[4] && flag){
+        msg = "Correo electrónico debe ser de longitud mayor a 5 letras";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(email[100] && flag){
+        msg = "Correo electrónico demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+
+    var patt = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+    next = patt.test((String)(email));
+
+    if (!next && flag){
+        msg = "Ingrese una dirección de correo electrónico válida";
+        alert(msg);
+    }
 
     if (document.getElementById("r3").checked){
         permissions = document.getElementById("r3").value;
@@ -340,7 +461,38 @@ $dataRow ="";
         permissions = document.getElementById("r4").value;
     }
 
-        
+    if(!permissions && flag){
+        msg = "Debe seleccionar uno de los permisos";
+        alert(msg);
+        flag = 0;
+    }
+
+
+    var allM = [];
+    var table = document.getElementById("users");
+    for (var i = 0, row; row = table.rows[i]; i++) {
+   //iterate through rows
+   //rows would be accessed using the "row" variable assigned in the for loop
+   for (var j = 0, col; col = row.cells[j]; j++) {
+       if (j == 4){
+           allM.push(col.innerHTML);
+    /*Get all emails*/
+       }
+     //iterate through columns
+     //columns would be accessed using the "col" variable assigned in the for loop
+   }  
+}
+
+    for(var i = 0; i < allM.length; i++){
+        if (email == allM[i]){
+            alert("Correo electrónico está asociado a una cuenta ya existente");
+            next = false;
+            break;
+            flag = 0;
+        }
+    }
+
+    if (flag != 0){
     $.ajax({
         type:"POST",
         url:"adduser.php",
@@ -351,6 +503,7 @@ $dataRow ="";
             //window.location = '../Main/index.html';
         }
         });
+    }
         });
         </script>
 
@@ -370,16 +523,19 @@ $dataRow ="";
     /*Get selected row*/
     $(function() {
             var tr = $('#users').find('tr');
+                            
+            var name=null;
+                var ln=null;
+                var username=null;
+                var password=null;
+                var email=null;
+                var perms=null;
             tr.bind('click', function(event) {
+                $('#modify').attr("disabled", false);
+                $('#delete').attr("disabled", false);
                 var values = '';
                 var tds = $(this).addClass('row-highlight').find('td');
-                
-                var name;
-                var ln;
-                var username;
-                var password;
-                var email;
-                var perms;
+
                 $.each(tds, function(index, item) {
                     values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
                     /* Gather values from the row*/
@@ -433,6 +589,10 @@ $dataRow ="";
                 });
             
                 $('#modify').click(function(event){
+                    $('#modify-user').modal()
+                    $('#modify-user').on('shown.bs.modal', function () {
+                      $('#modify-user').trigger('focus')
+                    })
                     /*Replace placeholders with gathered values, ready to modify*/
                     document.getElementById("musername").value = username;
                     document.getElementById("mpw").value = password;
@@ -456,8 +616,147 @@ $dataRow ="";
                 var confirm = document.getElementById("cmpw").value;
                 var name = document.getElementById("mname").value;
                 var ln = document.getElementById("nln").value;
-                var next = document.getElementById("memail").value;
+                var newe = document.getElementById("memail").value;
                 var permissions = null;
+                var flag = 1;
+
+                var allM = [];
+    var table = document.getElementById("users");
+    for (var i = 0, row; row = table.rows[i]; i++) {
+   //iterate through rows
+   //rows would be accessed using the "row" variable assigned in the for loop
+   for (var j = 0, col; col = row.cells[j]; j++) {
+       if (j == 4){
+           allM.push(col.innerHTML);
+    /*Get all emails*/
+       }
+     //iterate through columns
+     //columns would be accessed using the "col" variable assigned in the for loop
+   }  
+}
+
+    for(var i = 0; i < allM.length; i++){
+        if (newe == allM[i]){
+            alert("Correo electrónico está asociado a una cuenta ya existente");
+            next = false;
+            break;
+            flag = 0;
+        }
+    }
+
+                    if(!user && flag){
+        msg = "Ingrese un Nick";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!user[1] && flag){
+        msg = "Nick usuario debe ser de longitud mayor a 2 letras";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(user[100] && flag){
+        msg = "Nick usuario demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+
+    //Validations of password var.
+    if(!password && flag){
+        msg = "Ingrese una contraseña de usuario";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!password[7] && flag){
+        msg = "Contraseña de usuario debe ser de longitud mayor a 8 caracteres";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(password != confirm && flag){
+        msg = "Contraseña y confirmar contraseña no coinciden";
+        alert(msg);
+        flag = 0;
+    }
+
+    //Validations of name var.
+    if(!name && flag){
+        msg = "Ingrese un nombre de usuario";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!name[1] && flag){
+        msg = "Nombre de usuario debe ser mayor a 2";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(name[100] && flag){
+        msg = "Nombre de usuario demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+
+
+    if (!/^([A-z])*$/.test(name) && flag){
+        alert("Su nombre contiene números");
+        flag = 0;
+    }
+
+    //Validations of ln var.
+    if(!ln && flag){
+        msg = "Ingrese un apellido de usuario";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!ln[1] && flag){
+        msg = "Apellido de usuario debe ser mayor a 2";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(ln[100] && flag){
+        msg = "Apellido de usuario demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+    
+    if (!/^([A-z])*$/.test(ln) && flag){
+        alert("Su apellido contiene números");
+        flag = 0;
+    }
+      
+
+    //Validations of email var.
+    if(!newe && flag){
+        var msg = "Ingrese un Correo electrónico";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(!newe[4] && flag){
+        msg = "Correo electrónico debe ser de longitud mayor a 5 letras";
+        alert(msg);
+        flag = 0;
+    }
+
+    if(newe[100] && flag){
+        msg = "Correo electrónico demasiado largo";
+        alert(msg);
+        flag = 0;
+    }
+
+    var patt = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+    next = patt.test((String)(newe));
+
+    if (!next && flag){
+        msg = "Ingrese una dirección de correo electrónico válida";
+        alert(msg);
+    }
 
                 if (document.getElementById("r1").checked){
                     permissions = document.getElementById("r1").value;
@@ -466,21 +765,46 @@ $dataRow ="";
                     permissions = document.getElementById("r2").value;
                 }
 
+                    if(!permissions && flag){
+        msg = "Debe seleccionar uno de los permisos";
+        alert(msg);
+        flag = 0;
+    }
+
+    if (permissions != perms && flag){
+        var master = prompt('La siguiente operación es muy delicada, si desea continuar ingrese la clave maestra');
+        if (master != null && master != "" && master == "proveneet") {
+            flag = 1;
+        }
+        else{
+            alert("La contraseña maestra es inválida");
+            flag = 0;
+        }
+    }
+
 /*After all info is correct we send to ajax to insert to database*/
-        
+    if (flag){    
     $.ajax({
         type:"POST",
         url:"moduser.php",
         async: false,
-        data: {user:user,password:password,name:name,ln:ln,next:next,permissions:permissions,email:email},
+        data: {user:user,password:password,name:name,ln:ln,newe:newe,permissions:permissions,email:email},
         success: function(data){
         alert(data);
             //window.location = '../Main/index.html';
         }
         });
+    }
         }); //End of submit modify user
 
-        $('#delete').click(function(event){
+        $('#delete').click(function(event){            
+            var filter = <?php echo json_encode($value3); ?>;
+            var flag = 1;
+            if (filter[0] == email && flag){
+                alert("No puedes eliminarte a tí mismo!");
+                flag = 0;
+            }
+        if (flag){
         $.ajax({
         type:"POST",
         url:"deluser.php",
@@ -491,6 +815,7 @@ $dataRow ="";
             window.location = 'dashboard_2.php';
         }
         });
+        }
         }); //End of submit modify user
 
             });
