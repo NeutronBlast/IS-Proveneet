@@ -29,20 +29,6 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
 
-    <script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#config-web-app -->
-         
-
-    <!-- Firebase -->
-    <script src="js/database.js"></script>
-    <script src="js/firebaseconfig.js"></script>
-
-
     </head>
     <body>
     <div class="container-login100" style="background-image: url('images/bg-02.jpg');">
@@ -51,28 +37,18 @@
     <div class="wrap-login100">
     <div class="panel-body">
     <div class="text-center">
-    <h3><i class="fa fa-unlock-alt fa-4x" style="color:white;"></i></h3>
-    <h2 class="text-center text-white">Restablecer contraseña</h2>
+    <h3><i class="fa fa-lock fa-4x" style="color:white;"></i></h3>
+    <h2 class="text-center text-white">¿Olvidó la contraseña?</h2>
+    <p class="text-white">Puede restablecerla aquí, ingrese su dirección de correo electrónico</p>
     <br>
     <div class="panel-body">
     <form id="register-form" role="form" autocomplete="off" class="form" method="post">
-
-
-<!-- New password -->
     <div class="form-group">
     <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-    <input id="email" name="email" placeholder="Contraseña" class="form-control"  type="password">
+    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+    <input id="email" name="email" placeholder="Correo electrónico" class="form-control"  type="email" id="email">
     </div>
     </div>
-
-<!-- New password -->
-    <div class="form-group">
-        <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-        <input id="email" name="email" placeholder="Confirmar contraseña" class="form-control"  type="password">
-        </div>
-        </div>
     <br>
 
     <div class="container-login100-form-btn">
@@ -91,7 +67,6 @@
     </div>
     </div>
 
-
 <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -109,6 +84,28 @@
 <!--===============================================================================================-->
 	<!--<script src="js/main.js"></script>-->
 	<script src="js/fb.js"></script>
+
+
+        <script type="text/javascript">
+    $('#resetButton').click(function(event){ 
+    user = document.getElementById("email").value;
+    $.ajax({
+        type:"POST",
+        url:"send.php",
+        async: false,
+        data: {user:user},
+        success: function(data){
+            if(data != 'success'){
+                alert("Usuario no existe en el sistema");
+             }
+            else{
+               alert("Se ha restablecido su contraseña a su dirección de correo electrónico, por favor cámbiela en gestión de perfil");
+               window.location='../Login/index.php';
+             }
+        }
+        });
+    });
+    </script>
 <!--===============================================================================================-->
 
   

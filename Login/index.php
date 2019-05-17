@@ -68,7 +68,7 @@
 					</div>					
 
 					<div class="text-center p-t-90">
-						<a class="txt1" href="../ForgotPW/form.html">
+						<a class="txt1" href="../ForgotPW/form.php">
 							¿Ha olvidado la contraseña?
 						</a>
 					</div>
