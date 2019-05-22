@@ -96,53 +96,9 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<script src="js/fb.js"></script>
 <!--===============================================================================================-->
-	<script>
-	$('#logBtn').click(function(event){ 
-	user = document.getElementById("user").value;
-	password = document.getElementById("pass").value;
-	var flag = 1;
-	if(!user){
-		msg = "Ingrese un nombre de usuario";
-		alert(msg);
-		flag = 0;
-	}
+	<!--Database scripts-->
 
-	if(!user[1] && flag){
-		msg = "Nombre de usuario debe ser mayor a 2";
-		alert(msg);
-		flag = 0;
-	}
-
-	if(user[100] && flag){
-		msg = "Nombre de usuario demasiado largo";
-		alert(msg);
-		flag = 0;
-	}
-	
-	if(flag){
-	$.ajax({
-		type:"POST",
-		url:"login.php",
-		async: false,
-		data: {user:user,password:password},
-		success: function(data){
-			if(data == 'Administrador'){
-                window.location.href='../Main/index.php';
-             }
-             else if(data == 'Empleado'){
-                window.location.href='../Main/startemp.php';
-             }else{
-               alert("Usuario o contraseña inválidos");
-			 }
-		}
-		});
-	}
-	});
-	</script>
-	
-  <input type="hidden" name="count" id="user" value="<?= $user  ?>" />
-
+	<script src="db/loginverify.js"></script>
 </body>
 </html>
