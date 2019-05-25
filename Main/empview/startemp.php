@@ -1,5 +1,5 @@
 <?php
-	require ('util\isLogged.php');
+	require ('..\util\isLogged.php');
 ?>
 
 
@@ -12,37 +12,19 @@
 
     <title>Proveneet</title>
     <!-- Icon -->
-	<link rel="icon" type="image/png" href="img/logo.png"/>
+	<link rel="icon" type="image/png" href="../img/logo.png"/>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!--===============================================================================================-->
-    <script src="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth__es.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.6.1/firebase-ui-auth.css" />
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- Add additional services that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-functions.js"></script>
-        
-
-    <!-- Firebase -->
-    <script src="js/database.js"></script>
-    <script src="js/firebaseconfig.js"></script>
-
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
     <body>
@@ -54,11 +36,11 @@
     <div class="dropdown profile-element">
     <!-- Image (always default) -->
     
-    <img alt="image" class="rounded-circle" src="img/pfp_small.jpg"/>
+    <img alt="image" class="rounded-circle" src="../img/pfp_small.jpg"/>
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <!-- Placeholder name and last name -->
     
-    <span class="block m-t-xs font-bold">Thomas Hesse</span>
+    <span class="block m-t-xs font-bold" id="fullname"></span>
     
     <!-- Placeholder role (admin or employee) -->
     <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
@@ -66,7 +48,7 @@
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
     <li><a class="dropdown-item" href="profemp.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
+    <li><a class="dropdown-item" href="../../Login/index.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
@@ -77,7 +59,7 @@
     </li>
         
     <li>
-    <a href="providersemp.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 
     </div> <!-- div from sidebar collapse -->
@@ -98,7 +80,7 @@
     <i class="fa fa-question-circle-o"></i> Ayuda</a>
     </li>
     <li>
-    <a href="../Login/index.php">
+    <a href="../../Login/index.php">
     <i class="fa fa-sign-out"></i> Salir</a>
     </li>
     </ul>
@@ -206,50 +188,50 @@
 
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Flot -->
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.pie.js"></script>
 
     <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../js/demo/peity-demo.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
 
     <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <!-- GITTER -->
-    <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
+    <script src="../js/plugins/gritter/jquery.gritter.min.js"></script>
 
     <!-- Sparkline -->
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
     <!-- Sparkline demo data  -->
-    <script src="js/demo/sparkline-demo.js"></script>
+    <script src="../js/demo/sparkline-demo.js"></script>
 
     <!-- ChartJS-->
-    <script src="js/plugins/chartJs/Chart.min.js"></script>
+    <script src="../js/plugins/chartJs/Chart.min.js"></script>
 
     <!-- Toastr -->
-    <script src="js/plugins/toastr/toastr.min.js"></script>
+    <script src="../js/plugins/toastr/toastr.min.js"></script>
 
     <script type="text/javascript">
     /*Fetch values from login*/
     var ln = <?php echo json_encode($value2); ?>;
     var n = <?php echo json_encode($value); ?>;
-
+    
     /*Assign login data*/
     document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
 

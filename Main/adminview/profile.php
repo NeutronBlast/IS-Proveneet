@@ -1,5 +1,5 @@
 <?php
-	require ('util\isLogged.php');
+	require ('..\util\isLogged.php');
 ?>
 
 
@@ -12,19 +12,19 @@
 
     <title>Proveneet</title>
     <!-- Icon -->
-    <link rel="icon" type="image/png" href="img/logo.png"/>
+    <link rel="icon" type="image/png" href="../img/logo.png"/>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Toastr style -->
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
 
 </head>
@@ -38,7 +38,7 @@
     <div class="dropdown profile-element">
     <!-- Image (always default) -->
     
-    <img alt="image" class="rounded-circle" src="img/pfp_small.jpg"/>
+    <img alt="image" class="rounded-circle" src="../img/pfp_small.jpg"/>
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <!-- Placeholder name and last name -->
     
@@ -48,9 +48,9 @@
     <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="index-2.php">Información personal</a></li>
+    <li><a class="dropdown-item" href="profile.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../Login/index.php">Salir</a></li>
+    <li><a class="dropdown-item" href="../../Login/index.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
@@ -59,14 +59,14 @@
     <li class="active">
     
     <!-- User settings menu -->
-    <a href="index-2.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
+    <a href="profile.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de usuario</span> <span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
     
     <!-- Profile settings -->
-    <li class="active"><a href="index-2.php">Gestión de perfil</a></li>
+    <li class="active"><a href="profile.php">Gestión de perfil</a></li>
     
     <!-- User admining -->
-    <li><a href="dashboard_2.php">Gestión de usuarios</a></li>
+    <li><a href="manageusers.php">Gestión de usuarios</a></li>
     </ul>
     </li>
     <li>
@@ -92,7 +92,7 @@
     <i class="fa fa-question-circle-o"></i> Ayuda</a>
     </li>
     <li>
-    <a href="../Login/index.php">
+    <a href="../../Login/index.php">
     <i class="fa fa-sign-out"></i> Salir</a>
     </li>
     </ul>
@@ -120,7 +120,7 @@
     <div class="ibox-content no-padding border-left-right text-center">
 
     <!-- Cosmetic picture -->
-    <img alt="image" class="img-fluid rounded" src="img/profile_med.png">
+    <img alt="image" class="img-fluid rounded" src="../img/profile_med.png">
     </div>
     <div class="ibox-content profile-content text-center">
 
@@ -128,7 +128,7 @@
     <h4 id="fullname2"><strong></strong></h4>
     <!-- Placeholder e-mail adress -->
     <div class ="col-md-12">
-    <i class="fa fa-envelope"></i> <p id="email">hyperschnell11@outlook.sk</p>
+    <i class="fa fa-envelope"></i> <p id="email"></p>
     </div>
     <p><i class="fa fa-user-o"></i> Administrador</p>
 
@@ -175,45 +175,46 @@
 
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Flot -->
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="../js/plugins/flot/jquery.flot.pie.js"></script>
 
     <!-- Peity -->
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-    <script src="js/demo/peity-demo.js"></script>
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="../js/demo/peity-demo.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
 
     <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <!-- GITTER -->
-    <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
+    <script src="../js/plugins/gritter/jquery.gritter.min.js"></script>
 
     <!-- Sparkline -->
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
     <!-- Sparkline demo data  -->
-    <script src="js/demo/sparkline-demo.js"></script>
+    <script src="../js/demo/sparkline-demo.js"></script>
 
     <!-- ChartJS-->
-    <script src="js/plugins/chartJs/Chart.min.js"></script>
+    <script src="../js/plugins/chartJs/Chart.min.js"></script>
 
     <!-- Toastr -->
-    <script src="js/plugins/toastr/toastr.min.js"></script>
-
+    <script src="../js/plugins/toastr/toastr.min.js"></script>
+    
+    <!-- Utilities -->
     <script type="text/javascript">
     /*Fetch values from login*/
     var ln = <?php echo json_encode($value2); ?>;
@@ -240,18 +241,16 @@
         if (next){
         $.ajax({
         type:"POST",
-        url:"changepw.php",
+        url:"../dbUser/changepw.php",
         async: false,
         data: {e:e,newp:newp},
         success: function(data){
-            window.location.href='index-2.php';
+            window.location.href='../adminview/profile.php';
         }
         });
         }
 
     });
-
-    
     </script>
 
 </body>

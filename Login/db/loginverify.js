@@ -28,10 +28,10 @@ $('#logBtn').click(function(event){
 		data: {user:user,password:password},
 		success: function(data){
 			if(data == 'Administrador'){
-                window.location.href='../Main/index.php';
+                window.location.href='../Main/adminview/index.php';
              }
              else if(data == 'Empleado'){
-                window.location.href='../Main/startemp.php';
+                window.location.href='../Main/empview/startemp.php';
              }else{
                alert("Usuario o contraseña inválidos");
 			 }
