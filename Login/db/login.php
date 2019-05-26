@@ -4,22 +4,20 @@ $username = "FrankHesse";
 $password = "proveneet";
 $dbname = "proveneet";
 
-session_start();
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $user = $_POST['user'];
 $pass = $_POST['password'];
 
-$_SESSION["user"] = $user;
-$_SESSION["password"] = $pass;
-
-
-
 $sql = "SELECT * FROM users WHERE email='$user' AND clave='$pass'"; 
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
+    session_start();
+    $_SESSION["user"] = $user;
+    $_SESSION["password"] = $pass;
+    $_SESSION["loggedin"] = true;
+    
     $sql_1 = "SELECT * FROM users WHERE email='$user' AND clave='$pass' AND permisos='Administrador'";
     $result_1 = mysqli_query($conn, $sql_1);
     if (mysqli_num_rows($result_1) > 0){

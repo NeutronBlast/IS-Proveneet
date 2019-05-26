@@ -48,7 +48,7 @@
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
     <li><a class="dropdown-item" href="profemp.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="../../Login/index.php">Salir</a></li>
+    <li><a class="dropdown-item" href="../util/logout.php">Salir</a></li>
     </ul>
     </div> <!-- div from dropdown -->
     
@@ -80,7 +80,7 @@
     <i class="fa fa-question-circle-o"></i> Ayuda</a>
     </li>
     <li>
-    <a href="../../Login/index.php">
+    <a href="../util/logout.php">
     <i class="fa fa-sign-out"></i> Salir</a>
     </li>
     </ul>
