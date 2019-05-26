@@ -6,6 +6,7 @@ $dbname = "proveneet";
 
 session_start();
 $user = $_SESSION['user'];
+$pass = $_SESSION['password'];
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $conn = new mysqli($servername, $username, $password, $dbname);
