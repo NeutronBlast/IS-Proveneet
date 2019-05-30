@@ -169,12 +169,25 @@
         <div class="col-sm-12"><h3 class="m-t-none m-b">Registrar nuevo usuario</h3>
         <form role="form">
         <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" id="user"></div>
+        <div class="form row">
+        <div class="col-sm-6">
         <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" id="pass"></div>
+        </div>
+        <div class="col-sm-6">
         <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control" id="conpw"></div>
+        </div>
+        </div>
         <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control" id="email"></div>
+        <div class="form row">
+        <div class="col-sm-6">
         <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" id="name"></div>
+        </div>
+        <div class="col-sm-6">
         <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" id="ln"></div>
-        <div class="form-group"><label>Permisos</label></div>
+        </div>
+        </div>
+        <div class="form-group">
+        <label>Permisos</label></div>
         <div><label> <input type="radio" value="Administrador" id="r3" name="radio2"> <i></i> Administrador </label></div>
         <div><label> <input type="radio" value="Empleado" id="r4" name="radio2"> <i></i> Empleado </label></div>
 
@@ -198,11 +211,24 @@
     <div class="col-sm-12"><h3 class="m-t-none m-b">Modificar usuario</h3>
     <form role="form">
     <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" value="" id="musername"></div>
+    <div class="form row">
+    <div class="col-sm-6">
     <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" value="" id="mpw"></div>
+    </div>
+    <div class="col-sm-6">
     <div class="form-group"><label>Confirmar contraseña</label> <input type="password" placeholder="Confirmar contraseña" class="form-control" value="" id="cmpw"></div>
+    </div>
+    </div>
     <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control" value="" id="memail"></div>
+    <div class="form row">
+    <div class="col-sm-6">
     <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" value="" id="mname"></div>
+    </div>
+    <div class="col-sm-6">
     <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" value="" id="nln"> </div>
+    </div>
+    </div>
+    
     <div class="form-group"><label>Permisos</label></div>
     <div class="i-checks"><label> <input type="radio" id="r1" value="Administrador" name="radio1"> <i></i> Administrador </label></div>
     <div class="i-checks"><label> <input type="radio" id="r2" value="Empleado" name="radio1"> <i></i> Empleado </label></div>
