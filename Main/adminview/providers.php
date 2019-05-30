@@ -164,7 +164,7 @@
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="addpro">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="button" id="addpro">Aceptar</button>
     </div>
     </form>
     </div>
@@ -188,7 +188,7 @@
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="modifyprov">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="button" id="modifyprov">Aceptar</button>
 
     </ul>
 </div><!-- ibox content-->

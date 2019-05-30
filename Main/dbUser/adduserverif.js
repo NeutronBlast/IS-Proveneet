@@ -9,24 +9,29 @@ $('#submitusr').click(function(event){
     var permissions = null;
     var flag = true;
 
+    //Will change the border of different textfields depending of the kind of mistake
+    var type = 0;
 
     /*Validate user*/
     if(!user && flag){
         msg = "Ingrese un Nick";
         alert(msg);
         flag = 0;
+        type = 1;
     }
 
     if(!user[1] && flag){
         msg = "Nick usuario debe ser de longitud mayor a 2 letras";
         alert(msg);
         flag = 0;
+        type = 1;
     }
 
     if(user[100] && flag){
         msg = "Nick usuario demasiado largo";
         alert(msg);
         flag = 0;
+        type = 1;
     }
 
     /*Validate password*/
@@ -34,18 +39,21 @@ $('#submitusr').click(function(event){
         msg = "Ingrese una contraseña de usuario";
         alert(msg);
         flag = 0;
+        type = 2;
     }
 
     if(!password[7] && flag){
         msg = "Contraseña de usuario debe ser de longitud mayor a 8 caracteres";
         alert(msg);
         flag = 0;
+        type = 2;
     }
 
     if(password != password2 && flag){
         msg = "Contraseña y confirmar contraseña no coinciden";
         alert(msg);
         flag = 0;
+        type = 3;
     }
 
     //Validations of name var.
@@ -53,24 +61,28 @@ $('#submitusr').click(function(event){
         msg = "Ingrese un nombre de usuario";
         alert(msg);
         flag = 0;
+        type = 4;
     }
 
     if(!name[1] && flag){
         msg = "Nombre de usuario debe ser mayor a 2";
         alert(msg);
         flag = 0;
+        type = 4;
     }
 
     if(name[100] && flag){
         msg = "Nombre de usuario demasiado largo";
         alert(msg);
         flag = 0;
+        type = 4;
     }
 
 
     if (!/^([A-z])*$/.test(name) && flag){
         alert("Su nombre contiene números");
         flag = 0;
+        type = 4;
     }
 
     /*Validate last name*/
@@ -78,23 +90,27 @@ $('#submitusr').click(function(event){
         msg = "Ingrese un apellido de usuario";
         alert(msg);
         flag = 0;
+        type = 5;
     }
 
     if(!ln[1] && flag){
         msg = "Apellido de usuario debe ser mayor a 2";
         alert(msg);
         flag = 0;
+        type = 5;
     }
 
     if(ln[100] && flag){
         msg = "Apellido de usuario demasiado largo";
         alert(msg);
         flag = 0;
+        type = 5;
     }
     
     if (!/^([A-z])*$/.test(ln) && flag){
         alert("Su apellido contiene números");
         flag = 0;
+        type = 5;
     }
       
 
@@ -103,18 +119,21 @@ $('#submitusr').click(function(event){
         var msg = "Ingrese un Correo electrónico";
         alert(msg);
         flag = 0;
+        type = 6;
     }
 
     if(!email[4] && flag){
         msg = "Correo electrónico debe ser de longitud mayor a 5 letras";
         alert(msg);
         flag = 0;
+        type = 6;
     }
 
     if(email[100] && flag){
         msg = "Correo electrónico demasiado largo";
         alert(msg);
         flag = 0;
+        type = 6;
     }
 
     var patt = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -123,6 +142,7 @@ $('#submitusr').click(function(event){
     if (!next && flag){
         msg = "Ingrese una dirección de correo electrónico válida";
         alert(msg);
+        type = 6;
     }
 
     if (document.getElementById("r3").checked){
@@ -137,6 +157,7 @@ $('#submitusr').click(function(event){
         alert(msg);
         flag = 0;
     }
+
 
     /*Verify that email is unique*/
     //This function iterates through all the table and saves all the emails in an array
@@ -157,9 +178,64 @@ $('#submitusr').click(function(event){
             next = false;
             break;
             flag = 0;
+            type = 6;
         }
     }
 
+    //Change borders
+
+    if (type == 1){
+        $('#user').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 2){
+        $('#pass').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 3){
+        $('#pass').css({"color":"red","border":"1px solid red"});
+        $('#conpw').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 4){
+        $('#name').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 5){
+        $('#ln').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 6){
+        $('#email').css({"color":"red","border":"1px solid red"});
+    }
+
+    //Set back to default when user starts correcting the mistake
+
+    $("#user").keyup(function(){
+      $("#user").css({"color":"","border":""});
+    });
+
+    $("#pass").keyup(function(){
+        $("#pass").css({"color":"","border":""});
+        $("#conpw").css({"color":"","border":""});
+    });
+
+    $("#conpw").keyup(function(){
+        $("#pass").css({"color":"","border":""});
+        $("#conpw").css({"color":"","border":""});
+    });
+
+    $("#name").keyup(function(){
+      $("#name").css({"color":"","border":""});
+    });
+
+    $("#ln").keyup(function(){
+      $("#ln").css({"color":"","border":""});
+    });
+
+    $("#email").keyup(function(){
+      $("#email").css({"color":"","border":""});
+    });
 
     //Once all data is verified it sends to PHP file to be stored in the database
 
@@ -176,5 +252,4 @@ $('#submitusr').click(function(event){
         });
     }
 
-    flag = 1;
 });

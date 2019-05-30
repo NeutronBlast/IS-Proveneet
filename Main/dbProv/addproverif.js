@@ -9,6 +9,7 @@ $('#addpro').click(function(event){
 
     /*Verify before sending to AJAX*/
     next = true;
+    type = 0;
     
     /*Cannot be blank*/
     if (document.getElementById("name").value == "" || document.getElementById("dir").value=="" ||
@@ -32,6 +33,7 @@ $('#addpro').click(function(event){
         if (rif == rifs[i]){
             alert("Proveedor con RIF ingresado ya existe en el sistema");
             next = false;
+            type = 4;
             break;
         }
     }
@@ -42,7 +44,20 @@ $('#addpro').click(function(event){
 
     if (!next){
         alert("Formato de RIF inválido: Debe ser J-numeros");
+        type = 4;
     }
+
+    //Change borders
+
+    if (type == 4){
+        $('#rif').css({"color":"red","border":"1px solid red"});
+    }
+
+    //Set back to default when user starts correcting the mistake
+
+    $("#rif").keyup(function(){
+        $("#rif").css({"color":"","border":""});
+    });
 
     if (next){
     $.ajax({
@@ -52,7 +67,7 @@ $('#addpro').click(function(event){
         data: {name:name,dir:dir,phone:phone,rif:rif},
         success: function(data){
         alert(data);
-            //window.location = '../Main/index.html';
+            window.location = 'providers.php';
         }
     });
     } // if next

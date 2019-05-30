@@ -213,6 +213,14 @@
     <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" value="" id="musername"></div>
     <div class="form row">
     <div class="col-sm-6">
+    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" value="" id="mname"></div>
+    </div>
+    <div class="col-sm-6">
+    <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" value="" id="nln"> </div>
+    </div>
+    </div>
+    <div class="form row">
+    <div class="col-sm-6">
     <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Contraseña" class="form-control" value="" id="mpw"></div>
     </div>
     <div class="col-sm-6">
@@ -220,14 +228,7 @@
     </div>
     </div>
     <div class="form-group"><label>Correo electrónico</label> <input type="email" placeholder="E-mail" class="form-control" value="" id="memail"></div>
-    <div class="form row">
-    <div class="col-sm-6">
-    <div class="form-group"><label>Nombre</label> <input type="text" placeholder="Nombre" class="form-control" value="" id="mname"></div>
-    </div>
-    <div class="col-sm-6">
-    <div class="form-group"><label>Apellido</label> <input type="text" placeholder="Apellido" class="form-control" value="" id="nln"> </div>
-    </div>
-    </div>
+
     
     <div class="form-group"><label>Permisos</label></div>
     <div class="i-checks"><label> <input type="radio" id="r1" value="Administrador" name="radio1"> <i></i> Administrador </label></div>

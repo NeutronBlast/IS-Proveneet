@@ -97,6 +97,7 @@ $(function() {
         var newe = document.getElementById("memail").value;
         var permissions = null;
         var flag = 1;
+        type = 0;
 
         var allM = [];
         var table = document.getElementById("users");
@@ -122,6 +123,7 @@ $(function() {
             alert("Correo electrónico está asociado a una cuenta ya existente");
             next = false;
             break;
+            type = 6;
             }
             
         }
@@ -131,18 +133,21 @@ $(function() {
     msg = "Ingrese un Nick";
     alert(msg);
     flag = 0;
+    type = 1;
     }
 
     if(!user[1] && flag){
     msg = "Nick usuario debe ser de longitud mayor a 2 letras";
     alert(msg);
     flag = 0;
+    type = 1;
     }
 
     if(user[100] && flag){
     msg = "Nick usuario demasiado largo";
     alert(msg);
     flag = 0;
+    type = 1;
     }
 
     /*Verify password*/
@@ -150,18 +155,21 @@ $(function() {
     msg = "Ingrese una contraseña de usuario";
     alert(msg);
     flag = 0;
+    type = 2;
     }
 
     if(!password[7] && flag){
     msg = "Contraseña de usuario debe ser de longitud mayor a 8 caracteres";
     alert(msg);
     flag = 0;
+    type = 2;
     }
 
     if(password != confirm && flag){
     msg = "Contraseña y confirmar contraseña no coinciden";
     alert(msg);
     flag = 0;
+    type = 3;
     }
 
     /*Verify name*/
@@ -169,24 +177,28 @@ $(function() {
     msg = "Ingrese un nombre de usuario";
     alert(msg);
     flag = 0;
+    type = 4;
     }
 
     if(!name[1] && flag){
     msg = "Nombre de usuario debe ser mayor a 2";
     alert(msg);
     flag = 0;
+    type = 4;
     }
 
     if(name[100] && flag){
     msg = "Nombre de usuario demasiado largo";
     alert(msg);
     flag = 0;
+    type = 4;
     }
 
 
     if (!/^([A-z])*$/.test(name) && flag){
     alert("Su nombre contiene números");
     flag = 0;
+    type = 4;
     }
 
     /*Verify last name*/
@@ -194,23 +206,27 @@ $(function() {
     msg = "Ingrese un apellido de usuario";
     alert(msg);
     flag = 0;
+    type = 5;
     }
 
     if(!ln[1] && flag){
     msg = "Apellido de usuario debe ser mayor a 2";
     alert(msg);
     flag = 0;
+    type = 5;
     }
 
     if(ln[100] && flag){
     msg = "Apellido de usuario demasiado largo";
     alert(msg);
     flag = 0;
+    type = 5;
     }
 
     if (!/^([A-z])*$/.test(ln) && flag){
     alert("Su apellido contiene números");
     flag = 0;
+    type = 5;
     }
 
 
@@ -219,18 +235,21 @@ $(function() {
     var msg = "Ingrese un Correo electrónico";
     alert(msg);
     flag = 0;
+    type = 6;
     }
 
     if(!newe[4] && flag){
     msg = "Correo electrónico debe ser de longitud mayor a 5 letras";
     alert(msg);
     flag = 0;
+    type = 6;
     }
 
     if(newe[100] && flag){
     msg = "Correo electrónico demasiado largo";
     alert(msg);
     flag = 0;
+    type = 6;
     }
 
     var patt = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -239,6 +258,8 @@ $(function() {
     if (!next && flag){
     msg = "Ingrese una dirección de correo electrónico válida";
     alert(msg);
+    type = 6;
+    flag = 0;
     }
 
         if (document.getElementById("r1").checked){
@@ -264,6 +285,61 @@ $(function() {
                 flag = 0;
             }
             }
+
+    //Change borders
+
+    if (type == 1){
+        $('#musername').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 2){
+        $('#mpw').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 3){
+        $('#mpw').css({"color":"red","border":"1px solid red"});
+        $('#cmpw').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 4){
+        $('#mname').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 5){
+        $('#nln').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (type == 6){
+        $('#memail').css({"color":"red","border":"1px solid red"});
+    }
+
+    //Set back to default when user starts correcting the mistake
+
+    $("#musername").keyup(function(){
+      $("#musername").css({"color":"","border":""});
+    });
+
+    $("#mpw").keyup(function(){
+        $("#mpw").css({"color":"","border":""});
+        $("#cmpw").css({"color":"","border":""});
+    });
+
+    $("#cmpw").keyup(function(){
+        $("#mpw").css({"color":"","border":""});
+        $("#cmpw").css({"color":"","border":""});
+    });
+
+    $("#mname").keyup(function(){
+      $("#mname").css({"color":"","border":""});
+    });
+
+    $("#nln").keyup(function(){
+      $("#nln").css({"color":"","border":""});
+    });
+
+    $("#memail").keyup(function(){
+      $("#memail").css({"color":"","border":""});
+    });
 
     /*After all info is correct we send to ajax to insert to database*/
     if (flag){    
