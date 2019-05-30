@@ -274,7 +274,7 @@ $(function() {
     data: {user:user,password:password,name:name,ln:ln,newe:newe,permissions:permissions,email:email},
     success: function(data){
     alert(data);
-        //window.location = '../Main/index.html';
+        window.location = 'manageusers.php';
     }
     });
     }

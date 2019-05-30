@@ -1,4 +1,4 @@
-$('#addusr').click(function(event){ 
+$('#submitusr').click(function(event){ 
     /*Get HTML values*/
     var user = document.getElementById("user").value;
     var password = document.getElementById("pass").value;
@@ -8,6 +8,7 @@ $('#addusr').click(function(event){
     var email = document.getElementById("email").value;
     var permissions = null;
     var flag = true;
+
 
     /*Validate user*/
     if(!user && flag){
@@ -159,6 +160,7 @@ $('#addusr').click(function(event){
         }
     }
 
+
     //Once all data is verified it sends to PHP file to be stored in the database
 
     if (flag != 0){
@@ -169,8 +171,10 @@ $('#addusr').click(function(event){
         data: {user:user,password:password,name:name,ln:ln,email:email,permissions:permissions},
         success: function(data){
         alert(data);
-            //window.location = '../Main/index.html';
+            window.location = 'manageusers.php';
         }
         });
     }
+
+    flag = 1;
 });

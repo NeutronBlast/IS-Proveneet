@@ -1,6 +1,6 @@
 <?php
     require ('..\util\isLogged.php');
-	require ('..\dbUser\fillUsersTable.php');
+    require ('..\dbUser\fillUsersTable.php');
 ?>
    
    
@@ -156,7 +156,7 @@
         </div>
 
         <div class="col-xs-2 p-1 bd-highlight">
-        <a data-toggle="modal" class="btn btn-primary btn-lg" href="#add-user">Agregar</a>
+        <a data-toggle="modal" class="btn btn-primary btn-lg" id="add" href="#add-user">Agregar</a>
         </div>
         </div>
 
@@ -167,7 +167,7 @@
         <div class="modal-body">
         <div class="row">
         <div class="col-sm-12"><h3 class="m-t-none m-b">Registrar nuevo usuario</h3>
-        <form role="form">
+        <form role="form" id="addusr">
         <div class="form-group"><label>Nombre de usuario</label> <input type="text" placeholder="Nombre de usuario" class="form-control" id="user"></div>
         <div class="form row">
         <div class="col-sm-6">
@@ -193,7 +193,7 @@
 
         <!-- SUBMIT -->
         <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-        <button class="btn btn-primary btn-lg float-right" type="submit" id="addusr">Registrar</button>
+        <button class="btn btn-primary btn-lg float-right" type="button" id="submitusr">Registrar</button>
         </div>
         </form>
         </div>
@@ -235,7 +235,7 @@
 
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="submitmod">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="button" id="submitmod">Aceptar</button>
 
     </div>
     </form>
