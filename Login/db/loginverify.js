@@ -1,3 +1,18 @@
+	$("#user").keyup(function (event) {
+	  if (event.keyCode == 13) {
+		  $("#logBtn").click();
+	  }
+	});
+
+$(document).ready(function() {
+	$("#pass").keyup(function (event) {
+	  if (event.keyCode == 13) {
+		  $("#logBtn").click();
+	  }
+	});
+  });  
+
+
 $('#logBtn').click(function(event){ 
 	user = document.getElementById("user").value;
 	password = document.getElementById("pass").value;
