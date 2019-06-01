@@ -389,7 +389,7 @@
         if (flag){
         $.ajax({
         type:"POST",
-        url:"../db/deluser.php",
+        url:"../dbUser/deluser.php",
         async: false,
         data: {email:email},
         success: function(data){
