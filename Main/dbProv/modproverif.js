@@ -84,7 +84,7 @@ $(function() {
 
     var cont = 0;
     if (rif != nextrif)
-        allM.push(newe);
+        rifs.push(nextrif);
 
     for(var i = 0; i < rifs.length; i++){
     if (nextrif == rifs[i]){
