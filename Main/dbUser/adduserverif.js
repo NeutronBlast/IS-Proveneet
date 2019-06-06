@@ -78,12 +78,13 @@ $('#submitusr').click(function(event){
         type = 4;
     }
 
-
-    if (!/^([A-z])*$/.test(name) && flag){
-        alert("Su nombre contiene números");
-        flag = 0;
-        type = 4;
-    }
+    var expnamelastn=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    
+     if (!expnamelastn.exec(name.value)){
+       alert("Su nombre contiene caracteres inválidos");
+       flag = 0;
+       type = 4;
+     }
 
     /*Validate last name*/
     if(!ln && flag){
@@ -107,11 +108,12 @@ $('#submitusr').click(function(event){
         type = 5;
     }
     
-    if (!/^([A-z])*$/.test(ln) && flag){
-        alert("Su apellido contiene números");
-        flag = 0;
-        type = 5;
-    }
+    
+     if (!expnamelastn.exec(ln.value)){
+       alert("Su apellido contiene caracteres inválidos");
+       flag = 0;
+       type = 5;
+     }
       
 
     /*Validate e-mail*/
