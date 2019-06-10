@@ -106,13 +106,14 @@
         type:"POST",
         url:"step2.php",
         async: false,
-        data: {pass:pass,token:token,email:email},
+        data: {pass:pass,token:token,email,email},
         success: function(data){
-            if(data != 'success'){                
+            if(data != 'success'){
                 alert("Usuario no existe en el sistema");
              }
-            else{            
+            else{
                alert("Se ha restablecido su contraseña a su dirección de correo electrónico, por favor cámbiela en gestión de perfil");        
+
              }
         }
 
