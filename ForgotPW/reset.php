@@ -29,6 +29,8 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
 
+
+
     </head>
     <body>
     <div class="container-login100" style="background-image: url('images/bg-02.jpg');">
@@ -37,18 +39,28 @@
     <div class="wrap-login100">
     <div class="panel-body">
     <div class="text-center">
-    <h3><i class="fa fa-lock fa-4x" style="color:white;"></i></h3>
-    <h2 class="text-center text-white">¿Olvidó la contraseña?</h2>
-    <p class="text-white">Puede restablecerla aquí, ingrese su dirección de correo electrónico</p>
+    <h3><i class="fa fa-unlock-alt fa-4x" style="color:white;"></i></h3>
+    <h2 class="text-center text-white">Restablecer contraseña</h2>
     <br>
     <div class="panel-body">
     <form id="register-form" role="form" autocomplete="off" class="form" method="post">
+
+
+<!-- New password -->
     <div class="form-group">
     <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-    <input id="email" name="email" placeholder="Correo electrónico" class="form-control"  type="email" id="email">
+    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+    <input id="pass" name="pass" placeholder="Contraseña" class="form-control"  type="password">
     </div>
     </div>
+
+<!-- New password -->
+    <div class="form-group">
+        <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+        <input id="cpass" name="cpass" placeholder="Confirmar contraseña" class="form-control"  type="password">
+        </div>
+        </div>
     <br>
 
     <div class="container-login100-form-btn">
@@ -67,6 +79,7 @@
     </div>
     </div>
 
+
 <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -82,24 +95,24 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-
-
-    <script type="text/javascript">
+<script type="text/javascript">
     $('#resetButton').click(function(event){ 
-    user = document.getElementById("email").value;
+    pass = document.getElementById("pass").value;
+    url = window.location.href;  
+    searchParams = new URLSearchParams(url);
+    email = searchParams.get('email');
+    token = searchParams.get('token');
     $.ajax({
         type:"POST",
-        url:"send - Copy.php",
+        url:"step2.php",
         async: false,
-        data: {user:user},
+        data: {pass:pass,token:token,email:email},
         success: function(data){
-            if(data != 'success'){
-                alert(data);
+            if(data != 'success'){                
                 alert("Usuario no existe en el sistema");
              }
-            else{
+            else{            
                alert("Se ha restablecido su contraseña a su dirección de correo electrónico, por favor cámbiela en gestión de perfil");        
-
              }
         }
 
