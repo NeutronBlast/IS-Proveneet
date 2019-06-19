@@ -106,7 +106,7 @@
         type:"POST",
         url:"step2.php",
         async: false,
-        data: {pass:pass,token:token,email,email},
+        data: {pass:pass,token:token,email},
         success: function(data){
             if(data != 'success'){
                 alert("Usuario no existe en el sistema");

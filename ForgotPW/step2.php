@@ -16,8 +16,10 @@ if (mysqli_num_rows($result) > 0) {
 
     $sql2 = "UPDATE users SET clave = '$pass' WHERE email='$user'";    
     if ($conn->query($sql2) === TRUE) {
-        $sql3 = "DELETE * FROM resetpw WHERE email='$user";
+        $sql3 = "DELETE FROM resetpw WHERE email='$user'" ;
+        if($conn->query($sql3) ===TRUE)
         echo "success";
+        else echo "Error:" . $sql3. "<br>".$conn->error;
         exit(0);
     } else {
         echo "Error: " . $sql2 . "<br>" . $conn->error;

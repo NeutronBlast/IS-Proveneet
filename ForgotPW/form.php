@@ -98,7 +98,7 @@
                 alert("Usuario no existe en el sistema");
              }
             else{
-               alert("Se ha restablecido su contraseña a su dirección de correo electrónico, por favor cámbiela en gestión de perfil");        
+               alert("Se ha enviado un enlace a su correo para reestablecer su contraseña.");        
 
              }
         }

@@ -1,4 +1,21 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'C:\composer\vendor\autoload.php';
+$mail = new PHPMailer(TRUE);
+/* Use SMTP. */
+$mail->isSMTP();
+/* Google (Gmail) SMTP server. */
+$mail->Host = 'smtp.gmail.com';
+/* SMTP port. */
+$mail->Port = 587;
+/* Set authentication. */
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'tls';
+/* Username (email address). */
+$mail->Username = 'proveneetis@gmail.com';
+/* Google account password. */
+$mail->Password = 'prov1157*';
 $servername = "localhost";
 $username = "FrankHesse";
 $password = "proveneet";
@@ -14,10 +31,27 @@ if (mysqli_num_rows($result) > 0) {
     $sql2 = "INSERT INTO resetpw (email,token) VALUES ('$user', '$token')"; 
 
     if ($conn->query($sql2) === TRUE) {
-        echo "success  :";
+        echo "success";
         $verifyScript = 'http://localhost/IS-Proveneet/ForgotPW/reset.php';
         $linkToSend = $verifyScript . '?&email=' . $user . '&token=' . $token;
-        echo $linkToSend;
+        try {
+            $mail->setFrom('usuarios@proveneet.com', 'Proveneet');
+            $mail->addAddress($user, 'Emperor');
+            $mail->Subject = 'Enlace para recuperar contraseña';
+            $mail->Body = 'Este correo le ha llegado porque existe una solicitud de reestablecimiento de contraseña para el acceso al sistema de proveneet, si usted solicito esta peticion,
+                            por favor ingrese en el siguiente enlace: '.$linkToSend .' Si no ignore este mensaje.';
+            $mail->send();
+         }
+         catch (Exception $e)
+         {
+            /* PHPMailer exception. */
+            echo $e->errorMessage();
+         }
+         catch (\Exception $e)
+         {
+            /* PHP exception (note the backslash to select the global namespace Exception class). */
+            echo $e->getMessage();
+         }
         exit(0);
     } else {
         echo "Error: " . $sql2 . "<br>" . $conn->error;
