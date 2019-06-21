@@ -38,8 +38,59 @@ if (mysqli_num_rows($result) > 0) {
             $mail->setFrom('usuarios@proveneet.com', 'Proveneet');
             $mail->addAddress($user, 'Emperor');
             $mail->Subject = 'Enlace para recuperar contraseña';
-            $mail->Body = 'Este correo le ha llegado porque existe una solicitud de reestablecimiento de contraseña para el acceso al sistema de proveneet, si usted solicito esta peticion,
-                            por favor ingrese en el siguiente enlace: '.$linkToSend .' Si no ignore este mensaje.';
+            $mail->Body = '<body>
+<table class="body-wrap">
+    <tr>
+        <td></td>
+        <td class="container" width="600">
+            <div class="content">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="content-wrap">
+                            <table  cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <img class="img-fluid" src="https://i.imgur.com/LZQChdD.png"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        <h3>Confirmación de cambio de contraseña</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="content-block">
+                                        Usted ha solicitado un reseteo de contraseña para su cuenta, para proceder cliquee el enlace
+                                    </td>
+                                </tr>
+                                    <td class="content-block aligncenter">
+                                        <a href="'.$linkToSend .'" class="btn-primary">Restablecer  contraseña</a>
+                                    </td>
+                                <tr>
+                                    <td class="content-block">
+                                        Si usted no ha solicitado esta operación ignore el mensaje
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                </tr>
+                              </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class="footer">
+                    <table width="100%">
+                    </table>
+                </div></div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+</body>
+';
+$mail->IsHTML(true);
+
             $mail->send();
          }
          catch (Exception $e)

@@ -61,7 +61,10 @@
     <li>
     <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
-
+<li>
+    <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
+            class="nav-label">Gestión de productos</span></a>
+</li>
     </div> <!-- div from sidebar collapse -->
     </nav>
 

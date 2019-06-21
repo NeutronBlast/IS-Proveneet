@@ -54,13 +54,6 @@
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Recordar en este equipo
-						</label>
-					</div>
-
 					<div class="container-login100-form-btn">
 						<a class="login100-form-btn" id = "logBtn">
 							Iniciar sesión
