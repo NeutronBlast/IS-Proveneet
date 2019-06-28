@@ -65,13 +65,18 @@
                                 usuario</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="profile.php">Gestión de perfil</a></li>
-                            <li class="active"><a href="dashboard_2.php">Gestión de usuarios</a></li>
+                            <li class="active"><a href="manageusers.php">Gestión de usuarios</a></li>
                         </ul>
                     </li>
                     <li>
 
                         <a href="providers.php"><i class="fa fa-users"></i> <span
                                 class="nav-label">Proveedores</span></a>
+                    </li>
+                    <li>
+                        <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
+                                class="nav-label">Gestión de productos</span></a>
+                        </li>
                 </ul>
 
             </div> <!-- div from sidebar collapse -->

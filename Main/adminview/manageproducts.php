@@ -1,5 +1,7 @@
 <?php
-	require ('..\util\isLogged.php');
+    require ('..\util\isLogged.php');
+    require ('..\dbProd\fillProdTable.php');
+    require ('..\dbProd\fillComboBoxProv.php');
 ?>
 
 <!DOCTYPE html>
@@ -110,25 +112,10 @@
                 </nav>
             </div> <!-- div from row border bottom -->
 
-            <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="col-lg-10">
-                    <h2>E-commerce product list</h2>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="index-2.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a>E-commerce</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <strong>Product list</strong>
-                        </li>
-                    </ol>
-                </div>
-                <div class="col-lg-2">
-
-                </div>
-            </div>
+             <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Gestionar lista de productos</h5>
+                </div><!-- div from ibox-title -->
 
         <div class="wrapper wrapper-content animated fadeInRight ecommerce">
 
@@ -137,29 +124,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label class="col-form-label" for="product_name">Product Name</label>
-                            <input type="text" id="product_name" name="product_name" value="" placeholder="Product Name" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label class="col-form-label" for="price">Price</label>
-                            <input type="text" id="price" name="price" value="" placeholder="Price" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label class="col-form-label" for="quantity">Quantity</label>
-                            <input type="text" id="quantity" name="quantity" value="" placeholder="Quantity" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="col-form-label" for="status">Status</label>
-                            <select name="status" id="status" class="form-control">
-                                <option value="1" selected>Enabled</option>
-                                <option value="0">Disabled</option>
-                            </select>
+                            <label class="col-form-label" for="product_name">Buscar producto</label>
+                            <input type="text" id="product_name" name="product_name" value="" placeholder="Nombre" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -170,82 +136,37 @@
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-content">
-
-                            <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" data-page-size="15">
+                            <a data-toggle="modal" class="btn btn-primary btn-lg" id="add"
+                                    href="#add-product"><i class="fa fa-plus-circle"></i> Agregar producto</a>
+                            <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" id="products" data-page-size="10">
                                 <thead>
                                 <tr>
 
-                                    <th data-toggle="true">Product Name</th>
-                                    <th data-hide="phone">Model</th>
-                                    <th data-hide="all">Description</th>
-                                    <th data-hide="phone">Price</th>
-                                    <th data-hide="phone,tablet" >Quantity</th>
-                                    <th data-hide="phone">Status</th>
-                                    <th class="text-right" data-sort-ignore="true">Action</th>
+                                    <th data-toggle="true">Nombre</th>
+                                    <th data-hide="phone">Código</th>
+                                    <th data-hide="phone">Precio</th>
+                                    <th data-hide="phone">Categoría</th>
+                                    <th data-hide="phone,tablet" >Proveedor</th>
+                                    <th data-sort-ignore="true">Acción</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
-                                       Example product 1
-                                    </td>
-                                    <td>
-                                        Model 1
-                                    </td>
-                                    <td>
-                                        It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                        that it has a more-or-less normal distribution of letters, as opposed to using
-                                        'Content here, content here', making it look like readable English.
-                                    </td>
-                                    <td>
-                                        $50.00
-                                    </td>
-                                    <td>
-                                        1000
-                                    </td>
-                                    <td>
-                                        <span class="label label-primary">Enable</span>
-                                    </td>
-                                    <td class="text-right">
+                                 <?php while($row1 = mysqli_fetch_array($result4)):;?>
+                                    <tr>
+                                        <td><?php echo $row1[0];?></td>
+                                        <td><?php echo $row1[1];?></td>
+                                        <td><?php echo $row1[2];?></td>
+                                        <td><?php echo $row1[3];?></td>
+                                        <td><?php echo $row1[4];?></td>
+                                        <td>
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">View</button>
-                                            <button class="btn-white btn btn-xs">Edit</button>
+                                            <button class="btn-white btn btn-xs" id="editprod" onclick="getSelectedRow();">Editar</button>
+                                            <button class="btn-white btn btn-xs" id="delprod" onclick="getTarget();">Eliminar</button>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Example product 2
-                                    </td>
-                                    <td>
-                                        Model 2
-                                    </td>
-                                    <td>
-                                        It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                        that it has a more-or-less normal distribution of letters, as opposed to using
-                                        'Content here, content here', making it look like readable English.
-                                    </td>
-                                    <td>
-                                        $40.00
-                                    </td>
-                                    <td>
-                                        4300
-                                    </td>
-                                    <td>
-                                        <span class="label label-primary">Enable</span>
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs">View</button>
-                                            <button class="btn-white btn btn-xs">Edit</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-
+                                        </td>
+                                    </tr>
+                                    <?php endwhile; mysqli_close($conn);?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -256,21 +177,159 @@
                                 </tfoot>
                             </table>
 
+                        </div><!-- ibox content -->
+                    </div><!--ibox -->
+                </div><!-- col -->
+            </div><!--row -->
+
+            <!-- FORM ADD -->
+                <div id="add-product" class="modal fade" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3 class="m-t-none m-b">Añadir nuevo producto</h3>
+                                            <form role="form" id="addprod">
+                                                <div class="form row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Nombre de producto</label> 
+                                                                <input type="text" placeholder="Nombre de producto" class="form-control" id="produname">
+                                                        </div>
+                                                    </div>
+                                                        
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Código</label> 
+                                                                <input type="text" placeholder="Código" class="form-control" id="code">
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="form row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Precio</label> 
+                                                                <input type="text" placeholder="Precio" class="form-control" id="price">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Categoría</label> 
+                                                                <select class="form-control" id="cat">
+                                                                    <option value="Seleccionar">Seleccionar</option>
+                                                                    <option>Categoría 1</option>
+                                                                    <option>Categoría 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form row">
+                                                        <div class="col-sm-6">                                            
+                                                            <div class="form-group">
+                                                                <label>Proveedor</label>
+                                                                <select class="form-control" id="provider">
+                                                                    <option value="Seleccionar">Seleccionar</option>
+                                                                    <?php while($row = mysqli_fetch_array($result)):;?>
+                                                                    <option value="<?php echo $row['Nombre']; ?>"><?php echo $row['Nombre']; ?></option>
+<?php endwhile; mysqli_close($conn);?>
+                                                                </select>                                  
+                                                            </div>
+                                                        </div> 
+                                                    </div> 
+
+
+                                                    <div>                                               
+                                                        <!-- SUBMIT -->
+                                                        <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
+                                                        <button class="btn btn-primary btn-lg float-right" type="button" id="submitprod">Agregar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+
+
+    <!-- FORM MODIFY -->
+                <div id="modify-product" class="modal fade" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3 class="m-t-none m-b">Modificar producto</h3>
+                                            <form role="form" id="modprod">
+                                                <div class="form row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Nombre de producto</label> 
+                                                                <input type="text" placeholder="Nombre de producto" class="form-control" id="prodmod">
+                                                        </div>
+                                                    </div>
+                                                        
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Código</label> 
+                                                                <input type="text" placeholder="Código" class="form-control" id="codemod">
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="form row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Precio</label> 
+                                                                <input type="text" placeholder="Precio" class="form-control" id="pricemod">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Categoría</label> 
+                                                                <select class="form-control" id="catmod">
+                                                                    <option>Categoría 1</option>
+                                                                    <option>Categoría 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form row">
+                                                        <div class="col-sm-6">                                            
+                                                            <div class="form-group">
+                                                                <label>Proveedor</label>
+                                                                <select class="form-control" id="provmod">
+                                                                    <option value ="Seleccionar">Seleccionar</option>
+                                                                    <?php while($row = mysqli_fetch_array($result2)):;?>
+                                                                    <option value="<?php echo $row['Nombre']; ?>"><?php echo $row['Nombre']; ?></option>
+<?php endwhile; mysqli_close($conn);?>
+                                                                </select>                                    
+                                                            </div>
+                                                        </div> 
+                                                    </div> 
+
+
+                                                    <div>                                               
+                                                        <!-- SUBMIT -->
+                                                        <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
+                                                        <button class="btn btn-primary btn-lg float-right" type="button" id="submitmod">Registrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
 
         </div>
-        <div class="footer">
-            <div class="float-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
-            </div>
-        </div>
+
 
         </div>
         </div>
@@ -284,8 +343,8 @@
     <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="../js/plugins/dataTables/datatables.min.js"></script>
-    <script src="../js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+   <!-- <script src="../js/plugins/dataTables/datatables.min.js"></script>
+    <script src="../js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>-->
 
     <!-- Custom and plugin javascript -->
     <script src="../js/inspinia.js"></script>
@@ -305,16 +364,10 @@
 
     <!-- Utilities-->
     <script src="../util/datatable.js"></script>
+    <script src="../dbProd/addprodverif.js"></script>
+    <script src="../dbProd/modprodverif.js"></script>
+    <script src="../dbProd/delprod.js"></script>
 
-    <!-- Page-Level Scripts -->
-    <script>
-        $(document).ready(function() {
-
-            $('.footable').footable();
-
-        });
-
-    </script>
 
 </body>
 
