@@ -29,13 +29,14 @@ if ($connection->query($sqlQuery) === TRUE) {
 }
 }
 
+
 else{
-$query="SELECT * FROM products";
+$query="SELECT * FROM `products` ORDER BY Precio ASC";
 $result3 = mysqli_query($conn, $query);
 $result4 = mysqli_query($conn, $query);
 $dataRow ="";
     while ($row = mysqli_fetch_array($result3)) {
-        $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
+        $dataRow = $dataRow."<tr><td class 'desc'>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
         <td>$row[4]</td></tr>";
     }
 }

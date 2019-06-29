@@ -77,6 +77,10 @@
                         <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
                                 class="nav-label">Gestión de productos</span></a>
                         </li>
+                        <li>
+                    <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
+                                class="nav-label">Realizar compra</span></a>
+                    </li>
                 </ul>
 
             </div> <!-- div from sidebar collapse -->

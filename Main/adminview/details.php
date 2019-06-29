@@ -1,13 +1,14 @@
 <?php
     require ('..\util\isLogged.php');
-    require ('..\dbProd\fillProdTable.php');
-    require ('..\dbProd\fillComboBoxProv.php');
-?>
+    require ('..\dbProd\fillDetails.php');
 
+?>
 
 <!DOCTYPE html>
 <html>
 
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ecommerce_product_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:35:29 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,9 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="../css/plugins/slick/slick.css" rel="stylesheet">
+    <link href="../css/plugins/slick/slick-theme.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
@@ -35,7 +39,8 @@
 </head>
 
 <body>
-    <div id="wrapper">
+
+<div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
@@ -74,20 +79,21 @@
                         <a href="providers.php"><i class="fa fa-users"></i> <span
                                 class="nav-label">Proveedores</span></a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
                                 class="nav-label">Gestión de productos</span></a>
                         </li>
-                        <li>
+
+                    <li class="active">
                     <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
                                 class="nav-label">Realizar compra</span></a>
                     </li>
                 </ul>
 
             </div> <!-- div from sidebar collapse -->
-        </nav>
+            </nav>
 
-        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -110,73 +116,78 @@
                 </nav>
             </div> <!-- div from row border bottom -->
 
-
+    
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Gestionar lista de productos</h5>
+                    <h5>Detalles de producto</h5>
                 </div><!-- div from ibox-title -->
-                         
 
-                <!-- TABLE -->
-                <div class="row">
+            <div class="row">
                 <div class="col-lg-12">
-                <div class="ibox">
-                <div class="ibox-content">
-                <div class="col-xs-2 p-1 bd-highlight">
-                    <a data-toggle="modal" class="btn btn-primary btn-lg" id="add"
-                                    href="#add-product"><i class="fa fa-plus-circle"></i> Agregar producto</a>
-                                    </div>
-                    <ul class="list-group">
 
-                        <div class="table-responsive">
-                            <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" id="products">
-                                
-                                <thead>
-                                
-                                    <tr>
-                                    <th data-toggle="true">Nombre</th>
-                                    <th data-hide="phone">Código</th>
-                                    <th data-hide="phone">Precio</th>
-                                    <th data-hide="phone">Categoría</th>
-                                    <th data-hide="phone,tablet" >Proveedor</th>
-                                    <th data-sort-ignore="true">Acción</th>
-                                    </tr>
-                                </thead>
+                    <div class="ibox product-detail">
+                        <div class="ibox-content">
 
-                                <tbody>
-                                    <?php while($row1 = mysqli_fetch_array($result4)):;?>
-                                    <tr>
-                                        <td><?php echo $row1[0];?></td>
-                                        <td><?php echo $row1[1];?></td>
-                                        <td><?php echo $row1[2];?></td>
-                                        <td><?php echo $row1[3];?></td>
-                                        <td><?php echo $row1[4];?></td>
-                                        <td>
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" id="editprod" onclick="getSelectedRow();">Modificar</button>
-                                            <button class="btn-white btn btn-xs" id="delprod" onclick="getTarget();">Eliminar</button>
+                            <div class="row">
+                                <div class="col-md-5">
+
+
+                                    <div class="product-images">
+
+                                        <div>
+                                            <div class="image-imitation">
+                                                [NO HAY IMÁGEN DISPONIBLE]
+                                            </div>
                                         </div>
-                                        </td>
-                                    </tr>
-                                    <?php endwhile; mysqli_close($conn);?>
-                                    </tbody>
-                                    </tfoot>
-                            </table>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
+                                        
 
-                        <!-- FORM ADD -->
-                         <div id="add-product" class="modal fade" aria-hidden="true">
+
+                                    </div>
+
+                                </div>  
+                                <div class="col-md-7">
+
+                                    <h2 class="font-bold m-b-xs" id="prodname">
+                                        
+                                    </h2>
+                                    <div class="m-t-md">
+                                        <h2 class="product-main-price" id="dprice"></h2>
+                                    </div>
+                                    <hr>
+
+                                    <dl class="m-t-md">
+                                        <dt>Proveedor</dt>
+                                        <dd id ="provider"></dd>
+                                        <dt>Código</dt>
+                                        <dd id ="thecode"></dd>
+                                        <dt>Categoría</dt>
+                                        <dd id="thecat"></dd>
+                                    </dl>
+                                    <hr>
+
+                                    <div>
+                                        <div class="btn-group">
+                                            <a data-toggle="modal" class="btn btn-primary btn-lg" href="#oc"><i class="fa fa-cart-plus"></i> Generar orden de compra</a>
+                                        </div>
+                                    </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>    
+
+
+<!-- FORM ADD -->
+<div id="oc" class="modal fade" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-sm-12">
                                     <h3 class="m-t-none m-b">Añadir nuevo producto</h3>
-                                            <form role="form" id="addprod">
+                                            <form role="form" id="preOC">
                                                 <div class="form row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
@@ -217,21 +228,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form row">
-                                                        <div class="col-sm-6">                                            
-                                                            <div class="form-group">
-                                                                <label>Proveedor</label>
-                                                                <select class="form-control" id="provider">
-                                                                    <option value="Seleccionar">Seleccionar</option>
-                                                                    <?php while($row = mysqli_fetch_array($result)):;?>
-                                                                    <option value="<?php echo $row['Nombre']; ?>"><?php echo $row['Nombre']; ?></option>
-<?php endwhile; mysqli_close($conn);?>
-                                                                </select>                                  
-                                                            </div>
-                                                        </div> 
-                                                    </div> 
-
-
                                                     <div>                                               
                                                         <!-- SUBMIT -->
                                                         <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
@@ -244,91 +240,10 @@
                                 </div>
                             </div>
                         </div>
-
-            <!-- FORM MODIFY -->
-            <div id="modify-product" class="modal fade" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                <h3 class="m-t-none m-b">Modificar producto</h3>
-                                            <form role="form" id="modprod">
-                                                <div class="form row">
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>Nombre de producto</label> 
-                                                                <input type="text" placeholder="Nombre de producto" class="form-control" id="prodmod">
-                                                        </div>
-                                                    </div>
-                                                        
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>Código</label> 
-                                                                <input type="text" placeholder="Código" class="form-control" id="codemod">
-                                                        </div>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="form row">
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label>Precio</label> 
-                                                                <input type="text" placeholder="Precio" class="form-control" id="pricemod">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label>Categoría</label> 
-                                                                <select class="form-control" id="catmod">
-                                                                <option value="Seleccionar">Seleccionar</option>
-                                                                    <option>Herramientas</option>
-                                                                    <option>Pétreos</option>
-                                                                    <option>Cerámicas y vidrios</option>
-                                                                    <option>Compuestos</option>
-                                                                    <option>Metálicos</option>
-                                                                    <option>Aglutinantes</option>
-                                                                    <option>Otros</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form row">
-                                                        <div class="col-sm-6">                                            
-                                                            <div class="form-group">
-                                                                <label>Proveedor</label>
-                                                                <select class="form-control" id="provmod">
-                                                                    <option value ="Seleccionar">Seleccionar</option>
-                                                                    <?php while($row = mysqli_fetch_array($result2)):;?>
-                                                                    <option value="<?php echo $row['Nombre']; ?>"><?php echo $row['Nombre']; ?></option>
-<?php endwhile; mysqli_close($conn);?>
-                                                                </select>                                    
-                                                            </div>
-                                                        </div> 
-                                                    </div> 
-
-
-                                                    <div>                                               
-                                                        <!-- SUBMIT -->
-                                                        <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-                                                        <button class="btn btn-primary btn-lg float-right" type="button" id="submitmod">Registrar</button>
-
-                                </div>
-                                </form>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            </ul>
-        </div><!-- ibox content-->
-    </div><!-- div from ibox -->
-
-
-    </div><!-- div from page wrapper -->
-    </div><!-- div from wrapper(superior) -->
+                        </div>
+                        </div>
+                        </div>
 
 
     <!-- Mainly scripts -->
@@ -376,9 +291,9 @@
 
     <!-- Utilities -->
     <script src="../util/datatable.js"></script>
-    <script src="../dbProd/addprodverif.js"></script>
-    <script src="../dbProd/modprodverif.js"></script>
-    <script src="../dbProd/delprod.js"></script>
+
+    <!-- slick carousel-->
+    <script src="../js/plugins/slick/slick.min.js"></script>
 
     <!-- Login data -->
     <script type="text/javascript">
@@ -387,9 +302,26 @@
     var n = <?php echo json_encode($value); ?>;
     /*Assign login data*/
     document.getElementById("fullname").innerHTML = n[0] + " " + ln[0];
+
+    <!-- Product data -->
+
+    /*Fetch values from details*/
+    var n = <?php echo json_encode($name); ?>;
+    var code = <?php echo json_encode($code); ?>;
+    var price = <?php echo json_encode($valuep3); ?>;
+    var cat = <?php echo json_encode($valuep2); ?>;
+    var prov = <?php echo json_encode($valuep); ?>;
+
+    /*Assign*/
+    document.getElementById("prodname").innerHTML = n;
+    document.getElementById("dprice").innerHTML = '$'+price[0] ;
+    document.getElementById("provider").innerHTML = prov[0];
+    document.getElementById("thecode").innerHTML = code;
+    document.getElementById("thecat").innerHTML = cat[0];
     </script>
+
 </body>
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->
 
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ecommerce_product_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:35:31 GMT -->
 </html>
