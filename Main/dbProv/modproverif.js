@@ -1,4 +1,5 @@
 /*Get selected row*/
+function getSelectedRow(){
 $(function() {
     var tr = $('#providers').find('tr');
     var name = null;
@@ -7,8 +8,6 @@ $(function() {
     var rif = null;
 
     tr.bind('click', function(event) {
-        $('#modify').attr("disabled", false);
-        $('#delete').attr("disabled", false);
         var values = '';
         var tds = $(this).addClass('row-highlight').find('td');
         $.each(tds, function(index, item) {
@@ -45,8 +44,7 @@ $(function() {
                     values = "";
                 }
         });
-    
-        $('#modify').click(function(event){
+
             $('#modify-provider').modal()
             $('#modify-provider').on('shown.bs.modal', function () {
               $('#modify-provider').trigger('focus')
@@ -56,7 +54,6 @@ $(function() {
             document.getElementById("mdir").value = dir;
             document.getElementById("mphone").value = phone;
             document.getElementById("mrif").value = rif;
-        });
 
         $('#modifyprov').click(function(event){ 
         var name = document.getElementById("mname").value;
@@ -134,3 +131,4 @@ $(function() {
     }); //End of submit modify user
     });
     });
+}

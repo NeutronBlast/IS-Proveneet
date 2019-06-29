@@ -1,4 +1,5 @@
 /*Get selected item*/
+function getTarget(){
 $(function() {
     var tr = $('#providers').find('tr');
     var name = null;
@@ -7,8 +8,6 @@ $(function() {
     var rif = null;
 
     tr.bind('click', function(event) {
-        $('#modify').attr("disabled", false);
-        $('#delete').attr("disabled", false);
         var values = '';
         var tds = $(this).addClass('row-highlight').find('td');
         $.each(tds, function(index, item) {
@@ -45,9 +44,7 @@ $(function() {
                     values = "";
                 }
     });
-    });
 
-    $('#delete').click(function(event){
         $.ajax({
         type:"POST",
         url:"../dbProv/delprov.php",
@@ -60,3 +57,4 @@ $(function() {
         });
         }); 
     });
+}

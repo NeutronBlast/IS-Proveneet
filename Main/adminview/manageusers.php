@@ -109,36 +109,33 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>Usuarios registrados</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link" href="#">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        
-                        
-                    </div><!-- div from ibox-tools -->
                 </div><!-- div from ibox-title -->
                          
 
                 <!-- TABLE -->
-                <div class="ibox-content no-padding">
-
+                <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox">
+                <div class="ibox-content">
+                <div class="col-xs-2 p-1 bd-highlight">
+                    <a data-toggle="modal" class="btn btn-primary btn-lg" id="add"
+                                    href="#add-user"><i class="fa fa-plus-circle"></i> Agregar usuario</a>
+                                    </div>
                     <ul class="list-group">
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover dataTables-example" id="users">
+                            <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" id="users">
                                 
                                 <thead>
                                 
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Nombre de usuario</th>
-                                        <th>Contraseña</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Permisos</th>
+                                        <th data-toggle="true">Nombre</th>
+                                        <th data-hide="phone,tablet">Apellido</th>
+                                        <th data-hide="phone,tablet">Nombre de usuario</th>
+                                        <th data-hide="phone,tablet">Contraseña</th>
+                                        <th data-hide="phone,tablet">Correo electrónico</th>
+                                        <th data-hide="phone,tablet">Permisos</th>
+                                        <th data-sort-ignore="true">Acción</th>
                                     </tr>
                                 </thead>
 
@@ -151,28 +148,20 @@
                                         <td><?php echo $row1[3];?></td>
                                         <td><?php echo $row1[4];?></td>
                                         <td><?php echo $row1[5];?></td>
+                                        <td>
+                                        <div class="btn-group">
+                                            <button class="btn-white btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
+                                            <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
+                                        </div>
+                                        </td>
                                     </tr>
                                     <?php endwhile; mysqli_close($conn);?>
                                     </tfoot>
                             </table>
                         </div>
-
-
-                        <!-- BUTTONS-->
-
-                        <div class="d-flex flex-row-reverse bd-highlight">
-                            <div class="col-xs-2 p-1 bd-highlight">
-                                <button class="btn btn-primary btn-lg" id="delete" disabled="disable">Eliminar</button>
-                            </div>
-
-                            <div class="col-xs-2 p-1 bd-highlight">
-                                <button class="btn btn-primary btn-lg" id="modify" disabled="disable">Modificar</button>
-                            </div>
-
-                            <div class="col-xs-2 p-1 bd-highlight">
-                                <a data-toggle="modal" class="btn btn-primary btn-lg" id="add"
-                                    href="#add-user">Agregar</a>
-                            </div>
+                        </div>
+                        </div>
+                        </div>
                         </div>
 
                         <!-- FORM REGISTER -->
@@ -385,6 +374,7 @@
     <!-- Delete user, contains a json encode from php, do not move -->
     <script type="text/javascript">
     /*Get selected item*/
+    function getTarget(){
     $(function() {
         var tr = $('#users').find('tr');
         var name = null;
@@ -394,8 +384,6 @@
         var email = null;
         var perms = null;
         tr.bind('click', function(event) {
-            $('#modify').attr("disabled", false);
-            $('#delete').attr("disabled", false);
             var values = '';
             var tds = $(this).addClass('row-highlight').find('td');
             $.each(tds, function(index, item) {
@@ -432,10 +420,8 @@
                     perms = values.slice(start + 1, end);
                     values = "";
                 }
-            })
-            ;
         });
-        $('#delete').click(function(event) {
+
             var filter = <?php echo json_encode($value3); ?>;
             var flag = 1;
             if (filter[0] == email && flag) {
@@ -458,6 +444,8 @@
             }
         }); //End of submit modify user
     });
+
+}
     </script>
 
     <!-- Login data -->
