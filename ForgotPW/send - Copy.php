@@ -28,6 +28,10 @@ session_start();
 if (mysqli_num_rows($result) > 0) {   
     $token = openssl_random_pseudo_bytes(16);
     $token = bin2hex($token);
+    $sql4 = "CREATE TABLE IF NOT EXISTS resetpw (
+        email VARCHAR(255),
+        token VARCHAR(64),
+    )";
     $sql2 = "INSERT INTO resetpw (email,token) VALUES ('$user', '$token')"; 
 
     if ($conn->query($sql2) === TRUE) {

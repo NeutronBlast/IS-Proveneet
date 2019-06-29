@@ -12,7 +12,10 @@ $email = $_POST['email'];
 $name = $_POST['name'];
 $ln = $_POST['ln'];
 $permissions = $_POST['permissions'];
-
+$sql2 = "CREATE TABLE IF NOT EXISTS users (
+    email VARCHAR(255),
+    token VARCHAR(64),
+)";
 $sql = "INSERT INTO users (nombre, apellido, username, clave, email, permisos) VALUES ('$name', '$ln', '$user', '$pass', '$email', '$permissions')"; 
 
 if ($conn->query($sql) === TRUE) {
