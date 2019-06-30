@@ -2,6 +2,7 @@ $("#catalog tr").click(function(){
 	cont = 0;
 	var name = null;
 	var code = null;
+	var next = false;
         $(this).find("td").each(function(){
         	if (cont == 0){
         		values = $(this).html();
@@ -10,24 +11,26 @@ $("#catalog tr").click(function(){
                 end = aux.indexOf("<");
 
                 name = aux.slice(0,end);
-        		alert(name);
         	}
 
         	if (cont == 3){
         		values = $(this).html();
         		code = values;
+        		next=true;
         	}
         	cont++;
         });
 
+        alert(next);
+        if (next){
         $.ajax({
         type:"POST",
         url:"../dbProd/getDetails.php",
         async: false,
         data: {name:name,code:code},
         success: function(data){
-        alert(data);
             window.location = 'details.php';
         }
         });
+        }
     });
