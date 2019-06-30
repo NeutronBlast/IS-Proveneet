@@ -387,53 +387,36 @@
     <script type="text/javascript">
     /*Get selected item*/
     function getTarget(){
-    $(function() {
-        var tr = $('#users').find('tr');
+        var r = confirm("¿Desea eliminar este usuario?");
+        if (r == true)
+            delTarget();
+    }
+
+    function delTarget(){
+$("#users tr").click(function() {
         var name = null;
+        var index = 0;
         var ln = null;
         var username = null;
         var password = null;
         var email = null;
         var perms = null;
-        tr.bind('click', function(event) {
-            var opcion = confirm("¿Desea eliminar el usuario seleccionado?");
-            if (opcion == true) {
-                var values = '';
-            var tds = $(this).addClass('row-highlight').find('td');
-            $.each(tds, function(index, item) {
-                values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+    $(this).find("td").each(function() {
                 /* Gather values from the row*/
                 if (index == 0) {
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
-                    name = values.slice(start + 1, end);
-                    values = "";
+                    name = $(this).html();
                 } else if (index == 1) {
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
-                    ln = values.slice(start + 1, end);
-                    values = "";
+                    ln = $(this).html();
                 } else if (index == 2) {
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
-                    username = values.slice(start + 1, end);
-                    values = "";
+                    username = $(this).html();
                 } else if (index == 3) {
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
-                    password = values.slice(start + 1, end);
-                    values = "";
+                    password = $(this).html();
                 } else if (index == 4) {
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
-                    email = values.slice(start + 1, end);
-                    values = "";
+                    email = $(this).html();
                 } else if (index == 5) {
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
-                    perms = values.slice(start + 1, end);
-                    values = "";
+                    perms = $(this).html();
                 }
+            index++;
         });
 
             var filter = <?php echo json_encode($value3); ?>;
@@ -456,10 +439,8 @@
                     }
                 });
             }
-	        }
             
         }); //End of submit modify user
-    });
 
 }
     </script>
