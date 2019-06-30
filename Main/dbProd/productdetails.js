@@ -21,7 +21,6 @@ $("#catalog tr").click(function(){
         	cont++;
         });
 
-        alert(next);
         if (next){
         $.ajax({
         type:"POST",

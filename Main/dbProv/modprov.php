@@ -12,10 +12,15 @@ $phone = $_POST['phone'];
 $rif = $_POST['nextrif'];
 $prev = $_POST['rif'];
 
-$sql = "UPDATE providers SET nombre = '$name', direccion = '$dir', telefono = '$phone',
-rif = '$rif' WHERE rif='$prev'"; 
+$result = $conn->query("SELECT nombre FROM providers WHERE rif='$prev' limit 1")->fetch_object()->nombre; 
 
-if ($conn->query($sql) === TRUE) {
+
+$sql = "UPDATE providers SET nombre = '$name', direccion = '$dir', telefono = '$phone',
+rif = '$rif' WHERE rif='$prev'";
+
+$sql2 = "UPDATE products SET Proveedor='$name' WHERE Proveedor='$result'" ;
+
+if ($conn->query($sql) && $conn->query($sql2) === TRUE) {
     echo "New record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

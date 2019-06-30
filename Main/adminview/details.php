@@ -186,20 +186,20 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                    <h3 class="m-t-none m-b">Añadir nuevo producto</h3>
+                                    <h3 class="m-t-none m-b">Generar orden de compra</h3>
                                             <form role="form" id="preOC">
                                                 <div class="form row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label>Nombre de producto</label> 
-                                                                <input type="text" placeholder="Nombre de producto" class="form-control" id="produname">
+                                                            <label>Órden de compra #</label> 
+                                                                <input type="text" placeholder="#" class="form-control" id="OCcode" disabled="disable">
                                                         </div>
                                                     </div>
                                                         
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label>Código</label> 
-                                                                <input type="text" placeholder="Código" class="form-control" id="code">
+                                                            <label>Nombre del producto</label> 
+                                                                <input type="text" placeholder="Nombre del producto" class="form-control" id="prodname2" disabled="disable">
                                                         </div>
                                                     </div>
                                                     </div>
@@ -208,26 +208,42 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label>Precio</label> 
-                                                                <input type="text" placeholder="Precio" class="form-control" id="price">
+                                                                <input type="text" placeholder="Precio" class="form-control" id="price" disabled="disable">
                                                             </div>
                                                         </div>
+
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <label>Categoría</label> 
-                                                                <select class="form-control" id="cat">
-                                                                    <option value="Seleccionar">Seleccionar</option>
-                                                                    <option>Herramientas</option>
-                                                                    <option>Pétreos</option>
-                                                                    <option>Cerámicas y vidrios</option>
-                                                                    <option>Compuestos</option>
-                                                                    <option>Metálicos</option>
-                                                                    <option>Aglutinantes</option>
-                                                                    <option>Otros</option>
-                                                                </select>
+                                                                <label>Proveedor</label> 
+                                                                <input type="text" placeholder="Proveedor" class="form-control" id="prov" disabled="disable">
                                                             </div>
                                                         </div>
                                                     </div>
 
+                                                    <div class="form row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Solicitante</label> 
+                                                                <input type="text" placeholder="" class="form-control" id="owner" disabled="disable">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Fecha de emisión</label> 
+                                                                <input type="text" class="form-control" id="date" disabled="disable">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Cantidad</label> 
+                                                                <input type="text" class="form-control" id="quantity">
+                                                            </div>
+                                                        </div>
+                                                        </div>
                                                     <div>                                               
                                                         <!-- SUBMIT -->
                                                         <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
@@ -303,22 +319,26 @@
     /*Assign login data*/
     document.getElementById("fullname").innerHTML = n[0] + " " + ln[0];
 
-    <!-- Product data -->
-
     /*Fetch values from details*/
-    var n = <?php echo json_encode($name); ?>;
+    var na = <?php echo json_encode($name); ?>;
     var code = <?php echo json_encode($code); ?>;
     var price = <?php echo json_encode($valuep3); ?>;
     var cat = <?php echo json_encode($valuep2); ?>;
     var prov = <?php echo json_encode($valuep); ?>;
 
     /*Assign*/
-    document.getElementById("prodname").innerHTML = n;
+    document.getElementById("prodname").innerHTML = na;
     document.getElementById("dprice").innerHTML = '$'+price[0] ;
     document.getElementById("provider").innerHTML = prov[0];
     document.getElementById("thecode").innerHTML = code;
     document.getElementById("thecat").innerHTML = cat[0];
+    document.getElementById("owner").placeholder = n[0] + " " + ln[0];
+
+
     </script>
+
+    <!-- Utilities -->
+    <script src="../dbOC/addOCverif.js"></script>
 
 </body>
 
