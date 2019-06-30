@@ -155,7 +155,7 @@
                                         <td>
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
-                                            <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
+ <!-- aqui esta el boton de eliminar -->    <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
                                         </div>
                                         </td>
                                     </tr>
@@ -388,7 +388,9 @@
         var email = null;
         var perms = null;
         tr.bind('click', function(event) {
-            var values = '';
+            var opcion = confirm("¿Desea eliminar el usuario seleccionado?");
+            if (opcion == true) {
+                var values = '';
             var tds = $(this).addClass('row-highlight').find('td');
             $.each(tds, function(index, item) {
                 values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
@@ -446,6 +448,8 @@
                     }
                 });
             }
+	        }
+            
         }); //End of submit modify user
     });
 

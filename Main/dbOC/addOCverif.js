@@ -1,11 +1,24 @@
+function dec2hex (dec) {
+    return ('0' + dec.toString(16)).substr(-2)
+    }
 
-/*Replace placeholders with gathered values, ready to modify*/
-document.getElementById("prodname2").value = document.getElementById("prodname").value;
-document.getElementById("price").value = document.getElementById("dprice").value;
-document.getElementById("prov").value = document.getElementById("provider").value;
+function generateId (len) {
+    var arr = new Uint8Array((len || 40) / 2)
+    window.crypto.getRandomValues(arr)
+    return Array.from(arr, dec2hex).join('')
+  }
 
+$("#createOC").click(function(){
+    var code = generateId(13);
+    document.getElementById("OCcode").value = code;
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    document.getElementById("date").value = dateTime;
+/*Replace placeholders with gathered values, ready to modify*/    
 $('#submitprod').click(function(event){ 
-    var name = document.getElementById("prodname").value;
+    var name = document.getElementById("prodname2").value;
     var price = document.getElementById("price").value;
     var provider = document.getElementById("prov").value;
     var next = true;
@@ -21,13 +34,15 @@ $('#submitprod').click(function(event){
 
 /*    if (type == 4){
         $('#codemod').css({"color":"red","border":"1px solid red"});
-    }
+    }*/
     
     //Set back to default when user starts correcting the mistake
     
-    $("#codemod").keyup(function(){
+    $("#quantity").keyup(function(){
         $("#codemod").css({"color":"","border":""});
-    });*/
+        var test = this.value;
+        alert(test);
+    });
     
 /*    if (next){     
     $.ajax({
@@ -42,3 +57,4 @@ $('#submitprod').click(function(event){
     });
     }*/
     }); //End of submit modify user
+});

@@ -167,7 +167,7 @@
 
                                     <div>
                                         <div class="btn-group">
-                                            <a data-toggle="modal" class="btn btn-primary btn-lg" href="#oc"><i class="fa fa-cart-plus"></i> Generar orden de compra</a>
+                                            <a data-toggle="modal" id="createOC" class="btn btn-primary btn-lg" href="#oc"><i class="fa fa-cart-plus"></i> Generar orden de compra</a>
                                         </div>
                                     </div>
                         </div>
@@ -191,8 +191,8 @@
                                                 <div class="form row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label>Órden de compra #</label> 
-                                                                <input type="text" placeholder="#" class="form-control" id="OCcode" disabled="disable">
+                                                            <label>ID orden de compra #</label> 
+                                                                <input type="text" class="form-control" id="OCcode" disabled="disable">
                                                         </div>
                                                     </div>
                                                         
