@@ -1,6 +1,6 @@
 <?php
     require ('..\util\isLogged.php');
-    require ('..\dbOC\fillOCPendingTable.php');
+    require ('..\dbOC\fillOCReadyTable.php');
 ?>
 
 <!DOCTYPE html>
@@ -88,8 +88,8 @@
                     <li class="active">
                         <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class ="active"><a href="pendingorders.php">Pendientes</a></li>
-                            <li><a href="processedorders.php">Procesadas</a></li>
+                            <li><a href="pendingorders.php">Pendientes</a></li>
+                            <li class ="active"><a href="processedorders.php">Procesadas</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -152,11 +152,11 @@
                                         <td><?php echo $row1[0];?></td>
                                         <td><?php echo $row1[1];?></td>
                                         <td><?php echo $row1[2];?></td>
-                                        <td><span class="label label-warning"><?php echo $row1[4];?></span></td>
+                                        <td><span class="label label-primary"><?php echo $row1[4];?></span></td>
                                         <td>
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" id="editOC" onclick="getSelectedRow();">Modificar</button>
-                                            <button class="btn-white btn btn-xs" id="cancelOC" onclick="getTarget();">Eliminar</button>
+                                            <button class="btn-white btn btn-xs" id="cancelOC">Eliminar</button>
                                         </div>
                                         </td>
                                     </tr>
@@ -274,7 +274,6 @@
     <!-- Utilities -->
     <script src="../util/datatable.js"></script>
     <script src="../dbOC/modOCverif.js"></script>
-    <script src="../dbOC/delOC.js"></script>
 
     <!-- Login data -->
     <script type="text/javascript">
