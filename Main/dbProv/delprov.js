@@ -1,60 +1,68 @@
 /*Get selected item*/
 function getTarget(){
-$(function() {
-    var tr = $('#providers').find('tr');
-    var name = null;
-    var dir = null;
-    var phone = null;
-    var rif = null;
+    var r = confirm("¿Desea eliminar este proveedor?");
+    if (r == true)
+        delTarget();
+}
 
-    tr.bind('click', function(event) {
-        var values = '';
-        var tds = $(this).addClass('row-highlight').find('td');
-        $.each(tds, function(index, item) {
-            values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
-            /* Gather values from the row*/
-                if (index == 0){
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
+function delTarget(){
+$("#providers tr").click(function() {
+var name = null;
+var dir = null;
+var phone = null;
+var rif = null;
+var index = 0;
 
-                    name = values.slice(start+1,end);
-                    values = "";
-                }
-                else if (index == 1){
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
+$(this).find("td").each(function() {
+    var values = '';
 
-                    dir = values.slice(start+1,end);
-                    values = "";
-                }
-            
-                else if (index == 2){
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
+        /* Gather values from the row*/
+            if (index == 0){
+                values = $(this).html();
+                start = values.indexOf(":");
+                end = values.indexOf("<");
 
-                    phone = values.slice(start+1,end);
-                    values = "";
-                }
+                name = values.slice(start+1,end);
+                values = "";
+            }
+            else if (index == 1){
+                values = $(this).html();
+                start = values.indexOf(":");
+                end = values.indexOf("<");
 
-                else if (index == 3){
-                    start = values.indexOf(":");
-                    end = values.indexOf("<");
+                dir = values.slice(start+1,end);
+                values = "";
+            }
+        
+            else if (index == 2){
+                values = $(this).html();
+                start = values.indexOf(":");
+                end = values.indexOf("<");
 
-                    rif = values.slice(start+1,end);
-                    values = "";
-                }
+                phone = values.slice(start+1,end);
+                values = "";
+            }
+
+            else if (index == 3){
+                values = $(this).html();
+                rif = values;
+                alert(rif);
+                values = "";
+            }
+            index++;
+});
+
+
+
+    $.ajax({
+    type:"POST",
+    url:"../dbProv/delprov.php",
+    async: false,
+    data: {rif:rif},
+    success: function(data){
+    alert(data);
+    window.location = 'providers.php';
+    }
     });
-
-        $.ajax({
-        type:"POST",
-        url:"../dbProv/delprov.php",
-        async: false,
-        data: {rif:rif},
-        success: function(data){
-        alert(data);
-        window.location = 'providers.php';
-        }
-        });
-        }); 
-    });
+    }); 
 }
