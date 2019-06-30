@@ -23,13 +23,11 @@ if (mysqli_num_rows($result) == 0){
         Proveedor VARCHAR(1500) NOT NULL
         )";
 
-if ($connection->query($sqlQuery) === TRUE) {
+if ($conn->query($sqlQuery) === TRUE) {
 } else {
-    echo "Error creating SQL table: " . $connection->error;
-}
+    echo "Error creating SQL table: " . $conn->error;
 }
 
-else{
 $query="SELECT * FROM products";
 $result3 = mysqli_query($conn, $query);
 $result4 = mysqli_query($conn, $query);
@@ -38,5 +36,4 @@ $dataRow ="";
         $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
         <td>$row[4]</td></tr>";
     }
-}
 ?>
