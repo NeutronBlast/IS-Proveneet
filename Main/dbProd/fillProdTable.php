@@ -24,7 +24,6 @@ if ($conn->query($sqlQuery) === TRUE) {
     echo "Error creating SQL table: " . $connection->error;
 }
 
-else{
 $query="SELECT * FROM products";
 $result3 = mysqli_query($conn, $query);
 $result4 = mysqli_query($conn, $query);
@@ -33,5 +32,4 @@ $dataRow ="";
         $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
         <td>$row[4]</td></tr>";
     }
-}
 ?>
