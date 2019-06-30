@@ -40,11 +40,12 @@ $('#addpro').click(function(event){
 
     /*RIF verify*/
     var patt = new RegExp(/^([J-]+[0-9])/i);
-    next = patt.test((String)(rif));
+    k = patt.test((String)(rif));
 
-    if (!next){
+    if (!k){
         alert("Formato de RIF inválido: Debe ser J-numeros");
         type = 4;
+        next = false;
     }
 
     //Change borders
