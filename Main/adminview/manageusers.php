@@ -81,6 +81,14 @@
                     <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
                                 class="nav-label">Realizar compra</span></a>
                     </li>
+
+                    <li>
+                        <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="pendingorders.php">Pendientes</a></li>
+                            <li><a href="processedorders.php">Procesadas</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
             </div> <!-- div from sidebar collapse -->
@@ -155,7 +163,7 @@
                                         <td>
                                         <div class="btn-group">
                                             <button class="btn-white btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
-                                            <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
+ <!-- aqui esta el boton de eliminar -->    <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
                                         </div>
                                         </td>
                                     </tr>
@@ -388,7 +396,9 @@
         var email = null;
         var perms = null;
         tr.bind('click', function(event) {
-            var values = '';
+            var opcion = confirm("¿Desea eliminar el usuario seleccionado?");
+            if (opcion == true) {
+                var values = '';
             var tds = $(this).addClass('row-highlight').find('td');
             $.each(tds, function(index, item) {
                 values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
@@ -446,6 +456,8 @@
                     }
                 });
             }
+	        }
+            
         }); //End of submit modify user
     });
 
