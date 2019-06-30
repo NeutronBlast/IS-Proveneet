@@ -333,7 +333,9 @@
     document.getElementById("thecode").innerHTML = code;
     document.getElementById("thecat").innerHTML = cat[0];
     document.getElementById("owner").placeholder = n[0] + " " + ln[0];
-
+    document.getElementById("prodname2").value = na;
+    document.getElementById("price").value = price[0];
+    document.getElementById("prov").value = prov[0];
 
     </script>
 
