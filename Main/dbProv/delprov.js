@@ -46,7 +46,6 @@ $(this).find("td").each(function() {
             else if (index == 3){
                 values = $(this).html();
                 rif = values;
-                alert(rif);
                 values = "";
             }
             index++;
