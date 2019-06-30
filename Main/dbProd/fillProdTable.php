@@ -11,6 +11,10 @@ if ($conn->connect_error) {
 }
 
 /*Fill table*/
+$query = "SHOW TABLES LIKE 'products'"; 
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) == 0){
     $sqlQuery = "CREATE TABLE IF NOT EXISTS products (
         Nombre VARCHAR(1500) NULL,
         Codigo VARCHAR(100) NULL,
@@ -32,4 +36,5 @@ $dataRow ="";
         $dataRow = $dataRow."<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td><td>$row[3]</td>
         <td>$row[4]</td></tr>";
     }
+    
 ?>
