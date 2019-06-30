@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 
 if ($conn->query($sqlQuery) === TRUE) {
 } else {
-    echo "Error creating SQL table: " . $connection->error;
+    echo "Error creating SQL table: " . $conn->error;
 }
 
 $query="SELECT * FROM products";
