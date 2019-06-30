@@ -88,6 +88,13 @@
                     <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
                                 class="nav-label">Realizar compra</span></a>
                     </li>
+                    <li>
+                        <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="pendingorders.php">Pendientes</a></li>
+                            <li><a href="processedorders.php">Procesadas</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
             </div> <!-- div from sidebar collapse -->
@@ -332,7 +339,7 @@
     document.getElementById("provider").innerHTML = prov[0];
     document.getElementById("thecode").innerHTML = code;
     document.getElementById("thecat").innerHTML = cat[0];
-    document.getElementById("owner").placeholder = n[0] + " " + ln[0];
+    document.getElementById("owner").value = n[0] + " " + ln[0];
     document.getElementById("prodname2").value = na;
     document.getElementById("price").value = price[0];
     document.getElementById("prov").value = prov[0];
