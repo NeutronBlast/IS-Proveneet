@@ -15,7 +15,7 @@ $query = "SHOW TABLES LIKE 'products'";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) == 0){
-    $sqlQuery = "CREATE TABLE products (
+    $sqlQuery = "CREATE TABLE IF NOT EXISTS products (
         Nombre VARCHAR(1500) NULL,
         Codigo VARCHAR(100) NULL,
         Precio VARCHAR(100) NULL,
