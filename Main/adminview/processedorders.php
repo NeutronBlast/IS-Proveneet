@@ -141,7 +141,6 @@
                                     <th data-hide="phone">Solicitante</th>
                                     <th data-hide="phone">Precio</th>
                                     <th data-hide="phone">Estatus</th>
-                                    <th class="text-right">Acción</th>
 
                                 </tr>
                                 </thead>
@@ -153,12 +152,6 @@
                                         <td><?php echo $row1[1];?></td>
                                         <td><?php echo $row1[2];?></td>
                                         <td><span class="label label-primary"><?php echo $row1[4];?></span></td>
-                                        <td>
-                                        <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" id="editOC" onclick="getSelectedRow();">Modificar</button>
-                                            <button class="btn-white btn btn-xs" id="cancelOC">Eliminar</button>
-                                        </div>
-                                        </td>
                                     </tr>
                                     <?php endwhile; mysqli_close($conn);?>
                                 </tbody>
