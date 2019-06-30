@@ -170,7 +170,78 @@
             </div>
             </div>
             </div>
-        
+    
+            <div class="faq-item">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <a data-toggle="collapse" href="#faq5" class="faq-question">¿Cómo agrego un
+                                            nuevo producto?</a>
+                                        <small>Tipo: <strong>Funciones</strong></small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="faq5" class="panel-collapse collapse ">
+                                            <div class="faq-answer">
+                                                <p>
+                                                    Diríjase a "Gestion de productos" en el menú de la izquierda, cliqueelo y en
+                                                    la
+                                                    parte superior de la tabla de productos presione "Agregar producto" y
+                                                    rellene los datos correspondientes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <a data-toggle="collapse" href="#faq6" class="faq-question">¿Cómo realizo una
+                                            orden de compra?</a>
+                                        <small>Tipo: <strong>Funciones</strong></small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="faq6" class="panel-collapse collapse ">
+                                            <div class="faq-answer">
+                                                <p>
+                                                    Diríjase a "Realizar compra" en el menú de la izquierda, cliqueelo 
+                                                    y seleccione el producto que desea, verificando el precio y el proveedor
+                                                    que ofrece dicho producto, luego debe cliquear el boton "Generar orden
+                                                    de compra y rellene el campo con la cantidad que desea."
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <a data-toggle="collapse" href="#faq7" class="faq-question">¿Cómo cambio una orden de compra
+                                            de pendiente a ejecutada?</a>
+                                        <small>Tipo: <strong>Funciones</strong></small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="faq7" class="panel-collapse collapse ">
+                                            <div class="faq-answer">
+                                                <p>
+                                                    Diríjase a "Gestion ordenes de compra" en el menú de la izquierda, cliqueelo y
+                                                    seleccione la opcion "Pendientes", busque la orden de compra que desea cambiar a ejecutada
+                                                    y en la parte derecha de la tabla seleccione la opcion modificar. 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
     
     <!-- FOOTER -->
     <div class="row">
