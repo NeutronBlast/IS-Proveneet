@@ -45,11 +45,33 @@ $('#submitprod').click(function(event){
     var prodq = document.getElementById("quantity").value;
 
     var next = true;
+    /*Skip is a var to avoid double alert*/
+    var skip = false;
     var type = 0;
 
     if (document.getElementById("quantity").value == ""){
         next = false;
         alert("Por favor rellene todos los datos antes de continuar");
+        $('#quantity').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (isNaN(document.getElementById("quantity").value)){
+        next = false;
+        alert("Campo cantidad de productos debe ser un número entero");
+        skip = true;
+        $('#quantity').css({"color":"red","border":"1px solid red"});
+    }
+
+    if (document.getElementById("quantity").value<0){
+        next = false;
+        alert("Campo cantidad de productos debe ser un número entero positivo");
+        $('#quantity').css({"color":"red","border":"1px solid red"});
+        skip = true;
+    }
+
+    if (!Number.isInteger(document.getElementById("quantity").value) && !skip){
+        next = false;
+        alert("Campo cantidad de productos debe ser un número entero positivo");
     }
     
     if (next){     
