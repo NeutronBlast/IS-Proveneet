@@ -91,11 +91,13 @@ $(this).find("td").each(function(){
         
         if (cont >=2){
         flag = 0;
-        alert("Correo electrónico está asociado a una cuenta ya existente");
-        next = false;
-        break;
         type = 6;
+        alert("Correo electrónico está asociado a una cuenta ya existente");
+        continue;
         }
+
+        if (flag == 0)
+            break;
         
     }
 

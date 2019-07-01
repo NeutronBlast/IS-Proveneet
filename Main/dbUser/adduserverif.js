@@ -139,7 +139,7 @@ $('#submitusr').click(function(event){
     }
 
     var patt = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-    next = patt.test((String)(email));
+    var next = patt.test((String)(email));
 
     if (!next && flag){
         msg = "Ingrese una dirección de correo electrónico válida";
@@ -177,11 +177,13 @@ $('#submitusr').click(function(event){
     for(var i = 0; i < allM.length; i++){
         if (email == allM[i]){
             alert("Correo electrónico está asociado a una cuenta ya existente");
-            next = false;
-            break;
             flag = 0;
             type = 6;
+            continue;
         }
+
+        if (flag == 0)
+        	break;
     }
 
     //Change borders
