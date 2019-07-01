@@ -14,7 +14,7 @@ function getSelectedRow(){
 
             if (cont == 4){
                 values = $(this).html();
-                start = values.indexOf("y")+2;
+                start = values.indexOf("g")+2;
                 aux = values.slice(start+1,length.values);
                 end = aux.indexOf("<");
                 stats = aux.slice(0,end);
