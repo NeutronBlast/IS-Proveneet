@@ -14,7 +14,7 @@ $rif = $_POST['rif'];
 $sql = "INSERT INTO providers (nombre, direccion, telefono, rif) VALUES ('$name', '$dir', '$phone', '$rif')"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Proveedor agregado exitosamente";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

@@ -149,8 +149,8 @@
                 <td><?php echo $row1[3];?></td>
                 <td>
                 <div class="btn-group">
-                    <button class="btn-white btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
-                    <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
+                    <button class="btn btn-info btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
+                    <button class="btn btn-danger btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
                 </div>
                 </td>
             </tr>

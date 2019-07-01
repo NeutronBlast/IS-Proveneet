@@ -30,7 +30,7 @@ $status = "Pendiente";
 $sql = "INSERT INTO orders (Codigo, Solicitante, Precio, Fecha, Estatus) VALUES ('$code', '$owner', '$price', '$date', '$status')"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Orden de compra creada exitosamente";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

@@ -3,7 +3,6 @@
 	require ('..\dbProv\fillProvidersTable.php');
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 
     <title>Proveneet</title>
     <!-- Icon -->
-	<link rel="icon" type="image/png" href="../img/logo.png"/>
+    <link rel="icon" type="image/png" href="../img/logo.png"/>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -49,7 +48,7 @@
     <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
     </a>
     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-    <li><a class="dropdown-item" href="profemp.php">Información personal</a></li>
+    <li><a class="dropdown-item" href="profile.php">Información personal</a></li>
     <li class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../util/logout.php">Salir</a></li>
     </ul>
@@ -58,16 +57,28 @@
     <div class="logo-element">P</div>
     </li>
     <li>
-    <a href="profemp.php"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
+    <a href="profemp.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Gestión de perfil</span></a>                
     </li>
-    
     <li class="active">
     <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
+
 <li>
     <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
             class="nav-label">Gestión de productos</span></a>
 </li>
+<li>
+                    <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
+                                class="nav-label">Realizar compra</span></a>
+                    </li>
+
+                    <li>
+                        <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="pendingorders.php">Pendientes</a></li>
+                            <li><a href="processedorders.php">Procesadas</a></li>
+                        </ul>
+                    </li>
 </div> <!-- div from sidebar collapse -->
 </nav>
 
@@ -83,7 +94,7 @@
 <span class="m-r-sm text-muted welcome-message">Bienvenido a Proveneet</span>
 </li>
 <li>
-<a href="startemp.php">
+<a href="index.html">
 <i class="fa fa-question-circle-o"></i> Ayuda</a>
 </li>
 <li>
@@ -94,30 +105,34 @@
 </nav>
 </div> <!-- div from row border bottom -->
 
+
+
 <!-- TABLE -->
 <div class="ibox ">
 <div class="ibox-title">
-        <h5>Proveedores</h5>
-        <div class="ibox-tools">
-        <a class="collapse-link" href="#">
-        <i class="fa fa-chevron-up"></i>
-        </a>
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <i class="fa fa-wrench"></i>
-        </a>
-        </div><!-- div from ibox-tools -->
-        </div><!-- div from ibox-title -->
-        
-        <div class="ibox-content no-padding">
-        <ul class="list-group">
+<h5>Proveedores</h5>
+</div>
+
+<div class="row">
+
+<div class="col-lg-12">
+<div class="ibox ">
+<div class="ibox-title">
+<div class="col-xs-2 p-1 bd-highlight">
+    <a data-toggle="modal" class="btn btn-primary btn-lg" id="add"
+    href="#add-provider"><i class="fa fa-plus-circle"></i> Agregar proveedor</a>
+    </div>
+    <ul class="list-group">
+
         <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover dataTables-example" id="providers">
+        <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" id="providers" >
         <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>RIF</th>
+            <th data-toggle="true">Nombre</th>
+            <th data-hide="phone,tablet">Dirección</th>
+            <th data-hide="phone,tablet">Teléfono</th>
+            <th data-hide="phone,tablet">RIF</th>
+            <th data-sort-ignore="true">Acción</th>
             </tr>
             </thead>
                         
@@ -128,29 +143,21 @@
                 <td><?php echo $row1[1];?></td>
                 <td><?php echo $row1[2];?></td>
                 <td><?php echo $row1[3];?></td>
+                <td>
+                <div class="btn-group">
+                    <button class="btn btn-info btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
+                    <button class="btn btn-danger btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
+                </div>
+                </td>
             </tr>
-            <?php endwhile; mysqli_close($conn);?>   
+            <?php endwhile; mysqli_close($conn);?>
             </tfoot>
             </table>
             </div>
-
-
-    <!-- BUTTONS-->
-
-
-    <div class="d-flex flex-row-reverse bd-highlight">
-    <div class="col-xs-2 p-1 bd-highlight">
-    <button class="btn btn-primary btn-lg" id="delete" disabled="disable">Eliminar</button>
-    </div>
-    
-    <div class="col-xs-2 p-1 bd-highlight">
-    <button class="btn btn-primary btn-lg" id="modify" disabled="disable">Modificar</button>
-    </div>
-    
-    <div class="col-xs-2 p-1 bd-highlight">
-    <a data-toggle="modal" class="btn btn-primary btn-lg" href="#add-provider">Agregar</a>
-    </div>
-    </div>
+            </div>
+            </div>
+            </div>
+            </div>
 
     <!-- FORM ADD -->
     <div id="add-provider" class="modal fade" aria-hidden="true">
@@ -167,9 +174,10 @@
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="addpro">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="button" id="addpro">Aceptar</button>
     </div>
     </form>
+    </div>
     </div>
     </div>
     </div>
@@ -191,15 +199,25 @@
     
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="modifyprov">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="button" id="modifyprov">Aceptar</button>
 
-    </ul>
-</div><!-- ibox content-->
-</div><!-- div from ibox -->
+    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </ul>
+        </div><!-- ibox content-->
+    </div><!-- div from ibox -->
 
 
-</div><!-- div from page wrapper -->
-</div><!-- div from wrapper(superior) -->
+    </div><!-- div from page wrapper -->
+    </div><!-- div from wrapper(superior) -->
+    </div>
+    </div>
 
 
 <!-- Mainly scripts -->
@@ -244,7 +262,6 @@
 
 <!-- Toastr -->
 <script src="../js/plugins/toastr/toastr.min.js"></script>
-</body>
 
 <!-- Utilities -->
 <script src="../util/datatable.js"></script>
@@ -260,6 +277,6 @@
     /*Assign login data*/
     document.getElementById("fullname").innerHTML = n[0]+" "+ln[0];
 </script>
-
+</body>
 <!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:28:16 GMT -->
 </html>

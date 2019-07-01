@@ -54,10 +54,9 @@
     <div class="logo-element">P</div>
     </li>
     <li class="active">
-    <a href="profemp.php"><i class="fa fa-users"></i> <span class="nav-label">Gestión de perfil</span></a>
+    <a href="profemp.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Gestión de perfil</span></a>                
     </li>
-
-    <li>
+    <li >
     <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
     </li>
 
@@ -65,6 +64,18 @@
     <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
             class="nav-label">Gestión de productos</span></a>
 </li>
+<li>
+                    <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
+                                class="nav-label">Realizar compra</span></a>
+                    </li>
+
+                    <li>
+                        <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="pendingorders.php">Pendientes</a></li>
+                            <li><a href="processedorders.php">Procesadas</a></li>
+                        </ul>
+                    </li>
     </div> <!-- div from sidebar collapse -->
     </nav>
 

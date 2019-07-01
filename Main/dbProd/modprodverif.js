@@ -11,6 +11,7 @@ var price = null;
 var cat = null;
 var provider = null;
 var index = 0;
+var flag=1;
 
 $(this).find("td").each(function(){
     /* Gather values from the row*/
@@ -84,11 +85,46 @@ break;
 }
 }
 }
+
+//Name validation
+if(!name[1] && flag){
+        
+    msg = "Nombre del producto debe ser mínimo 2 caracteres";
+    alert(msg);
+    flag = 0;
+    type = 1;
+}
+
+//Price validation
+
+
+if (isNaN(price)){
+    flag = 0;
+    type = 3;
+    alert("Formato de precio inválido, por favor introduzca un número");
+}
+
+if (price<=0){
+    flag = 0;
+    type = 3;
+    alert("El campo de precio debe ser un número positivo mayor a 0");
+}
+
 //Change borders
 
 if (type == 4){
 $('#codemod').css({"color":"red","border":"1px solid red"});
 }
+
+if (type == 1){
+    $('#prodmod').css({"color":"red","border":"1px solid red"});
+}
+
+if(type==3){
+
+    $('#pricemod').css({"color":"red","border":"1px solid red"});
+}
+
 
 //Set back to default when user starts correcting the mistake
 
@@ -96,7 +132,7 @@ $("#codemod").keyup(function(){
 $("#codemod").css({"color":"","border":""});
 });
 
-if (next){     
+if (flag){     
 $.ajax({
 type:"POST",
 url:"../dbProd/modprod.php",

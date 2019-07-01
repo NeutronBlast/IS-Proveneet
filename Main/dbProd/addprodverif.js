@@ -10,6 +10,7 @@ $('#submitprod').click(function(event){
     /*Verify before sending to AJAX*/
     next = true;
     type = 0;
+    var flag=1;
     
     /*Cannot be blank*/
     if (document.getElementById("produname").value == "" || document.getElementById("code").value=="" ||
@@ -30,20 +31,66 @@ $('#submitprod').click(function(event){
     }  
     }
 
+    //Code validation
     for(var i = 0; i < codes.length; i++){
         if (code == codes[i]){
+
             alert("Producto con ese código ya existe en el sistema");
-            next = false;
+            flag = false;
             type = 4;
             break;
         }
     }
 
+    //Name validation
+    if(!name[1] && flag){
+        
+        msg = "Nombre del producto debe ser mínimo 2 caracteres";
+        alert(msg);
+        flag = 0;
+        type = 1;
+    }
+    var nameval=/^[0-9]+$/;
+    if( nameval.exec(name[0].value)){
+        
+        msg = "Nombre del producto inválido";
+        alert(msg);
+        flag = 0;
+        type = 1;
+    }
+
+
+
+    //Price validation
+
+    //alert(price);
+
+    if (isNaN(price)){
+        flag = 0;
+        type = 3;
+        alert("Formato de precio inválido, por favor introduzca un número");
+    }
+
+    if (price<=0){
+        flag = 0;
+        type = 3;
+        alert("El campo de precio debe ser un número positivo mayor a 0");
+    }
     //Change borders
 
     if (type == 4){
         $('#code').css({"color":"red","border":"1px solid red"});
     }
+
+    if (type == 1){
+        $('#produname').css({"color":"red","border":"1px solid red"});
+    }
+
+    if(type==3){
+
+        $('#price').css({"color":"red","border":"1px solid red"});
+    }
+
 
     //Set back to default when user starts correcting the mistake
 
@@ -51,7 +98,7 @@ $('#submitprod').click(function(event){
         $("#code").css({"color":"","border":""});
     });
 
-    if (next){
+    if (flag){
     $.ajax({
         type:"POST",
         url:"../dbProd/addproduct.php",

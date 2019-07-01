@@ -30,13 +30,13 @@ $('#addpro').click(function(event){
         type = 1;
     }
     
-    if (nextrif[21]){
+    if (rif[21]){
         alert("RIF proveedor demasiado largo");
         next = false;
         type = 4;
     }
     
-    if (!nextrif[9]){
+    if (!rif[9]){
         alert("RIF proveedor demasiado corto");
         next = false;
         type = 4;

@@ -22,8 +22,9 @@ $("#createOC").click(function(){
     if (test != ""){
     document.getElementById("price").value = calculatePrice(firstprice,test);
     }
-    if (isNaN(test)){
+    if (isNaN(test) || test<=0 || test.indexOf(".") != -1){
         $('#quantity').css({"color":"red","border":"1px solid red"});
+        document.getElementById("price").value="Cantidad de productos debe ser un número entero positivo para calcular el precio";
     }
 });
     var code = generateId(13);
@@ -46,33 +47,24 @@ $('#submitprod').click(function(event){
 
     var next = true;
     /*Skip is a var to avoid double alert*/
-    var skip = false;
     var type = 0;
 
-    if (document.getElementById("quantity").value == ""){
+    if (isNaN(prodq)){
         next = false;
-        alert("Por favor rellene todos los datos antes de continuar");
         $('#quantity').css({"color":"red","border":"1px solid red"});
-    }
-
-    if (isNaN(document.getElementById("quantity").value)){
-        next = false;
-        alert("Campo cantidad de productos debe ser un número entero");
-        skip = true;
-        $('#quantity').css({"color":"red","border":"1px solid red"});
-    }
-
-    if (document.getElementById("quantity").value<0){
-        next = false;
-        alert("Campo cantidad de productos debe ser un número entero positivo mayor que cero");
-        $('#quantity').css({"color":"red","border":"1px solid red"});
-        skip = true;
-    }
-
-    if (!Number.isInteger(document.getElementById("quantity").value) && !skip){
-        next = false;
         alert("Campo cantidad de productos debe ser un número entero positivo");
+    }
+
+    if (prodq<=0){
+        next = false;
         $('#quantity').css({"color":"red","border":"1px solid red"});
+        alert("Campo cantidad de productos debe ser un número positivo");
+    }
+
+    if (prodq.indexOf(".") != -1 && prodq.indexOf(",") != 1){
+        next = false;
+        $('#quantity').css({"color":"red","border":"1px solid red"});
+        alert("Campo cantidad de productos debe ser un número entero positivo");
     }
     
     if (next){     

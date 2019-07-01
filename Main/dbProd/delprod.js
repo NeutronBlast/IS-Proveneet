@@ -19,26 +19,21 @@ $("#products tr").click(function() {
             /* Gather values from the row*/
                 if (index == 0){
                 name = $(this).html();
-                alert(name);
                 }
                 else if (index == 1){
                 code = $(this).html();
-                alert(code);
                 }
             
                 else if (index == 2){
                 price = $(this).html();
-                alert(price);
                 }
 
                 else if (index == 3){
                 cat = $(this).html();
-                alert(cat);
                 }
 
                 else if (index == 4){
                 provider = $(this).html();
-                alert(provider);
                 }
                 index++;
         });

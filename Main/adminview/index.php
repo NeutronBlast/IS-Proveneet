@@ -155,9 +155,8 @@
                                         <div id="faq1" class="panel-collapse collapse ">
                                             <div class="faq-answer">
                                                 <p>
-                                                    Es un aplicativo que permita ubicar el proveedor con las mejores
-                                                    condiciones de venta,
-                                                    así como su ubicación en el mapa.
+                                                    Es un aplicativo que permite ubicar el proveedor con las mejores
+                                                    condiciones de venta de articulos de construcción.
                                                 </p>
                                             </div>
                                         </div>

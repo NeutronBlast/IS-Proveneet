@@ -12,7 +12,7 @@ $sql = "DELETE FROM providers WHERE rif = '$rif'";
 $sql2= "DELETE FROM products WHERE Proveedor='$result'";
 
 if ($conn->query($sql)&&$conn->query($sql2) === TRUE) {
-    echo "New record created successfully";
+    echo "Proveedor elminado de manera exitosa";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

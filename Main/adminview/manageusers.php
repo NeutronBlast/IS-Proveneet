@@ -144,7 +144,7 @@
                                         <th data-toggle="true">Nombre</th>
                                         <th data-hide="phone,tablet">Apellido</th>
                                         <th data-hide="phone,tablet">Nombre de usuario</th>
-                                        <th data-hide="phone,tablet">Contraseña</th>
+                                        <th data-hide="phone,tablet" style="display:none">Contraseña</th>
                                         <th data-hide="phone,tablet">Correo electrónico</th>
                                         <th data-hide="phone,tablet">Permisos</th>
                                         <th data-sort-ignore="true">Acción</th>
@@ -157,13 +157,13 @@
                                         <td><?php echo $row1[0];?></td>
                                         <td><?php echo $row1[1];?></td>
                                         <td><?php echo $row1[2];?></td>
-                                        <td><?php echo $row1[3];?></td>
+                                        <td style="display:none"><?php echo $row1[3];?></td>
                                         <td><?php echo $row1[4];?></td>
                                         <td><?php echo $row1[5];?></td>
                                         <td>
                                         <div class="btn-group">
-                                            <button class="btn-white btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
- <!-- aqui esta el boton de eliminar -->    <button class="btn-white btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
+                                            <button class="btn btn-info btn btn-xs" id="modify" onclick="getSelectedRow();">Modificar</button>
+ <!-- aqui esta el boton de eliminar -->    <button class="btn btn-danger btn btn-xs" id="delete" onclick="getTarget();">Eliminar</button>
                                         </div>
                                         </td>
                                     </tr>
@@ -216,7 +216,7 @@
                                                     <div class="form row">
                                                         <div class="col-sm-6">                                            
                                                             <div class="form-group">
-                                                                <label>Contraseña</label>
+                                                                <label>Contraseña (Mínimo 8 caracteres)</label>
                                                                 <input type="password" placeholder="Contraseña" class="form-control" id="pass">                                                                    
                                                             </div>
                                                         </div>

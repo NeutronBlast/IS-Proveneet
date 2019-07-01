@@ -13,7 +13,7 @@ $status = $_POST['stats'];
 $sql = "UPDATE orders SET Estatus = '$status' WHERE Codigo = '$code'"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Orden de compra modificada exitosamente";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

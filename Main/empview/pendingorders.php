@@ -51,7 +51,7 @@
                                 <span class="block m-t-xs font-bold" id="fullname"></span>
 
                                 <!-- Placeholder role (admin or employee) -->
-                                <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
+                                <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="dropdown-item" href="profile.php">Información personal</a></li>
@@ -63,24 +63,17 @@
                         <div class="logo-element">P</div>
                     </li>
                     <li>
-                        <a href="profile.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de
-                                usuario</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="profile.php">Gestión de perfil</a></li>
-                            <li><a href="manageusers.php">Gestión de usuarios</a></li>
-                        </ul>
-                    </li>
-                    <li>
+    <a href="profemp.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Gestión de perfil</span></a>                
+    </li>
+    <li>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    </li>
 
-                        <a href="providers.php"><i class="fa fa-users"></i> <span
-                                class="nav-label">Proveedores</span></a>
-                    </li>
-                    <li>
-                        <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
-                                class="nav-label">Gestión de productos</span></a>
-                        </li>
-
-                    <li>
+<li>
+    <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
+            class="nav-label">Gestión de productos</span></a>
+</li>
+<li>
                     <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
                                 class="nav-label">Realizar compra</span></a>
                     </li>
@@ -88,7 +81,7 @@
                     <li class="active">
                         <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class ="active"><a href="pendingorders.php">Pendientes</a></li>
+                            <li class="active"><a href="pendingorders.php">Pendientes</a></li>
                             <li><a href="processedorders.php">Procesadas</a></li>
                         </ul>
                     </li>
@@ -155,7 +148,6 @@
                                         <td><span class="label label-warning"><?php echo $row1[4];?></span></td>
                                         <td>
                                         <div class="btn-group">
-                                            <button class="btn btn-info btn btn-xs" id="editOC" onclick="getSelectedRow();">Modificar</button>
                                             <button class="btn btn-danger btn btn-xs" id="cancelOC" onclick="getTarget();">Eliminar</button>
                                         </div>
                                         </td>
@@ -273,7 +265,6 @@
 
     <!-- Utilities -->
     <script src="../util/datatable.js"></script>
-    <script src="../dbOC/modOCverif.js"></script>
     <script src="../dbOC/delOC.js"></script>
 
     <!-- Login data -->

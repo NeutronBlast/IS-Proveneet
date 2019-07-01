@@ -16,7 +16,7 @@ $provider = $_POST['provider'];
 $sql = "INSERT INTO products (Nombre, Codigo, Precio, Categoria, Proveedor) VALUES ('$name', '$code', '$price', '$cat', '$provider')"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Producto añadido de manera exitosa";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

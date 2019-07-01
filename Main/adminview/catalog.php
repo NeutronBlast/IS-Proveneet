@@ -145,7 +145,7 @@
                                     <?php while($row1 = mysqli_fetch_array($result4)):;?>
                                     <tr>
                                         <td id="name"><h4><a href="#" class="text-navy"><?php echo $row1['Nombre'];?></td></a></h4>
-                                        <td id="precio"><?php echo $row1['Precio'].' $';?></td>
+                                        <td id="precio"><?php echo $row1['Precio'].' BsS';?></td>
                                         <td><?php echo $row1['Categoria'];?></td>
                                         <td><?php echo $row1['Codigo'];?></td>
                                     </tr>

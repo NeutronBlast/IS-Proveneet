@@ -11,7 +11,7 @@ $code = $_POST['code'];
 $sql = "DELETE FROM products WHERE Codigo = '$code'"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Producto eliminado de manera exitosa";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

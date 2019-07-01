@@ -19,7 +19,7 @@ $sql2 = "CREATE TABLE IF NOT EXISTS users (
 $sql = "INSERT INTO users (nombre, apellido, username, clave, email, permisos) VALUES ('$name', '$ln', '$user', '$pass', '$email', '$permissions')"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Usuario creado satisfactoriamente";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

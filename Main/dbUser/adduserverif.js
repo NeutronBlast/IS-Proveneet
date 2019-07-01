@@ -15,127 +15,127 @@ $('#submitusr').click(function(event){
     /*Validate user*/
     if(!user && flag){
         msg = "Ingrese un Nick";
-        alert(msg);
         flag = 0;
         type = 1;
+        alert(msg);
     }
 
     if(!user[1] && flag){
         msg = "Nick usuario debe ser de longitud mayor a 2 letras";
-        alert(msg);
         flag = 0;
         type = 1;
+        alert(msg);
     }
 
     if(user[100] && flag){
         msg = "Nick usuario demasiado largo";
-        alert(msg);
         flag = 0;
         type = 1;
+        alert(msg);
     }
 
     /*Validate password*/
     if(!password && flag){
         msg = "Ingrese una contraseña de usuario";
-        alert(msg);
         flag = 0;
         type = 2;
+        alert(msg);
     }
 
     if(!password[7] && flag){
         msg = "Contraseña de usuario debe ser de longitud mayor a 8 caracteres";
-        alert(msg);
         flag = 0;
         type = 2;
+        alert(msg);
     }
 
     if(password != password2 && flag){
         msg = "Contraseña y confirmar contraseña no coinciden";
-        alert(msg);
         flag = 0;
         type = 3;
+        alert(msg);
     }
 
     //Validations of name var.
     if(!name && flag){
         msg = "Ingrese un nombre de usuario";
-        alert(msg);
         flag = 0;
         type = 4;
+        alert(msg);
     }
 
     if(!name[1] && flag){
         msg = "Nombre de usuario debe ser mayor a 2";
-        alert(msg);
         flag = 0;
         type = 4;
+        alert(msg);
     }
 
     if(name[100] && flag){
         msg = "Nombre de usuario demasiado largo";
-        alert(msg);
         flag = 0;
         type = 4;
+        alert(msg);
     }
 
     var expnamelastn=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     
      if (!expnamelastn.exec(name.value)){
+        flag = 0;
+        type = 4;
        alert("Su nombre contiene caracteres inválidos");
-       flag = 0;
-       type = 4;
      }
 
     /*Validate last name*/
     if(!ln && flag){
         msg = "Ingrese un apellido de usuario";
-        alert(msg);
         flag = 0;
         type = 5;
+        alert(msg);
     }
 
     if(!ln[1] && flag){
         msg = "Apellido de usuario debe ser mayor a 2";
-        alert(msg);
         flag = 0;
         type = 5;
+        alert(msg);
     }
 
     if(ln[100] && flag){
         msg = "Apellido de usuario demasiado largo";
-        alert(msg);
         flag = 0;
         type = 5;
-    }
+        alert(msg);
+        }
     
     
      if (!expnamelastn.exec(ln.value)){
+        flag = 0;
+        type = 5;
        alert("Su apellido contiene caracteres inválidos");
-       flag = 0;
-       type = 5;
      }
       
 
     /*Validate e-mail*/
     if(!email && flag){
         var msg = "Ingrese un Correo electrónico";
-        alert(msg);
         flag = 0;
         type = 6;
+        alert(msg);
     }
 
     if(!email[4] && flag){
         msg = "Correo electrónico debe ser de longitud mayor a 5 letras";
-        alert(msg);
         flag = 0;
         type = 6;
+        alert(msg);
     }
 
     if(email[100] && flag){
         msg = "Correo electrónico demasiado largo";
-        alert(msg);
         flag = 0;
         type = 6;
+        alert(msg);
     }
 
     var patt = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -143,8 +143,9 @@ $('#submitusr').click(function(event){
 
     if (!next && flag){
         msg = "Ingrese una dirección de correo electrónico válida";
-        alert(msg);
         type = 6;
+        flag = 0;
+        alert(msg);
     }
 
     if (document.getElementById("r3").checked){
@@ -156,8 +157,8 @@ $('#submitusr').click(function(event){
 
     if(!permissions && flag){
         msg = "Debe seleccionar uno de los permisos";
-        alert(msg);
         flag = 0;
+        alert(msg);
     }
 
 

@@ -11,7 +11,7 @@ $email = $_POST['email'];
 $sql = "DELETE FROM users WHERE email = '$email'"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Usuario eliminado de forma exitosa";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

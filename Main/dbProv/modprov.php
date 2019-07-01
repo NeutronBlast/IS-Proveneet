@@ -21,7 +21,7 @@ rif = '$rif' WHERE rif='$prev'";
 $sql2 = "UPDATE products SET Proveedor='$name' WHERE Proveedor='$result'" ;
 
 if ($conn->query($sql) && $conn->query($sql2) === TRUE) {
-    echo "New record created successfully";
+    echo "Proveedor modificado de manera exitosa";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

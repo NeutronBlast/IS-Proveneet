@@ -1,17 +1,17 @@
 <?php
     require ('..\util\isLogged.php');
-    require ('..\dbOC\fillOCPendingTable.php');
+    require ('..\dbProd\fillCatalog.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ecommerce-orders.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:35:31 GMT -->
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ecommerce-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:35:31 GMT -->
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Proveneet</title>
     <!-- Icon -->
@@ -31,11 +31,11 @@
     <link href="../css/animate.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
+
 </head>
 
 <body>
 
-    
 <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -51,7 +51,7 @@
                                 <span class="block m-t-xs font-bold" id="fullname"></span>
 
                                 <!-- Placeholder role (admin or employee) -->
-                                <span class="text-muted text-xs block">Administrador <b class="caret"></b></span>
+                                <span class="text-muted text-xs block">Empleado <b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="dropdown-item" href="profile.php">Información personal</a></li>
@@ -63,32 +63,25 @@
                         <div class="logo-element">P</div>
                     </li>
                     <li>
-                        <a href="profile.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Ajustes de
-                                usuario</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="profile.php">Gestión de perfil</a></li>
-                            <li><a href="manageusers.php">Gestión de usuarios</a></li>
-                        </ul>
-                    </li>
-                    <li>
+    <a href="profemp.php"><i class="fa fa-address-book-o"></i> <span class="nav-label">Gestión de perfil</span></a>                
+    </li>
+    <li>
+    <a href="providers.php"><i class="fa fa-users"></i> <span class="nav-label">Proveedores</span></a>
+    </li>
 
-                        <a href="providers.php"><i class="fa fa-users"></i> <span
-                                class="nav-label">Proveedores</span></a>
-                    </li>
-                    <li>
-                        <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
-                                class="nav-label">Gestión de productos</span></a>
-                        </li>
-
-                    <li>
+<li>
+    <a href="manageproducts.php"><i class="fa fa-dropbox"></i> <span
+            class="nav-label">Gestión de productos</span></a>
+</li>
+<li class="active">
                     <a href="catalog.php"><i class="fa fa-shopping-cart"></i> <span
                                 class="nav-label">Realizar compra</span></a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <a href="pendingorders.php"><i class="fa fa-shopping-bag"></i> <span class="nav-label">Gestión de ordenes de compra</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li class ="active"><a href="pendingorders.php">Pendientes</a></li>
+                            <li><a href="pendingorders.php">Pendientes</a></li>
                             <li><a href="processedorders.php">Procesadas</a></li>
                         </ul>
                     </li>
@@ -119,11 +112,10 @@
                     </ul>
                 </nav>
             </div> <!-- div from row border bottom -->
-
-
+            
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Órdenes de compra pendientes</h5>
+                    <h5>Gestionar lista de productos</h5>
                 </div><!-- div from ibox-title -->
 
             <div class="row">
@@ -131,97 +123,50 @@
                     <div class="ibox">
                         <div class="ibox-content">
                         <ul class="list-group">
-
-                        <div class="table-responsive">
-                            <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" data-page-size="10" id="orders">
+                            <div class="table-responsive">
+                                <table class="footable table table-stripped toggle-arrow-tiny dataTables-example" id="catalog">
                                 <thead>
+                                
                                 <tr>
-                                    <th data-hide="phone">Fecha</th>
-                                    <th>Código</th>
-                                    <th data-hide="phone">Solicitante</th>
-                                    <th data-hide="phone">Precio</th>
-                                    <th data-hide="phone">Estatus</th>
-                                    <th class="text-right">Acción</th>
-
+                                <th data-toggle="true">Nombre</th>
+                                <th data-hide="phone">Precio</th>
+                                <th data-hide="phone">Categoría</th>
+                                <th data-hide="phone">Código</th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <?php while($row1 = mysqli_fetch_array($result4)):;?>
+                            </thead>
+                                    <tbody>
+                                    <?php while($row1 = mysqli_fetch_array($result4)):;?>
                                     <tr>
-                                        <td><?php echo $row1[3];?></td>
-                                        <td><?php echo $row1[0];?></td>
-                                        <td><?php echo $row1[1];?></td>
-                                        <td><?php echo $row1[2];?></td>
-                                        <td><span class="label label-warning"><?php echo $row1[4];?></span></td>
-                                        <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-info btn btn-xs" id="editOC" onclick="getSelectedRow();">Modificar</button>
-                                            <button class="btn btn-danger btn btn-xs" id="cancelOC" onclick="getTarget();">Eliminar</button>
-                                        </div>
-                                        </td>
+                                        <td id="name"><h4><a href="#" class="text-navy"><?php echo $row1['Nombre'];?></td></a></h4>
+                                        <td id="precio"><?php echo $row1['Precio'].' BsS';?></td>
+                                        <td><?php echo $row1['Categoria'];?></td>
+                                        <td><?php echo $row1['Codigo'];?></td>
                                     </tr>
-                                    <?php endwhile; mysqli_close($conn);?>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        <ul class="pagination float-right"></ul>
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            </table>
+                                    <?php endwhile; mysqli_free_result($result4); mysqli_close($conn);?>
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
-                        </ul>
 
                     </div>
-                   </div>
 
+                </div>
+                   
+
+
+                    </div>
+
+                </div>
             </div>
 
 
-<!-- FORM MODIFY -->
-    <div id="modOC" class="modal fade" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h3 class="m-t-none m-b">Modificar orden de compra</h3>
-                                <form role="form" id="modify-OC">
-                                    <div class="form row">
-                                        <div class="col-sm-12">
-                                        <div class="form-group">
-                                                        <label>Status</label>
-                                                    </div>
-                                                    <div>
-                                                        <label> 
-                                                            <input type="radio" value="Pendiente" id="r5" name="radio3"> <i></i> Pendiente 
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <label> 
-                                                            <input type="radio" value="Procesada" id="r6" name="radio3"> <i></i> Procesada
-                                                        </label>
-                                                    </div class="row">                      
-                                                        <!-- SUBMIT -->
-                                                        <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-                                                        <button class="btn btn-primary btn-lg float-right" type="button" id="submitmodoc">Aceptar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
-
-
-
-
+        </div>
+        </ul>
             </div>
-
+        </div>
 
         </div>
         </div>
@@ -273,8 +218,7 @@
 
     <!-- Utilities -->
     <script src="../util/datatable.js"></script>
-    <script src="../dbOC/modOCverif.js"></script>
-    <script src="../dbOC/delOC.js"></script>
+    <script src="../dbProd/productdetails.js"></script>
 
     <!-- Login data -->
     <script type="text/javascript">
@@ -284,8 +228,9 @@
     /*Assign login data*/
     document.getElementById("fullname").innerHTML = n[0] + " " + ln[0];
     </script>
+
 </body>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ecommerce-orders.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:35:31 GMT -->
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.8/ecommerce-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Aug 2018 01:35:31 GMT -->
 </html>

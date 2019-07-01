@@ -21,7 +21,7 @@ echo $user;
 echo $pass;
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "Contraseña cambiada con exito";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
