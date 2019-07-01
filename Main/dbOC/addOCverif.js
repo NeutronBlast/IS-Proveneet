@@ -64,7 +64,7 @@ $('#submitprod').click(function(event){
 
     if (document.getElementById("quantity").value<0){
         next = false;
-        alert("Campo cantidad de productos debe ser un número entero positivo");
+        alert("Campo cantidad de productos debe ser un número entero positivo mayor que cero");
         $('#quantity').css({"color":"red","border":"1px solid red"});
         skip = true;
     }
