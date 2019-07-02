@@ -1,4 +1,11 @@
+/*Get selected item*/
 function getTarget(){
+    var r = confirm("¿Desea eliminar esta orden de compra?");
+    if (r == true)
+        delTarget();
+}
+
+function delTarget(){
     $("#orders tr").click(function(){
     cont = 0;
     var stats = null;
