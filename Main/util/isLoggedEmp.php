@@ -7,8 +7,9 @@ $dbname = "proveneet";
 session_start();
 $user = $_SESSION['user'];
 $pass = $_SESSION['password'];
+$type = $_SESSION['type'];
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['type']=="Empleado") {
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     $sql = "SELECT nombre FROM users WHERE email='$user'"; 

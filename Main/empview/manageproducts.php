@@ -1,5 +1,5 @@
 <?php
-    require ('..\util\isLogged.php');
+    require ('..\util\isLoggedEmp.php');
     require ('..\dbProd\fillProdTable.php');
     require ('..\dbProd\fillComboBoxProv.php');
 ?>

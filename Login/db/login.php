@@ -21,10 +21,12 @@ if (mysqli_num_rows($result) > 0) {
     $sql_1 = "SELECT * FROM users WHERE email='$user' AND clave='$pass' AND permisos='Administrador'";
     $result_1 = mysqli_query($conn, $sql_1);
     if (mysqli_num_rows($result_1) > 0){
+        $_SESSION["type"] = "Administrador";
         echo "Administrador";
         exit(0);
     }
     else{
+        $_SESSION["type"] = "Empleado";
         echo "Empleado";
         exit(0);
     }

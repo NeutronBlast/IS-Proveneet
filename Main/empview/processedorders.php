@@ -1,5 +1,5 @@
 <?php
-    require ('..\util\isLogged.php');
+    require ('..\util\isLoggedEmp.php');
     require ('..\dbOC\fillOCReadyTable.php');
 ?>
 
