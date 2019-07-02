@@ -43,7 +43,7 @@ $(this).find("td").each(function(){
             index++;
     });
 
-
+    var foolproof = document.getElementById("custId").value;
 
     /*Replace placeholders with gathered values, ready to modify*/
     document.getElementById("musername").value = username;
@@ -52,6 +52,12 @@ $(this).find("td").each(function(){
     document.getElementById("memail").value = email;
     document.getElementById("mname").value = name;
     document.getElementById("nln").value = ln;
+
+    if (foolproof == email){
+        $("#r1").prop('disabled', true);
+        $("#r2").prop('disabled', true);
+    }
+
         if (perms == "Administrador"){
             $("#r1").prop('checked',true);
         }

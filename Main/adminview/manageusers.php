@@ -333,6 +333,8 @@
     </div><!-- div from page wrapper -->
     </div><!-- div from wrapper(superior) -->
 
+    <input type="hidden" id="custId" name="custId" value="<?php echo $user;?>">
+
 
     <!-- Mainly scripts -->
     <script src="../js/jquery-3.1.1.min.js"></script>
