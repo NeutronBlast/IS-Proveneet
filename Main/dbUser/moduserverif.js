@@ -174,10 +174,12 @@ type = 4;
 }
 
 
-if (!/^([A-z])*$/.test(name) && flag){
-alert("Su nombre contiene números");
-flag = 0;
-type = 4;
+var expnamelastn=/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    
+if (!expnamelastn.exec(name.value)){
+   flag = 0;
+   type = 4;
+  alert("Su nombre contiene caracteres inválidos");
 }
 
 /*Verify last name*/
@@ -202,11 +204,12 @@ flag = 0;
 type = 5;
 }
 
-if (!/^([A-z])*$/.test(ln) && flag){
-alert("Su apellido contiene números");
-flag = 0;
-type = 5;
-}
+    
+if (!expnamelastn.exec(ln.value)){
+    flag = 0;
+    type = 5;
+   alert("Su apellido contiene caracteres inválidos");
+ }
 
 
 /*Verify email*/
