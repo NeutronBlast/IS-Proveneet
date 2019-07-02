@@ -147,7 +147,7 @@ var patt2 = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}
 var q = patt2.test((String)(phone));
 
 if (!q && !skip){
-alert("Formato de teléfono inválido. Formato aceptado: Al menos 8 caracteres: XXXXXXXX o +XX-XXXXXX o XXXX-XXXXXX o +XXXXXXXXXX");
+alert("Numero de teléfono inválido. Formato aceptado: Al menos 8 caracteres: XXXXXXXX o +XXXXXXXX");
 type = 3;
 next = false;
 }

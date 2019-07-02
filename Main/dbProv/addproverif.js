@@ -104,7 +104,7 @@ $('#addpro').click(function(event){
     var q = patt2.test((String)(phone));
 
     if (!q && !skip){
-    alert("Formato de teléfono inválido. Formato aceptado: Al menos 8 caracteres: XXXXXXXX o +XX-XXXXXX o XXXX-XXXXXX o +XXXXXXXXXX");
+    alert("Numero de teléfono inválido. Formato aceptado: Al menos 8 caracteres: XXXXXXXX o +XXXXXXXX");
     type = 3;
     next = false;
     }
