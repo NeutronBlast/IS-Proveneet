@@ -37,7 +37,7 @@ $('#addpro').click(function(event){
     }
     
     if (!rif[9]){
-        alert("RIF proveedor demasiado corto");
+        alert("RIF proveedor demasiado corto, deben ser al menos 9 caracteres");
         next = false;
         type = 4;
     }
