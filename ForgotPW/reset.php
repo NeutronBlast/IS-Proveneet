@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Proveneet</title>
-	<meta charset="UTF-8">
+    <title>Proveneet</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -16,13 +16,13 @@
         <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
     <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <!--===============================================================================================-->	
+    <!--===============================================================================================-->  
         <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <!--===============================================================================================-->	
+    <!--===============================================================================================-->  
         <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -34,8 +34,8 @@
     </head>
     <body>
     <div class="container-login100" style="background-image: url('images/bg-02.jpg');">
-	<div class="row">
-	<div class="col-md-4 col-md-offset-4">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-4">
     <div class="wrap-login100">
     <div class="panel-body">
     <div class="text-center">
@@ -83,25 +83,39 @@
 <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+    <script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
+    <script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 <script type="text/javascript">
     $('#resetButton').click(function(event){ 
     pass = document.getElementById("pass").value;
+    cpass = document.getElementById("cpass").value;
     url = window.location.href;  
     searchParams = new URLSearchParams(url);
     email = searchParams.get('email');
     token = searchParams.get('token');
+    var next = true;
+
+    if (pass != cpass){
+        next = false;
+        alert("Campos contraseña y confirmar contraseña no coinciden");
+    }
+
+    if (!pass[7]){
+        next = false;
+        alert("Contraseña debe tener al menos 8 caracteres");
+    }
+
+    if (next){
     $.ajax({
         type:"POST",
         url:"step2.php",
@@ -109,15 +123,16 @@
         data: {pass:pass,token:token,email},
         success: function(data){
             if(data != 'success'){
-                alert("Usuario no existe en el sistema");
+                alert("Este token ya fue utilizado, por favor solicite nuevamente el correo de restablecimiento de contraseña");
              }
             else{
-               alert("Se ha restablecido su contraseña a su dirección de correo electrónico, por favor cámbiela en gestión de perfil");        
-
+               alert("Se ha restablecido su contraseña exitosamente");     
              }
-        }
+             window.location.href='../Login/index.php'; 
 
+        }
         });
+    }
 
     });
     </script>

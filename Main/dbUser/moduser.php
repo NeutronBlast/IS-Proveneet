@@ -18,7 +18,7 @@ $sql = "UPDATE users SET nombre = '$name', apellido = '$ln', username = '$user',
 clave = '$pass', email = '$email', permisos = '$permissions' WHERE email='$prev'"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Usuario modificado con éxito";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

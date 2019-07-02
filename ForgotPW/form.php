@@ -94,7 +94,6 @@
         data: {user:user},
         success: function(data){
             if(data != 'success'){
-                alert(data);
                 alert("Usuario no existe en el sistema");
              }
             else{

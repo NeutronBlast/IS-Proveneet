@@ -18,7 +18,7 @@ if ($code == $oldcode){
 Categoria = '$cat', Proveedor = '$provider' WHERE Codigo = '$oldcode'"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Producto modificado exitosamente";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
@@ -30,7 +30,7 @@ $sql = "UPDATE products SET Nombre = '$name', Codigo = '$code', Precio = '$price
 Categoria = '$cat', Proveedor = '$provider' WHERE Codigo = '$oldcode'"; 
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    echo "Producto modificado exitosamente";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
