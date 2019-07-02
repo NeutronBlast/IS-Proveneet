@@ -1,5 +1,5 @@
 <?php
-	require ('..\util\isLoggedAdm.php');
+    require ('..\util\isLoggedAdm.php');
 ?>
 
 
@@ -121,14 +121,6 @@
     <div class="ibox ">
     <div class="ibox-title">
     <h5>Información personal</h5>
-    <div class="ibox-tools">
-    <a class="collapse-link" href="#">
-    <i class="fa fa-chevron-up"></i>
-    </a>
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-    <i class="fa fa-wrench"></i>
-    </a>
-    </div><!-- div from ibox-tools -->
     </div><!-- div from ibox-title -->
 
     <!-- PROFILE -->
@@ -173,7 +165,7 @@
         
     <!-- SUBMIT -->
     <button class="btn btn-primary btn-lg float-right ml-2">Cancelar</button>
-    <button class="btn btn-primary btn-lg float-right" type="submit" id="submitbttn">Aceptar</button>
+    <button class="btn btn-primary btn-lg float-right" type="button" id="submitbttn">Aceptar</button>
     </div>
     </form>
     </div>
@@ -256,6 +248,11 @@
             next = false;
         }
 
+        if (!newp[7]){
+            next = false;
+            alert("Contraseña debe ser al menos 8 caracteres");
+        }
+
         if (next){
         $.ajax({
         type:"POST",
@@ -263,6 +260,7 @@
         async: false,
         data: {e:e,newp:newp},
         success: function(data){
+            alert("Contraseña modificada con éxito");
             window.location.href='../adminview/profile.php';
         }
         });
