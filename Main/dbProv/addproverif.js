@@ -18,7 +18,7 @@ $('#addpro').click(function(event){
         next = false;
         alert("Por favor rellene todos los datos antes de continuar");
     }
-    if (!name[3]){
+    if (!name[2]){
         alert("Nombre de proveedor demasiado corto");
         next = false;
         type = 1;

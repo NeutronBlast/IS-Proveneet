@@ -1,3 +1,7 @@
+<?php
+    require ('..\Main\util\firstTime.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
