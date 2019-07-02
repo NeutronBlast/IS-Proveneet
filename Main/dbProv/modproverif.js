@@ -55,7 +55,7 @@ alert("Por favor rellene todos los datos antes de continuar");
 }   
 
 if (!name[2]){
-    alert("Nombre de proveedor demasiado corto");
+    alert("Nombre de proveedor demasiado corto, al menos 3 caracteres");
     next = false;
     type = 1;
 }
@@ -66,14 +66,14 @@ if (name[101]){
     type = 1;
 }
 
-if (nextrif[21]){
-    alert("RIF proveedor demasiado largo");
+if (nextrif[20]){
+    alert("RIF proveedor demasiado largo, no más de 20 caracteres");
     next = false;
     type = 4;
 }
 
-if (!nextrif[9]){
-    alert("RIF proveedor demasiado corto");
+if (!nextrif[8]){
+    alert("RIF proveedor demasiado corto, al menos 8 caracteres");
     next = false;
     type = 4;
 }
@@ -85,13 +85,13 @@ if (dir[150]){
 }
 
 if (!dir[3]){
-    alert("Dirección de proveedor demasiado corta");
+    alert("Dirección de proveedor demasiado corta, al menos 3 caracteres");
     next = false;
     type = 2;
 }
 
 if (!phone[7]){
-    alert("Numero de teléfono inválido. Formato aceptado: Al menos 8 caracteres: XXXXXXXX o +XX-XXXXXX o XXXX-XXXXXX o +XXXXXXXXXX");
+    alert("Numero de teléfono inválido. Formato aceptado: Al menos 8 caracteres: XXXXXXXX o +XXXXXXXX");
     next = false;
     type = 3;
     skip = true;
