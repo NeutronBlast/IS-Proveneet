@@ -4,22 +4,15 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [About the Project](#about-the-project)
+* [System Characteristics](#system-characteristics)
   * [Built With](#built-with)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
-
-
 
 <!-- ABOUT THE PROJECT -->
-## System characteristics
+## System Characteristics
 
 1. **User management:** Site admins must be able to add/modify/delete members since this app is intended as a closed website
 2. **Provider management**: Users must be able to add/modify/delete providers
